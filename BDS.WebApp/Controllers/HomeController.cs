@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BDS.Services.Project;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BDS.WebApp.Models;
@@ -11,22 +12,19 @@ namespace BDS.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProjectService _projectService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IProjectService projectService)
         {
-            _logger = logger;
+            _projectService = projectService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_projectService.GetHighlightProject().Result);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

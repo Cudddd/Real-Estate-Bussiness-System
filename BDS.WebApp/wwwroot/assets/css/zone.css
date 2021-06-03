@@ -1,0 +1,85 @@
+#product--list--investor{
+
+}
+
+#product--list--investor img{
+width:100%;
+max-height: 250px;
+}
+.more-btn{
+background-color:#25c8b4;
+font-size: 16px;
+line-height: 40px;
+text-align: center;
+padding:10px;
+text-transform: uppercase;
+}
+
+.product--list--item--info {
+background-color:#c0f7fb;
+
+}
+
+
+.product--list--item--info h1{
+    text-align: left;
+    font-size: 18px;
+    margin-left: 16px;
+    margin-top: 10px;
+    color: #f94c08;
+}
+.product--list--item--info  p{
+    font-size: 16px;
+    line-height: 30px;
+    text-align: left;
+    margin-left: 16px;
+}
+.product-btn{
+    margin-top:60px;
+        background-color:#25c8b4;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+    color:#fff;
+        text-transform: uppercase;
+}
+.sort-btn{
+    margin-top:10px;
+    background-color:#fff;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    border: 2px solid #c0f7fb;
+    /* border-top-right-radius:20%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-top-left-radius: 10%; */
+    text-transform: uppercase;
+}
+.sort-btn{
+
+}
+.border-2px{
+   border: 2px solid #c0f7fb;
+}
+
+
+.navigation-bar{
+    color:#000;
+    margin-top:1000px;
+   
+    font-size:16px;
+    padding:20px;
+}
+.navigation-bar a{
+    padding-left:10px;
+    line-height:32px;
+    list-style-type: none;
+    color:#000;
+    text-decoration:none;
+}
+.navigation-bar a:hover{
+    color:#f9b808;
+    cursor: pointer;
+    text-decoration: underline;
+}

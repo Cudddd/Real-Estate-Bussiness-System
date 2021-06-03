@@ -4,4 +4,16 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BDS.Data\BDS.Data.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Area" />
+      <Folder Include="Media" />
+      <Folder Include="News" />
+      <Folder Include="RealEstate" />
+      <Folder Include="Recruitment" />
+    </ItemGroup>
+
 </Project>

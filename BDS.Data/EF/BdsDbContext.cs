@@ -5,13 +5,18 @@ namespace BDS.Data.EF
 {
     public class BdsDbContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public BdsDbContext(DbContextOptions<BdsDbContext> options) : base((options))
         {
-            optionsBuilder.UseNpgsql(@"postgres://postgres:admin@localhost:5432/BDS");
+            
         }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     optionsBuilder.UseNpgsql(@"Server=localhost;Port=5432;Database=BDS;User Id=postgres;Password=admin");
+        //     base.OnConfiguring(optionsBuilder);
+        // }
         
         
-        public DbSet<Project> Projects { get; set; }
+        public DbSet<Project> Project { get; set; }
         public DbSet<Area> Areas { get; set; }
         public DbSet<RealEstate> RealEstates { get; set; }
         public DbSet<News> News { get; set; }

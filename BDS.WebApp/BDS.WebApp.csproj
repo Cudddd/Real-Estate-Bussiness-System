@@ -4,4 +4,9 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BDS.Data\BDS.Data.csproj" />
+      <ProjectReference Include="..\BDS.Services\BDS.Services.csproj" />
+    </ItemGroup>
+
 </Project>

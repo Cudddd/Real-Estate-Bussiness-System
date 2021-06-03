@@ -1,0 +1,101 @@
+#news--list--infomation{
+
+}
+
+#news--list--infomationimg{
+width:100%;
+
+
+}
+.more-btn{
+background-color:#25c8b4;
+font-size: 16px;
+line-height: 40px;
+text-align: center;
+padding:10px;
+text-transform: uppercase;
+}
+
+.news--info{
+background-color:#c0f7fb;
+
+}
+
+
+.news--info h1{
+    text-align: left;
+    font-size: 18px;
+    padding:20px 20px;
+    margin-top: 20px;
+    color: #f94c08;
+}
+.news--info  p{
+    font-size: 16px;
+    line-height: 30px;
+    text-align: left;
+    padding: 0 20px;
+}
+.product-btn-estate{
+  
+        background-color:#25c8b4;
+        font-size: 16px;
+       
+        text-align: center;
+    color:#fff;
+        text-transform: uppercase;
+}
+.product-btn-estate1{
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.sort-btn{
+    margin-top:10px;
+    background-color:#fff;
+    font-size: 16px;
+    line-height: 40px;
+    text-align: center;
+    border: 2px solid #c0f7fb;
+    /* border-top-right-radius:20%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+    border-top-left-radius: 10%; */
+    text-transform: uppercase;
+}
+.sort-btn{
+
+}
+.border-2px{
+   border: 2px solid #c0f7fb;
+}
+
+
+.navigation-bar{
+    color:#000;
+    margin-top:1000px;
+   
+    font-size:16px;
+    padding:20px;
+}
+.navigation-bar a{
+    padding-left:10px;
+    line-height:32px;
+    list-style-type: none;
+    color:#000;
+    text-decoration:none;
+}
+.navigation-bar a:hover{
+    color:#f9b808;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.date-submit{
+    
+    right:0;
+    bottom:0;
+    }
+.date-submit p{
+        color:rgb(90, 86, 86);
+        padding:20px;
+}
