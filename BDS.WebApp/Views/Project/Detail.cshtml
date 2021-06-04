@@ -1,0 +1,88 @@
+@using BDS.Data.Entities;
+@model Project
+
+@{
+    ViewData["Title"] = Model.name;
+    //Layout = _Layout;
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/aboutproject.css">
+</head>
+
+
+<!-- ----------------------------------------------- -->
+        <div id="aboutproject--slider--section">
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--information--section" class="grid">
+            <div class="grid wide">
+                <h1>✨ @Model.name ✨</h1>
+            </div>
+            <div class="text grid wide">
+                <p>@Model.introduce
+                </p>
+            </div> 
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--banner">    
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--videointroduce--section" class=" grid wide row ">
+          
+            <iframe id="a" class="col l-12 m-12 c-12" src="https://www.youtube.com/embed/kzaxMiggCoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--detailed-information--section" class="grid ">
+            <div class=" grid wide">
+                <h1>THÔNG TIN CHI TIẾT</h1>
+            </div>
+            <div class="text grid wide">
+                <p>
+@Model.info
+                </p>
+            </div>
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--videoprogress--section" class=" grid ">
+            <div id="aboutproject--detail--information--section" class="grid">
+                <div class="grid wide">
+                    <h1> TIẾN ĐỘ DỰ ÁN </h1>
+                </div>
+                <div class="text grid wide">
+                    <p>@Model.procedure
+                    </p>
+                </div>
+            </div>
+            <div class=" grid wide row">
+                <iframe class="col l-12 m-12 c-12"  src="https://www.youtube.com/embed/-lAJa_s_cCs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--map">
+        </div>
+        <div id="footer--map--info" class="row grid wide">
+            
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="./zone.html">Phân khu the Origami</a></div>
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="">Phân khu the Origami</a></div>
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="">Phân khu the Origami</a></div>
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="">Phân khu the Origami</a></div>
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="">Phân khu the Origami</a></div>
+            <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">1</span><a class="col" href="">Phân khu the Origami</a></div>
+
+        </div>
+         <!-- ----------------------------------------------- -->
+        <div id="aboutproject--benefits--section" class="grid">
+            <div class="grid wide">
+                <h1>✨ LỢI ÍCH KHÁCH HÀNG ✨</h1>
+            </div>
+            <div class="text grid wide">
+                <p>
+@Model.customerBenefits
+                </p>
+            </div>
+            <div class="grid wide">
+                <a class="l-4 l-o-4 m-4 m-o-4 c-4 c-o-4">ĐỂ LẠI THÔNG TIN</a>
+            </div>
+        </div>
+         <!-- ----------------------------------------------- -->

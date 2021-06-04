@@ -21,7 +21,8 @@ namespace BDS.WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View(_projectService.GetHighlightProject().Result);
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            return View();
         }
 
         

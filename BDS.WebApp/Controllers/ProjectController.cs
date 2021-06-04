@@ -14,14 +14,18 @@ namespace BDS.WebApp.Controllers
         // GET
         public IActionResult Index()
         {
-            return View(_projectService.GetHighlightProject().Result);
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            return View();
         }
         
         // GET Detail Project
-        public IActionResult DetailProject(long id)
+        public IActionResult Detail(long id)
         {
-            var project = _projectService.GetById(id);
-            return View(project.Result);
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+
+            var project = _projectService.GetById(id).Result;
+            return View(project);
         }
+        
     }
 }

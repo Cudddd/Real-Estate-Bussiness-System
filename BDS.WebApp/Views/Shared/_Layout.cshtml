@@ -1,5 +1,5 @@
 ﻿@using BDS.Data.Entities
-@model List<Project> 
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@ViewData["Title"] - Hoàng Nam Land</title>
 
-        <link rel="stylesheet" href="./assets/css/base.css">
-        <link rel="stylesheet" href="./assets/css/main.css">
-        <link rel="stylesheet" href="./assets/css/grid.css">
-        <link rel="stylesheet" href="./assets/fonts/themify-icons.css">
+        <link rel="stylesheet" href="~/assets/css/base.css">
+        <link rel="stylesheet" href="~/assets/css/main.css">
+        <link rel="stylesheet" href="~/assets/css/grid.css">
+        <link rel="stylesheet" href="~/assets/fonts/themify-icons.css">
              
     </head>
 
@@ -30,9 +30,9 @@
                         <li><a href="@Url.ActionLink("Index", "Project")">DỰ ÁN </a><i class=ti-angle-down></i>
                             <ul class="subnav">
                                 @{
-                                    foreach (var item in Model)
+                                    foreach (Project item in ViewBag.HighlightProjects)
                                     {
-                                        <li><a href="@Url.ActionLink("DetailProject", "Project",@item.id)">@item.name</a></li>
+                                        <li><a href="@Url.ActionLink("Detail", "Project", new { @item.id })">@item.name</a></li>
                                     }
                                 }
                             </ul>
@@ -42,7 +42,7 @@
                         <li><a href="./recruitment.html">TUYỂN DỤNG</a></li>
                         <li><a href="">NHỜ BÁN/THUÊ</a></li>
                         <li><a href="">TÀI KHOẢN</a></li>
-                        <li><a href=""><img src="./assets/img/introduce-section/iconfinder_heart_299063.png" alt="" class="header-wishlist"></a></li>
+                        <li><a href=""><img src="~/assets/img/introduce-section/iconfinder_heart_299063.png" alt="" class="header-wishlist"></a></li>
                     </ul>
 
                 </div>

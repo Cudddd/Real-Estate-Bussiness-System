@@ -9,4 +9,8 @@
       <ProjectReference Include="..\BDS.Services\BDS.Services.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
+    </ItemGroup>
+
 </Project>

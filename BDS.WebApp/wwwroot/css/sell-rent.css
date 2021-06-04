@@ -1,0 +1,85 @@
+#product--estateinfomation{
+
+}
+.product--estateinfomation--item img{
+     width:100%;
+}
+
+.sell-rent-btn{
+    margin-top:60px;
+        background-color:#25c8b4;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+    color:#fff;
+        text-transform: uppercase;
+        margin-right:2px;
+}
+
+#product--estateinfomation #project--banner .imgBx {
+  
+}
+.product--estateinfomation--item--info {
+background-color:#fff;
+
+}
+.product-btn-estate1:hover{
+    cursor: pointer;
+    border-color:#25c8b4;
+}
+
+.product--estateinfomation--item--info h1{
+    text-align: left;
+    font-size: 18px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 10px;
+    color: #f94c08;
+}
+.product--estateinfomation--item--info  p{
+    font-size: 16px;
+    line-height: 30px;
+    text-align: left;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+.product-btn-estate{
+  
+        background-color:#25c8b4;
+        font-size: 16px;
+       
+        text-align: center;
+    color:#fff;
+        text-transform: uppercase;
+}
+.product-btn-estate1{
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+
+    text-transform: uppercase;
+}
+
+
+.border-2px{
+   border: 2px solid #c0f7fb;   
+}
+
+
+.navigation-bar{
+    color:#000;
+    font-size:16px;
+    padding:20px;
+}
+.navigation-bar a{
+    padding-left:10px;
+    line-height:32px;
+    list-style-type: none;
+    color:#000;
+    text-decoration:none;
+}
+.navigation-bar a:hover{
+    color:#f9b808;
+    cursor: pointer;
+    text-decoration: underline;
+}
