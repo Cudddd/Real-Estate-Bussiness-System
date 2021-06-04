@@ -11,6 +11,40 @@
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\css\site.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\aboutproject\grandword-slider.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\aboutproject\grandworld--banner.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\aboutproject\map.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\aboutproject\vinhomescangio.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\aboutproject\vinhomesquan9.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\flcsamson.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\footer-logo.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\home.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\home2.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\home3.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\home4.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\iconfinder_112-gmail_email_mail_4202011.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\img1.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\img2.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\img3.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\img4.jpeg" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\1backgroundimg.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\iconfinder_heart_299063.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\logo-bat-dong-san-8.webp" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\masteri.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\masteri1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\masterise.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\masterise1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\vinhomegrandpark.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\partner\vinhomegrandpark1.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\slider-img.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\value\high-five.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\value\honesty.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\value\profits.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\value\target.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\introduce-section\value\value.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\Screenshot 2021-04-17 at 11.16.44 2.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\wishhlist.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\youtube.png" />
     </ItemGroup>
 
 </Project>

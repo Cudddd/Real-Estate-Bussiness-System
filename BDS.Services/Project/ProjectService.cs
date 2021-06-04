@@ -83,5 +83,19 @@ namespace BDS.Services.Project
         {
             throw new System.NotImplementedException();
         }
+
+        public async Task<List<Project>> FilterByInvesloper(string invesloper)
+        {
+            var entities = await _context.Project.ToListAsync();
+            
+            List<Project> result = new List<Project>();
+            foreach (var item in entities)
+            {
+                if(item.invesloper == invesloper)
+                    result.Add(item);
+            }
+
+            return result;
+        }
     }
 }

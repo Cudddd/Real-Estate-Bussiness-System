@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Services.Area;
 using BDS.Services.Project;
+using BDS.Services.RealEstate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,8 @@ namespace BDS.WebApp
                 );
             // DI
             services.AddTransient<IProjectService,ProjectService>();
+            services.AddTransient<IAreaService,AreaService>();
+            services.AddTransient<IRealEstateService,RealEstateService>();
             
             
             services.AddControllersWithViews();

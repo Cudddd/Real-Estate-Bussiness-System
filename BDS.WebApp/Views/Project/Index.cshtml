@@ -1,12 +1,12 @@
-
-
+@using BDS.WebApp.Models.Project;
+@model ProjectViewModel
 @{
     ViewData["Title"] = "Dự án";
     //Layout = _Layout;
 }
 
 <head>
-    <link rel="stylesheet" href="./assets/css/project.css">
+    <link rel="stylesheet" href="~/assets/css/project.css">
 </head>
 
 <section id="project--banner">
@@ -53,56 +53,26 @@ Hơn cả một tổ hợp quy mô tầm cỡ, Grand World Phú Quốc là đi�
                 <a class="btn col l-3 l-o-3 "> Vinhomes Grand Park </a>
                 <a class="btn col l-3 "> Chủ đầu tư khác </a>
             </div>
-            <div class=" border-4px grid wide row">
-                <div class="project--list--item col l-6">
-                    <div class="col">
-                        <div class = "row">
-                            <img src="./assets/img/aboutproject/grandworld--banner.png">
-                        </div>
-                        <div class = "row">
-                            <a class="text-decoration-none" href="./aboutproject.html" >
-                                Grand World Phú Quốc
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project--list--item col l-6">
-                    <div class="col">
-                        <div class = "row">
-                            <img src="./assets/img/aboutproject/vinhomesquan9.jpeg">
-                        </div>
-                        <div class = "row">
-                            <a class="text-decoration-none" href="./aboutproject.html" >
-                                Vinhomes Grand Park
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project--list--item col l-6">
-                    <div class="col">
-                        <div class = "row">
-                            <img src="./assets/img/img3.jpeg">
-                        </div>
-                        <div class = "row">
-                            <a class="text-decoration-none" href="./aboutproject.html" >
-                                Vinhomes Cần Giờ
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project--list--item col l-6">
-                    <div class="col">
-                        <div class = "row">
-                            <img src="./assets/img/aboutproject/grandworld--banner.png">
-                        </div>
-                        <div class = "row">
-                           <a  class="text-decoration-none" href="./aboutproject.html" >
-                               Vinhomes Grand Park
-                           </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              <div class=" border-4px grid wide row">
+                  @{
+                      foreach (var item in Model.VinhomesProjects)
+                      {
+                          <div class="project--list--item col l-6">
+                              <div class="col">
+                                  <div class="row">
+                                      <img src="./assets/img/aboutproject/grandworld--banner.png">
+                                  </div>
+                                  <div class="row">
+                                      <a class="text-decoration-none" href="@Url.ActionLink("Detail","Project", new { @item.id })">
+                                          @item.name
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      }
+                  }
+                  
+              </div>
                  <div class=" grid wide row">
                     <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> xem thêm </a>
                 </div>

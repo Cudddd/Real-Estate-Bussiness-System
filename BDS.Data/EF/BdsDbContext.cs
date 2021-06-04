@@ -17,8 +17,8 @@ namespace BDS.Data.EF
         
         
         public DbSet<Project> Project { get; set; }
-        public DbSet<Area> Areas { get; set; }
-        public DbSet<RealEstate> RealEstates { get; set; }
+        public DbSet<Area> Area { get; set; }
+        public DbSet<RealEstate> RealEstate { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Recruitment> Recruitments { get; set; }
         public DbSet<ProjectMedia> ProjectMedia { get; set; }
