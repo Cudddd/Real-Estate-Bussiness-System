@@ -95,3 +95,32 @@ bottom:0;
     color:rgb(90, 86, 86);
     padding:10px;
 }
+.pagination{
+    border: 1px solid #c0f7fb;
+    border-radius: 16px;
+    margin-top:20px;
+}
+.pagination a {
+    color: black;
+    /* line-height: 16px; */
+    font-size:16px;
+    float: left;
+
+    padding: 16px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  
+  /* Style the active/current link */
+  .pagination a.active {
+    background-color: #c0f7fb;
+    color: white;
+    
+  }
+  .margin-left-12px{
+      margin-left:12px;
+  }
+  
+  /* Add a grey background color on mouse-over */
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+ 

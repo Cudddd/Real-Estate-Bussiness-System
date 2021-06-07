@@ -1,5 +1,7 @@
+using System;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
+using BDS.WebApp.Models.RealEstate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BDS.WebApp.Controllers
@@ -10,15 +12,23 @@ namespace BDS.WebApp.Controllers
 
         private readonly IProjectService _projectService;
 
-        RealEstateController(IRealEstateService realEstateService,IProjectService projectService)
+        public RealEstateController(IRealEstateService realEstateService,IProjectService projectService)
         {
             _realEstateService = realEstateService;
             _projectService = projectService;
         }
         // GET
-        public IActionResult Index()
+        public IActionResult Index(int pageIndex)
         {
-            return View();
+           // pageIndex = 2;
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+
+            RealEstateViewModel realEstateViewModel = new RealEstateViewModel();
+            realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 4).Result;
+            
+            Console.WriteLine(pageIndex);
+            
+            return View(realEstateViewModel);
         }
     }
 }

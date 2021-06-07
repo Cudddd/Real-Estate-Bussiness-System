@@ -15,51 +15,17 @@
         text-transform: uppercase;
         margin-right:2px;
 }
-
-#product--estateinfomation #project--banner .imgBx {
-  
+.sell-rent-btn:hover{
+  margin-top:60px;
+      background-color:#c0f7fb;
+      font-size: 16px;
+      line-height: 40px;
+      text-align: center;
+  color:#fff;
+      text-transform: uppercase;
+      margin-right:2px;
+      cursor:pointer;
 }
-.product--estateinfomation--item--info {
-background-color:#fff;
-
-}
-.product-btn-estate1:hover{
-    cursor: pointer;
-    border-color:#25c8b4;
-}
-
-.product--estateinfomation--item--info h1{
-    text-align: left;
-    font-size: 18px;
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-top: 10px;
-    color: #f94c08;
-}
-.product--estateinfomation--item--info  p{
-    font-size: 16px;
-    line-height: 30px;
-    text-align: left;
-    margin-left: 16px;
-    margin-right: 16px;
-}
-.product-btn-estate{
-  
-        background-color:#25c8b4;
-        font-size: 16px;
-       
-        text-align: center;
-    color:#fff;
-        text-transform: uppercase;
-}
-.product-btn-estate1{
-    font-size: 12px;
-    line-height: 30px;
-    text-align: center;
-
-    text-transform: uppercase;
-}
-
 
 .border-2px{
    border: 2px solid #c0f7fb;   
@@ -83,3 +49,90 @@ background-color:#fff;
     cursor: pointer;
     text-decoration: underline;
 }
+
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  
+  /* Style the label to display next to the inputs */
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 14px;
+    float: left;
+  }
+  
+  /* Style the submit button */
+  input[type=submit] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #25c8b4;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    float: right;
+
+  }
+  input[type=submit]:hover {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #c0f7fb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    float: right;
+
+  }
+  #sell-rent .sell-rent-info {
+
+  }
+  .upload-img p{
+    font-size:20px;
+    margin-top:20px;
+  }
+  
+  /* Style the container */
+  .container {
+   
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  /* Floating column for labels: 25% width */
+  .col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+  }
+  
+  /* Floating column for inputs: 75% width */
+  .col-75 {
+    float: left;
+    width: 85%;
+    margin-top: 6px;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+
+    }
+  }
+  

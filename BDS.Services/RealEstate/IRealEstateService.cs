@@ -12,7 +12,7 @@ namespace BDS.Services.RealEstate
         Task<int> Delete(long realEstateID);
         Task<RealEstate> GetById(long realEstateID);
         Task<PageResult<RealEstate>> GetAll();
-        Task<PageResult<RealEstate>> GetAllPaging(string keyword, Page page);
+        Task<List<RealEstate>> GetAllPaging(int pageIndex, int pageSize);
 
         Task<List<RealEstate>> GetByAreaId(long areaID);
 

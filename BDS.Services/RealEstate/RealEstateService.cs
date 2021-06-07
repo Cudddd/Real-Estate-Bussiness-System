@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Area;
@@ -41,9 +42,13 @@ namespace BDS.Services.RealEstate
             throw new System.NotImplementedException();
         }
 
-        public Task<PageResult<Data.Entities.RealEstate>> GetAllPaging(string keyword, Page page)
+        public async Task<List<RealEstate>> GetAllPaging(int pageIndex, int pageSize)
         {
-            throw new System.NotImplementedException();
+            var data = await _context.RealEstate.OrderBy(r => r.DateCreated).ToListAsync();
+
+            var realEstates = data.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return realEstates;
         }
 
         public async Task<List<Data.Entities.RealEstate>> GetByAreaId(long areaID)
