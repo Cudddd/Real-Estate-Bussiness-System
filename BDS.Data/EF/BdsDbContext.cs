@@ -21,7 +21,7 @@ namespace BDS.Data.EF
         public DbSet<RealEstate> RealEstate { get; set; }
         public DbSet<RealEstateType> RealEstateType { get; set; }
         public DbSet<News> News { get; set; }
-        public DbSet<Recruitment> Recruitments { get; set; }
+        public DbSet<Recruitment> Recruitment { get; set; }
         public DbSet<ProjectMedia> ProjectMedia { get; set; }
         public DbSet<RealEstateMedia> RealEstateMedia { get; set; }
         public DbSet<NewsMedia> NewsMedia { get; set; }

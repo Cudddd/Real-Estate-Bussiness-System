@@ -1,0 +1,48 @@
+@model BDS.Data.Entities.News
+ @{
+     ViewData["Title"] = Model.title;
+ }
+<head>
+    <link rel="stylesheet" href="~/assets/css/news-infomation.css">
+</head>
+
+
+
+<div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+               </div>
+               <div>
+                    <a href="@Url.ActionLink("Index","News")" class="font-size-20px">Tin tức >></a>
+               </div>
+               <a href="@Url.ActionLink("Detail","News",@Model.id)" class="font-size-20px">@Model.title</a>
+            </div>
+                </div>
+
+<!-- ----------------------------------------------- -->        
+          <div id="news--list--infomation" class="grid">
+            <div class=" border-around-4px grid wide row">
+                <div class="new--body col l-12 m-12 o-12">
+                    <div class=" row  ">
+                        <img class="col l-12" src="~/assets/img/home.png" alt="">
+                    </div>
+                    <div >
+                        <div class = "news--info">
+                            <h1>@Model.title</h1>
+                           <div class="text">
+                            <p>@Model.content</p>
+                           </div>
+                            <div class="date-submit">
+                                    <p>@Model.dateCreated</p>
+                                </div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+              
+            </div>
+          </div>
+          
+          <!-- ------------------------------- -->

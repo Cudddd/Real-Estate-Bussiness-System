@@ -1,0 +1,161 @@
+@model BDS.Services.Model.RealEstateModel
+@{
+    ViewData["Title"] = @Model.name;
+}
+<head>
+
+    <link rel="stylesheet" href="~/assets/css/estateinfomation.css">
+    <link rel="stylesheet" href="~/assets/css/project.css">
+</head>
+
+
+
+<!-- ------------------------------- -->
+        <div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+               </div>
+               <div class="row font-size-20px">
+                    <a href="@Url.ActionLink("Index","RealEstate")" class="font-size-20px">Nhà Đất >></a>
+               </div>
+               <a href="./project.html" class="font-size-20px">Chi tiết nhà đất</a>
+            </div >
+                </div>
+
+<!-- ----------------------------------------------- -->        
+          <div id="product--estateinfomation" class="grid">
+            <div class=" border-around-4px grid wide row">
+                <div class="product--estateinfomation--item col l-12">
+                    <div class=" row ">
+                        <section id="project--banner">
+                            <div class="imgBx">
+                                
+                                <img class="col l-8 l-o-2" src="~/assets/img/home.png" alt="" >
+                                <img class="col l-8 l-o-2" src="~/assets/img/img1.jpeg" alt="">
+                                <img class="col l-8 l-o-2" src="~/assets/img/img2.jpeg" alt="" >
+                                <img class=" active col l-8 l-o-2" src="~/assets/img/img3.jpeg" alt="">
+                            </div>
+                            <ul class="controls grid ">
+                                <li onclick = "PrevSlide();PrevSlideText();"></li>
+                                <li onclick ="nextSlide();nextSlideText();"></li>
+                            </ul>
+                        </section>
+                    </div>
+                    <div >
+                       <!-- dấdsadasdsa  -->
+                    </div>
+                    
+                    <div class="row margin-left-right margin-top-8px">
+                      <div class="l-12 background-color-blue">
+                        <div class = " product--estateinfomation--item--info  l-10 l-o-1 ">
+                            <h1>@Model.name</h1>
+                            <p class="text">
+Loại nhà: @Model.type
+Mặt tiền: @Model.facade m 
+Đường chính: @Model.mainLine
+Vị trí: @Model.location
+Diện tích: @Model.acreage ( Dài @Model.length m, @Model.width m )
+Hướng: @Model.orientation 
+Giá: @Model.price TR/m2
+Tầng: @Model.floor
+Số phòng ngủ: @Model.bedRoom
+Số toilet: @Model.bathRoom
+
+</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+              
+            </div>
+            <div class=" grid wide row">
+                    <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> Nhận tư vấn </a>
+            </div>
+            <div class=" border-around-4px grid wide row">
+                <div class="product--estateinfomation--item col l-3 l-o-1">
+                    <div class=" row ">
+                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
+                    </div>
+                    <div >
+                       <!-- dấdsadasdsa  -->
+                    </div>
+                    
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " product--estateinfomation--item--info l-12 ">
+                            <h1>Biệt thự VinhomesGrandpark </h1>
+                            <p>Duong</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="product--estateinfomation--item col l-3 l-o-1">
+                    <div class=" row ">
+                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
+                    </div>
+                    <div >
+                       <!-- dấdsadasdsa  -->
+                    </div>
+                    
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " product--estateinfomation--item--info  l-12 ">
+                            <h1>Biệt thự VinhomesGrandpark </h1>
+                            <p>Duong</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="product--estateinfomation--item col l-3">
+                    <div class=" row ">
+                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
+                    </div>
+                    <div >
+                       <!-- dấdsadasdsa  -->
+                    </div>
+                    
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " product--estateinfomation--item--info  l-12 ">
+                            <h1>Biệt thự VinhomesGrandpark </h1>
+                            <p>Duong</p>
+                        </div>
+                    </div>
+                    
+                </div>
+              
+            </div>
+
+          </div>
+          
+<!-- ------------------------------- -->
+
+<script type="text/javascript">
+            const imgBx = document.querySelector('.imgBx');
+            const slides = imgBx.getElementsByTagName('img');
+            var i = 0;
+            function nextSlide(){
+                slides[i].classList.remove('active');
+                i = (i+1) % slides.length;
+                slides[i].classList.add('active');
+            }
+            function PrevSlide(){
+                slides[i].classList.remove('active');
+                i=(i-1 + slides.length) % slides.length;
+                slides[i].classList.add('active');
+            }
+      </script>
+<script type="text/javascript">
+            const contentBx = document.querySelector('.contentBx');
+            const slidesText = contentBx.getElementsByTagName('div');
+            var j = 0;
+            function nextSlideText(){
+            slidesText[j].classList.remove('active');
+            j = (j+1) % slidesText.length;
+            slidesText[j].classList.add('active');
+        }
+        function PrevSlideText(){
+            slidesText[j].classList.remove('active');
+            j=(j-1 + slidesText.length) % slidesText.length;
+            slidesText[j].classList.add('active');
+        }
+        </script>

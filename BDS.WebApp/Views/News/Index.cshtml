@@ -1,0 +1,75 @@
+@model List<BDS.Data.Entities.News>
+@{
+    ViewData["Title"] = "Tin tức";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/news.css">
+</head>
+
+
+
+
+<div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+               </div>
+               <div>
+                    <a href="@Url.ActionLink("Index","News")" class="font-size-20px">Tin tức</a>
+               </div >
+            </div>
+        </div>
+<!-- ----------------------------------------------- -->        
+          <div id="news--list--news" class="grid">
+            <div class=" border-around-4px grid wide row">
+                <div class="news--list--item col l-12 ">
+                    <div class="row border-bottom-4px">
+                        <a class="news-btn l-4 l-o-4 m-4 m-o-4 c-4 c-o-4">
+                            Tin tức mới nhất
+                        </a>
+                    </div>
+                    <div >
+                        <a class="sort-btn l-2   l-o-10 m-4 m-o-4 c-4 c-o-4">
+                            SẮp xếp <i class=ti-angle-down></i>
+                        </a>
+                    </div>
+                    
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <div class="row margin-left-right margin-top-8px">
+                                <div class = " l-3 margin-left-8px border-2px background-color">
+                                    <img src="./assets/img/home.png">
+                                </div>
+                                <div class = " news--list--item--info  l-9 ">
+                                    <a class="text-decoration-none" href="@Url.ActionLink("Detail","News", new { @item.id })"><h1>@item.title</h1></a>
+                                    <p>@item.description</p>
+                                    <div class="date-submit">
+                                        <p>@item.dateCreated</p>
+                                    </div>
+                                </div>
+                      
+                            </div>
+                        }
+                    }
+</div>
+                </div>
+            <div class="grid row">
+                <div class="pagination l-4 l-o-4">
+                    <a href="#" class="margin-left-12px">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    @{
+                        for (int pageIndex = 2; pageIndex < 10; pageIndex++)
+                        {
+                            <a href="@Url.ActionLink("Index","News", new{ @pageIndex })">@pageIndex</a>
+                        }
+                    }
+                  </div>
+                  <!-- <ul class="controls grid ">
+                    <li onclick = "PrevSlide();PrevSlideText();"></li>
+                    <li onclick ="nextSlide();nextSlideText();"></li>
+                </ul> -->
+            </div>     
+          </div>
+          <!-- ------------------------------- -->

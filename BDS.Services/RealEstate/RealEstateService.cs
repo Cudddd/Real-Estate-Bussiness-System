@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Area;
 using BDS.Services.Common;
+using BDS.Services.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.RealEstate
@@ -32,9 +33,36 @@ namespace BDS.Services.RealEstate
             throw new System.NotImplementedException();
         }
 
-        public Task<Data.Entities.RealEstate> GetById(long realEstateID)
+        public async Task<RealEstateModel> GetById(long realEstateID)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.RealEstate.Join(
+                _context.RealEstateType,
+                realEstate => realEstate.typeID,
+                realEstateType => realEstateType.id,
+                (realEstate,realEstateType) => new RealEstateModel()
+                {
+                    id = realEstate.id,
+                    areaID = realEstate.areaID,
+                    name = realEstate.name,
+                    type = realEstateType.name,
+                    acreage = realEstate.acreage,
+                    bathRoom = realEstate.bathRoom,
+                    bedRoom = realEstate.bedRoom,
+                    DateCreated = realEstate.DateCreated,
+                    DateModify = realEstate.DateModify,
+                    facade = realEstate.facade,
+                    floor = realEstate.floor,
+                    length = realEstate.length,
+                    width = realEstate.width,
+                    orientation = realEstate.orientation,
+                    price = realEstate.price,
+                    location = realEstate.location,
+                    mainLine = realEstate.mainLine,
+                    sell = realEstate.sell
+                }
+            ).FirstOrDefaultAsync(t => t.id == realEstateID);
+            
+            return entity;
         }
 
         public Task<PageResult<Data.Entities.RealEstate>> GetAll()
@@ -44,7 +72,7 @@ namespace BDS.Services.RealEstate
 
         public async Task<List<RealEstate>> GetAllPaging(int pageIndex, int pageSize)
         {
-            var data = await _context.RealEstate.OrderBy(r => r.DateCreated).ToListAsync();
+            var data = await _context.RealEstate.OrderBy(r => r.DateModify).ToListAsync();
 
             var realEstates = data.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 

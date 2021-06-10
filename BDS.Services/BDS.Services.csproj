@@ -10,8 +10,6 @@
 
     <ItemGroup>
       <Folder Include="Media" />
-      <Folder Include="News" />
-      <Folder Include="Recruitment" />
     </ItemGroup>
 
 </Project>

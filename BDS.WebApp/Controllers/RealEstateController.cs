@@ -21,14 +21,23 @@ namespace BDS.WebApp.Controllers
         public IActionResult Index(int pageIndex)
         {
            // pageIndex = 2;
+
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             RealEstateViewModel realEstateViewModel = new RealEstateViewModel();
             realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 4).Result;
             
-            Console.WriteLine(pageIndex);
-            
             return View(realEstateViewModel);
         }
+
+        public IActionResult Detail(long id)
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+
+            var data = _realEstateService.GetById(id).Result;
+
+            return View(data);
+        }
+        
     }
 }

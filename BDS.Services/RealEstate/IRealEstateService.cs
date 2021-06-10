@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BDS.Services.Common;
+using BDS.Services.Model;
 
 namespace BDS.Services.RealEstate
 {
@@ -10,7 +11,7 @@ namespace BDS.Services.RealEstate
         Task<int> Create(RealEstate r);
         Task<int> Update(RealEstate r);
         Task<int> Delete(long realEstateID);
-        Task<RealEstate> GetById(long realEstateID);
+        Task<RealEstateModel> GetById(long realEstateID);
         Task<PageResult<RealEstate>> GetAll();
         Task<List<RealEstate>> GetAllPaging(int pageIndex, int pageSize);
 

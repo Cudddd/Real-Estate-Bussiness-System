@@ -1,3 +1,4 @@
+using System;
 using BDS.Services.Area;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
@@ -24,6 +25,7 @@ namespace BDS.WebApp.Controllers
             ViewBag.AreaName = name;
 
             var realEsate = _realEstateService.GetByAreaId(id).Result;
+
             return View(realEsate);
         }
     }

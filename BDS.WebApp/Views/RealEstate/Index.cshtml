@@ -13,10 +13,10 @@
 <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="./index.html" > Trang Chủ >></a>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
                </div>
                <div class="row font-size-20px">
-                    <a href="aboutproject.html" class="font-size-20px">Nhà Đất</a>
+                    <a href="@Url.ActionLink("Index","RealEstate")" class="font-size-20px">Nhà Đất</a>
                </div >
                 </div>
         </div>
@@ -75,7 +75,7 @@
                                     <img src="~/assets/img/home.png">
                                 </div>
                                 <div class = " product--list--estate--item--info  l-9 ">
-                                    <a class="text-decoration-none-red" href="./estateinfomation.html">
+                                    <a class="text-decoration-none-red" href="@Url.ActionLink("Detail","RealEstate", new { @item.id })">
                                         <h1>@item.name</h1>
                                     </a>
                                     <p class="text" >Vị trí: @item.location
@@ -97,18 +97,12 @@ Số toilet: @item.bathRoom
                  <div class="grid row">
                                  <div class="pagination l-4 l-o-4">
                                      <a href="#" class="margin-left-12px">&laquo;</a>
-                                     <a href="#" class="active">1</a>
                                      @{
-                                         <a href="@Url.ActionLink("Index","RealEstate", new { @Model.pageSize })">2</a>
+                                         for (int pageIndex = 1; pageIndex < 10; pageIndex++)
+                                         {
+                                             <a href="@Url.ActionLink("Index", "RealEstate", new { @pageIndex })">@pageIndex</a>
+                                         }
                                      }
-                                     
-                                     <a href="#">3</a>
-                                     <a href="#">4</a>
-                                     <a href="#">5</a>
-                                     <a href="#">6</a>
-                                     <a href="#">7</a>
-                                     <a href="#">8</a>
-                                     <a href="#">9</a>
                                      <a href="#">&raquo;</a>
                                    </div>
                                    <!-- <ul class="controls grid ">
