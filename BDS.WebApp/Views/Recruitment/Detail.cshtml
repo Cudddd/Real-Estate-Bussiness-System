@@ -1,0 +1,32 @@
+@model BDS.Data.Entities.Recruitment
+
+
+@{
+    ViewData["Title"] = @Model.title;
+}
+
+
+<head>
+
+    <link rel="stylesheet" href="~/assets/css/ recruitment.css">
+</head>
+
+
+
+<div id="recruitment--slider--section">
+</div>
+<!-- ----------------------------------------------- -->
+<div class="recruitment--list--section grid wide">
+    <div class="row recruitment--list--item">
+            
+              
+        <div class="l-12 m-12 c-12">
+            <h1 class="l-12">@Model.title</h1>
+        </div>
+        <div class="text">
+            <p class="l-12 m-12 c-12">@Model.detail
+            </p>
+        </div>
+         
+    </div>
+</div>

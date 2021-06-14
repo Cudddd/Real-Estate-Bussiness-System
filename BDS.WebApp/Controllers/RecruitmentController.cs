@@ -1,3 +1,4 @@
+using BDS.Data.Entities;
 using BDS.Services.Project;
 using BDS.Services.Recruitment;
 using Microsoft.AspNetCore.Mvc;
@@ -24,5 +25,16 @@ namespace BDS.WebApp.Controllers
             
             return View(data);
         }
+        
+        public IActionResult Detail(long id)
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+
+            var data = _recruitmentService.GetById(id).Result;
+
+            
+            return View(data);
+        }
+        
     }
 }

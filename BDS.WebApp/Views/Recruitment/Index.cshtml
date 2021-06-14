@@ -1,3 +1,4 @@
+@using BDS.Data.Entities
 @model List<BDS.Data.Entities.Recruitment>
 
 @{
@@ -29,7 +30,7 @@
                     </div>
                     <div class="l-6 m-12 c-12">
                         <div class="l-12 ">
-                            <a class="text-decoration-none" href="~/recruitment-infomation.html">
+                            <a class="text-decoration-none" href="@Url.ActionLink("Detail", "Recruitment", new { @Model[i].id })">
                                 <h1 class="l-12">@Model[i].title</h1>
                             </a>
                         </div>
@@ -44,7 +45,7 @@
                 <div class="row recruitment--list--item">
                     <div class="l-6 m-12 c-12">
                         <div class="l-12 ">
-                            <a class="text-decoration-none" href="~/recruitment-infomation.html">
+                            <a class="text-decoration-none" href="@Url.ActionLink("Detail", "Recruitment", new { @Model[i].id })">
                                 <h1 class="l-12">@Model[i].title</h1>
                             </a>
                         </div>

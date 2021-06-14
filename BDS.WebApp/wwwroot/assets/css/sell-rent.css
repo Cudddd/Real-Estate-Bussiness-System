@@ -135,4 +135,11 @@ input[type=text], select, textarea{
 
     }
   }
-  
+.padding-10px{
+ margin-top:20px;
+ 
+ font-size:12px;
+}
+.margin-bottom{
+  margin-bottom: 30px;
+}

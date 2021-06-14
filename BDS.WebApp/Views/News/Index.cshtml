@@ -55,21 +55,22 @@
                     }
 </div>
                 </div>
-            <div class="grid row">
-                <div class="pagination l-4 l-o-4">
-                    <a href="#" class="margin-left-12px">&laquo;</a>
-                    <a href="#" class="active">1</a>
-                    @{
-                        for (int pageIndex = 2; pageIndex < 10; pageIndex++)
-                        {
-                            <a href="@Url.ActionLink("Index","News", new{ @pageIndex })">@pageIndex</a>
-                        }
-                    }
-                  </div>
-                  <!-- <ul class="controls grid ">
-                    <li onclick = "PrevSlide();PrevSlideText();"></li>
-                    <li onclick ="nextSlide();nextSlideText();"></li>
-                </ul> -->
-            </div>     
+            <div class="grid wide row">
+                            <div class="pagination">
+                                <a href="#" class="margin-left-12px">&laquo;</a>
+                                <a href="#" class="active">1</a>
+                                 @{
+                                     for (int pageIndex = 2; pageIndex < 10; pageIndex++)
+                                     {
+                                         <a href="@Url.ActionLink("Index", "News", new { @pageIndex })">@pageIndex</a>
+                                     }
+                                 }
+                                <a href="#">&raquo;</a>
+                              </div>
+                              <!-- <ul class="controls grid ">
+                                <li onclick = "PrevSlide();PrevSlideText();"></li>
+                                <li onclick ="nextSlide();nextSlideText();"></li>
+                            </ul> -->
+                        </div>     
           </div>
           <!-- ------------------------------- -->

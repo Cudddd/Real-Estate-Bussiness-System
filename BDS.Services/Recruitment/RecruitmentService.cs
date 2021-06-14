@@ -30,9 +30,11 @@ namespace BDS.Services.Recruitment
             throw new System.NotImplementedException();
         }
 
-        public Task<Data.Entities.Recruitment> GetById(long recruitmentID)
+        public async Task<Data.Entities.Recruitment> GetById(long recruitmentID)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.Recruitment.FirstOrDefaultAsync(t => t.id == recruitmentID);
+            
+            return entity;
         }
 
         public Task<List<Data.Entities.Recruitment>> GetAll()

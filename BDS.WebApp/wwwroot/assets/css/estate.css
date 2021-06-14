@@ -14,6 +14,7 @@ background-color:#c0f7fb;
 .product-btn-estate1:hover{
     cursor: pointer;
     border-color:#25c8b4;
+    background-color: #c0f7fb;
 }
 
 .product--list--estate--item--info h1{
@@ -102,12 +103,40 @@ background-color:#c0f7fb;
   .pagination a.active {
     background-color: #c0f7fb;
     color: white;
-    
   }
   .margin-left-12px{
       margin-left:12px;
+      margin-right: 12px;
   }
   
   /* Add a grey background color on mouse-over */
   .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .m a.active {
+    background-color: #c0f7fb;
+
+    
+  }
+  /* ------ ---*/
+.ti-heart{
+    color:red;
+    
+    font-size: 32px;
   
+}
+.right0 p{
+    width:100%;
+    text-align: right;
+    padding-right:30px;
+    color:rgb(90, 86, 86);
+}
+ span{
+width:60px;
+height:30px;
+background-color:red;
+transform: translate(-100%,0%);
+line-height: 30px;
+font-size: 14px;
+color: #fff;
+}
+
