@@ -56,9 +56,12 @@
                                 <div class="content">
                                  <div class="close-btn" onclick="togglePopup()">×</div>
                                 <h1 class="loginh1" >ĐĂNG NHẬP</h1> 
-                               <div class="input-field"><i class=ti-user></i><input placeholder="Tài Khoản" class="validate"></div>
-                               <div class="input-field"><i class=ti-lock></i><input placeholder="Mật khẩu" class="validate"></div>
-                                 <button class="second-button">Đăng nhập</button>
+                               
+                                    <form method="post" asp-controller="User" asp-action="Login">
+                                        <div class="input-field"><i class=ti-user></i><input name ="username" placeholder="Tài Khoản" class="validate"></div>
+                                        <div class="input-field"><i class=ti-lock></i><input type="password" name="password" placeholder="Mật khẩu" class="validate"></div>
+                                        <input type="submit" value="Đăng nhập" class="second-button"></input>
+                                    </form>
                                  <p class="loginp">Không có tài khoản? <a class=".loginha" href="/signup.html">Đăng kí</a></p>
                                 </div>
                         </div>

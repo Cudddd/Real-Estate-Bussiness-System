@@ -1,9 +1,11 @@
 using BDS.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Data.EF
 {
-    public class BdsDbContext : DbContext
+    public class BdsDbContext : IdentityDbContext<User,Role,long>
     {
         public BdsDbContext(DbContextOptions<BdsDbContext> options) : base((options))
         {
@@ -21,6 +23,14 @@ namespace BDS.Data.EF
         public DbSet<RealEstate> RealEstate { get; set; }
         public DbSet<RealEstateType> RealEstateType { get; set; }
         public DbSet<News> News { get; set; }
+        
+        public DbSet<User> User { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<UserClaim> UserClaims { get; set; }
+        public DbSet<UserRole> UserRole { get; set; }
+        public DbSet<UserLogin> UserLogin { get; set; }
+        public DbSet<RoleClaim> RoleClaim { get; set; }
+        public DbSet<UserToken> UserToken { get; set; }
         public DbSet<Recruitment> Recruitment { get; set; }
         public DbSet<ProjectMedia> ProjectMedia { get; set; }
         public DbSet<RealEstateMedia> RealEstateMedia { get; set; }
@@ -49,6 +59,20 @@ namespace BDS.Data.EF
                 .HasKey("id");
             builder.Entity<RecruitmentMedia>()
                 .HasKey("id");
+            builder.Entity<User>()
+                .HasKey("Id");
+            builder.Entity<Role>()
+                .HasKey("Id");
+            builder.Entity<IdentityUserClaim<long>>()
+                .HasKey("Id");
+            builder.Entity<IdentityUserRole<long>>()
+                .HasKey(x => new {x.UserId, x.RoleId});
+            builder.Entity<IdentityUserLogin<long>>()
+                .HasNoKey();
+            builder.Entity<IdentityRoleClaim<long>>()
+                .HasKey("Id");
+            builder.Entity<IdentityUserToken<long>>()
+                .HasNoKey();
         }
 
         public override int SaveChanges()

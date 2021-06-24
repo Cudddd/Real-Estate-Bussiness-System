@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Data.Entities;
 using BDS.Services.Area;
 using BDS.Services.News;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.Recruitment;
+using BDS.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,12 +36,21 @@ namespace BDS.WebApp
             services.AddDbContext<BdsDbContext>(options => 
                 options.UseNpgsql(@"Server=localhost;Port=5432;Database=BDS;User Id=postgres;Password=admin")
                 );
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<BdsDbContext>()
+                .AddDefaultTokenProviders();
+            
             // DI
             services.AddTransient<IProjectService,ProjectService>();
             services.AddTransient<IAreaService,AreaService>();
             services.AddTransient<IRealEstateService,RealEstateService>();
             services.AddTransient<INewsService,NewsService>();
             services.AddTransient<IRecruitmentService,RecruitmentService>();
+            services.AddTransient<UserManager<User>,UserManager<User>>();
+            services.AddTransient<SignInManager<User>,SignInManager<User>>();
+            services.AddTransient<IUserService,UserService>();
+            
+
 
             
             

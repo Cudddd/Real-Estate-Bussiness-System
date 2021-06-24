@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,6 +77,7 @@ namespace BDS.Services.Project
             PageResult<Project> result = new PageResult<Project>();
             result.Items = await _context.Project.ToListAsync();
             result.totalRecord = result.Items.Count;
+          
             return result;
         }
 
