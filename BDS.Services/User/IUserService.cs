@@ -4,7 +4,8 @@ namespace BDS.Services.User
 {
     public interface IUserService
     {
-        public Task<string> Authenticate(string userName, string password, bool rememberMe);
+        public Task<bool> Authenticate(string userName, string password, bool rememberMe);
+        public Task Logout();
         public Task<bool> Register();
     }
 }

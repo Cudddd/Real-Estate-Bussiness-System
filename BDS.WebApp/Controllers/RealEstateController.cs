@@ -2,6 +2,7 @@ using System;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.WebApp.Models.RealEstate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BDS.WebApp.Controllers
@@ -38,6 +39,15 @@ namespace BDS.WebApp.Controllers
 
             return View(data);
         }
-        
+
+
+        [Authorize]
+        public IActionResult Sell()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            
+            return View();
+        }
+
     }
 }

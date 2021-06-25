@@ -18,18 +18,20 @@ namespace BDS.Services.User
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public async Task<string> Authenticate(string userName, string password, bool rememberMe)
+        public async Task<bool> Authenticate(string userName, string password, bool rememberMe)
         {
             var user = await _userManager.FindByNameAsync(userName);
-            if (user == null) return null;
+            if (user == null) return false;
 
             
             
             var result = await _signInManager.PasswordSignInAsync(user, password, rememberMe, false);
 
-            if (!result.Succeeded) return null;
+            if (!result.Succeeded) return false;
 
-            var roles = _userManager.GetRolesAsync(user);
+            return true;
+
+            /*var roles = _userManager.GetRolesAsync(user);
 
             var claims = new[]
             {
@@ -46,7 +48,12 @@ namespace BDS.Services.User
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);*/
+        }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
         }
 
         public async Task<bool> Register()

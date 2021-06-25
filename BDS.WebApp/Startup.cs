@@ -10,8 +10,10 @@ using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.Recruitment;
 using BDS.Services.User;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,13 +35,20 @@ namespace BDS.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<BdsDbContext>(options => 
                 options.UseNpgsql(@"Server=localhost;Port=5432;Database=BDS;User Id=postgres;Password=admin")
                 );
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<BdsDbContext>()
                 .AddDefaultTokenProviders();
-            
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/User/Login");
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+            });
+
+
             // DI
             services.AddTransient<IProjectService,ProjectService>();
             services.AddTransient<IAreaService,AreaService>();
@@ -76,6 +85,7 @@ namespace BDS.WebApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

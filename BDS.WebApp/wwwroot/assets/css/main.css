@@ -185,6 +185,12 @@ padding-top: 60px;
     cursor: pointer;
     box-shadow:0 5px 5px 5px #929797;
 }
-
+input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox;
+    display: inline-block;
+    width: auto;
+}
 
 

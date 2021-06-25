@@ -1,0 +1,228 @@
+
+
+@{
+  ViewData["Title"] = "Nhờ bán/thuê";
+}
+
+<head>
+  <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+</head>
+
+<!-- ---------------------------------------------------------------- -->
+        <!-- ------------------------------- -->
+        <div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+               </div>
+               <div>
+                    
+               </div>
+               <a href="@Url.ActionLink("Sell","Estate")" class="font-size-20px">Nhờ Bán Thuê</a>
+                </div>
+        </div>
+<!-- ----------------------------------------------- -->        
+          <div id="sell-rent" class="grid">
+            <div class=" grid wide row">
+                
+                <div class="sell-rent-info col l-12">
+                    <div class="row border-bottom-4px margin-left-right ">
+                        <a class="sell-rent-btn l-1 l-o-1 ">
+                            Mới
+                        </a>
+                        <a class="sell-rent-btn l-2 ">
+                            Nhà đất đã mua
+                        </a>
+                    </div>
+                    <!-- <div class="upload-img  l-12 border-around-4px row margin-left-right ">  
+                                               
+                                
+                                <form class="margin-left-right" action="" method="post" enctype="multipart/form-data">
+                                
+                                </form>
+                    </div> -->
+                    
+                    <div class="container border-around-4px  margin-left-right">
+                        <form action="">
+                          <!-- 
+                          <p>Chọn ảnh:</p>
+                          <input  class="col l-6 l-o-5" type="file" name="fileToUpload" id="fileToUpload">
+                          <p>Chọn ảnh:</p>
+                          <input  class="col l-6 l-o-5" type="file" name="fileToUpload" id="fileToUpload">
+                          <p>Chọn ảnh:</p>
+                          <input  class="col l-6 l-o-5" type="file" name="fileToUpload" id="fileToUpload">
+                      -->
+                      <div class="row ">
+                        <div class="l-3"> 
+                           <p class="padding-10px">Chọn ảnh mặt trước:</p>
+                           <input  class="padding-left-30px" type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                        <div class="l-3"> 
+                          <p class="padding-10px">Chọn ảnh:</p>
+                          <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                         </div>
+                        <div class="l-3"> 
+                          <p class="padding-10px">Chọn ảnh:</p>
+                        <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                         </div>
+                         <div class="l-3"> 
+                        <p class="padding-10px">Chọn ảnh:</p>
+                        <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                      </div>
+                      <div class="row margin-bottom">
+                        <div class="l-3"> 
+                           <p class="padding-10px">Chọn ảnh:</p>
+                           <input  class="padding-left-30px" type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                        <div class="l-3"> 
+                          <p class="padding-10px">Chọn ảnh:</p>
+                          <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                         </div>
+                        <div class="l-3"> 
+                          <p class="padding-10px">Chọn ảnh:</p>
+                        <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                         </div>
+                         <div class="l-3"> 
+                        <p class="padding-10px">Chọn ảnh:</p>
+                        <input  class="" type="file" name="fileToUpload" id="fileToUpload">
+                        </div>
+                      </div>
+                          <div class="margin-left-right">
+                            <div class="row">
+                            <div class="col-25">
+                              <label for="location">Tên nhà</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="location" name="location" placeholder="Vị trí..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="location">Vị trí</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="location" name="location" placeholder="Vị trí..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="acreage">Diện tích</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="acreage" name="acreage" placeholder="Diện tích..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="acreage">Chiều dài</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="acreage" name="acreage" placeholder="Chiều dài..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="acreage">Chiều rộng</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="acreage" name="acreage" placeholder="Chiều rộng..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="orient">Hướng</label>
+                            </div>
+                            <div class="col-75">
+                              <select id="orient" name="orient">
+                                <option value="dong">Đông</option>
+                                <option value="tay">Tây</option>
+                                <option value="nam">Nam</option>
+                                <option value="bac">Bắc</option>
+                                <option value="taybac">Tây Bắc</option>
+                                <option value="taynam">Tây Nam</option>
+                                <option value="dongbac">Đông Bắc</option>
+                                <option value="dongnam">Đông Nam</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="price">Giá</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="price" name="price" placeholder="Mức giá..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="floor">Tầng</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="floor" name="Tang" placeholder="Tầng..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="numberofbedroom">Số phòng ngủ</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="numberofbedroom" name="numberofbedroom" placeholder="Số phòng ngủ..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="numberoftoilet">Số toilet</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="numberoftoilet" name="numberoftoilet" placeholder="Số toilet..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="adress">Địa chỉ</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="adress" name="adress" placeholder="Địa chỉ..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="frontline">Mặt tiền</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="frontline" name="frontline" placeholder="Số mét mặt tiền..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="mainstreet">Đường chính</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="mainstreet" name="mainstreet" placeholder="Tên đường chính..">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="moreinfo">Mô tả thêm</label>
+                            </div>
+                            <div class="col-75">
+                              <textarea id="moreinfo" name="moreinfo" placeholder="Mô tả thêm.." style="height:200px"></textarea>
+                            </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <input type="submit" class="l-o-6" value="Gửi">
+                          </div>
+                        </form>
+            
+                        </div>
+                    
+                </div>
+              
+            </div>
+           
+
+          </div>
+
+          <!-- ------------------------------- -->
