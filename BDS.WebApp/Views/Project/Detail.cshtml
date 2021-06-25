@@ -7,13 +7,20 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/assets/css/aboutproject.css">
+    <link rel="stylesheet" href="~/assets/css/aboutprojectt.css">
 </head>
 
 
 <!-- ----------------------------------------------- -->
-        <div id="aboutproject--slider--section">
-        </div>
+         <div id="aboutproject--slider--section row">
+             @{
+                 string bannerPath = "";
+                 if(Model.projectBanner != null)
+                     bannerPath = Model.projectBanner.Path;
+                     
+             }
+             <img class="grid" src="~/@bannerPath">
+             </div>
          <!-- ----------------------------------------------- -->
         <div id="aboutproject--information--section" class="grid">
             <div class="grid wide">
@@ -25,12 +32,22 @@
             </div> 
         </div>
          <!-- ----------------------------------------------- -->
-        <div id="aboutproject--banner">    
-        </div>
+         <div id="aboutproject--banner row">    
+              @{
+                  string introducePath = "";
+                  if(Model.introduceImg != null)
+                      introducePath = Model.introduceImg.Path;
+              }
+             <img class="grid" src="~/@introducePath">
+                </div>
          <!-- ----------------------------------------------- -->
         <div id="aboutproject--videointroduce--section" class=" grid wide row ">
-          
-            <iframe id="a" class="col l-12 m-12 c-12" src="https://www.youtube.com/embed/kzaxMiggCoY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+           @{
+                            string introduceVid = "";
+                            if(Model.introduceVideo != null)
+                                introduceVid = Model.introduceVideo.Path;
+                        }
+            <iframe id="a" class="col l-12 m-12 c-12" src="@introduceVid" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
          <!-- ----------------------------------------------- -->
         <div id="aboutproject--detailed-information--section" class="grid ">
@@ -55,12 +72,23 @@
                 </div>
             </div>
             <div class=" grid wide row">
-                <iframe class="col l-12 m-12 c-12"  src="https://www.youtube.com/embed/-lAJa_s_cCs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                @{
+                    string procedureVid = "";
+                    if(Model.procedureVideo != null)
+                        procedureVid = Model.procedureVideo.Path;
+                }
+                <iframe class="col l-12 m-12 c-12" src="@procedureVid" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
          <!-- ----------------------------------------------- -->
-        <div id="aboutproject--map">
-        </div>
+       <div id="aboutproject--map">
+           @{
+               string mapPath = "";
+               if(Model.mapImg != null)
+                   mapPath = Model.mapImg.Path;
+           }
+           <img class="grid" src="~/@mapPath">
+               </div>
         <div id="footer--map--info" class="row grid wide">
             
             @{

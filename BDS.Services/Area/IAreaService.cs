@@ -15,5 +15,6 @@ namespace BDS.Services.Area
         Task<PageResult<Area>> GetAllPaging(string keyword, Page page);
 
         Task<List<Area>> GetByProjectId(long projectId);
+        
     }
 }

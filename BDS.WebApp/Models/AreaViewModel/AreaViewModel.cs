@@ -1,12 +1,12 @@
 using System.Collections.Generic;
+using BDS.Data.Entities;
 using BDS.Services.Model;
 
-namespace BDS.WebApp.Models.RealEstate
+namespace BDS.WebApp.Models.AreaViewModel
 {
-    using Data.Entities;
-    public class RealEstateViewModel
+    public class AreaViewModel
     {
         public List<RealEstateModel> realEstates { get; set; }
-
+        
     }
 }

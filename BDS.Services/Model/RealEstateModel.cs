@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using BDS.Data.Entities;
 using BDS.Data.Enum;
 
 namespace BDS.Services.Model
@@ -24,5 +26,7 @@ namespace BDS.Services.Model
         
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
+        
+        public List<RealEstateMedia> realEstateMedia { get; set; }
     }
 }

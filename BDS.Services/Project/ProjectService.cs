@@ -99,5 +99,12 @@ namespace BDS.Services.Project
 
             return result;
         }
+
+        public async Task<List<ProjectMedia>> GetProjectMedia(long projectId)
+        {
+            var data = await _context.ProjectMedia.Where(x => x.ProjectId == projectId).ToListAsync();
+
+            return data;
+        }
     }
 }

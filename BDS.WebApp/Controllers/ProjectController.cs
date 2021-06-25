@@ -1,3 +1,4 @@
+using BDS.Data.Enum;
 using BDS.Services.Area;
 using BDS.Services.Project;
 using BDS.WebApp.Models.Project;
@@ -32,10 +33,28 @@ namespace BDS.WebApp.Controllers
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             ProjectDetailViewModel projectDetailViewModel = new ProjectDetailViewModel();
-            
+
             projectDetailViewModel.project = _projectService.GetById(id).Result;
             projectDetailViewModel.areas = _areaService.GetByProjectId(id).Result;
-            
+            var Medias = _projectService.GetProjectMedia(id).Result;
+
+            if (Medias.Count < 6)
+            {
+                foreach (var item in Medias)
+                {
+                    if (item.Type == (int) MediaType.BannerImg)
+                        projectDetailViewModel.projectBanner = item;
+                    else if (item.Type == MediaType.IntroduceVideo)
+                        projectDetailViewModel.introduceVideo = item;
+                    else if (item.Type == MediaType.MapImg)
+                        projectDetailViewModel.mapImg = item;
+                    else if (item.Type == MediaType.ProcedureVideo)
+                        projectDetailViewModel.procedureVideo = item;
+                    else if (item.Type == MediaType.IntroduceImg)
+                        projectDetailViewModel.introduceImg = item;
+                }
+                
+            }
             return View(projectDetailViewModel);
         }
         

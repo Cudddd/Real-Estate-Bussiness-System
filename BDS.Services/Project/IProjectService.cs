@@ -18,5 +18,7 @@ namespace BDS.Services.Project
 
         Task<List<Project>> FilterByInvesloper(string invesloper);
 
+        Task<List<ProjectMedia>> GetProjectMedia(long projectId);
+
     }
 }

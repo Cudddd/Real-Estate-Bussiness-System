@@ -6,6 +6,7 @@ using BDS.Services.Area;
 using BDS.Services.Common;
 using BDS.Services.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace BDS.Services.RealEstate
 {
@@ -58,9 +59,12 @@ namespace BDS.Services.RealEstate
                     price = realEstate.price,
                     location = realEstate.location,
                     mainLine = realEstate.mainLine,
-                    sell = realEstate.sell
+                    sell = realEstate.sell,
+                    realEstateMedia = _context.RealEstateMedia
+                        .Where(x => x.RealEstateId == realEstate.id).ToList()
                 }
             ).FirstOrDefaultAsync(t => t.id == realEstateID);
+            
             
             return entity;
         }
@@ -70,25 +74,125 @@ namespace BDS.Services.RealEstate
             throw new System.NotImplementedException();
         }
 
-        public async Task<List<RealEstate>> GetAllPaging(int pageIndex, int pageSize)
+        public async Task<List<RealEstateModel>> GetAllPaging(int pageIndex, int pageSize)
         {
             var data = await _context.RealEstate.OrderBy(r => r.DateModify).ToListAsync();
+            
+            List<RealEstateModel> realEstates = new List<RealEstateModel>();
+            foreach (var item in data)
+            {
+                
+                //if (item.areaID == areaID)
+                {
+                    
+                    RealEstateModel realEstateModel = new RealEstateModel();
+                    realEstateModel.id = item.id;
+                    realEstateModel.areaID = item.areaID;
+                    realEstateModel.name = item.name;
+                    realEstateModel.acreage = item.acreage;
+                    realEstateModel.bathRoom = item.bathRoom;
+                    realEstateModel.bedRoom = item.bedRoom;
+                    realEstateModel.DateCreated = item.DateCreated;
+                    realEstateModel.DateModify = item.DateModify;
+                    realEstateModel.facade = item.facade;
+                    realEstateModel.floor = item.floor;
+                    realEstateModel.length = item.length;
+                    realEstateModel.width = item.width;
+                    realEstateModel.orientation = item.orientation;
+                    realEstateModel.price = item.price;
+                    realEstateModel.location = item.location;
+                    realEstateModel.mainLine = item.mainLine;
+                    realEstateModel.sell= item.sell;
+                    realEstateModel.realEstateMedia = _context.RealEstateMedia
+                        .Where(x => x.RealEstateId == realEstateModel.id).ToList();
+                    
+                    realEstates.Add(realEstateModel);
+                }
+                    
+            }
 
-            var realEstates = data.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            realEstates = realEstates.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
             return realEstates;
         }
 
-        public async Task<List<Data.Entities.RealEstate>> GetByAreaId(long areaID)
+        public async Task<List<RealEstateModel>> GetByAreaId(long areaID)
         {
             var data = await _context.RealEstate.ToListAsync();
+            var realEstateTypes = await _context.RealEstateType.ToListAsync();
 
-            List<RealEstate> realEstates = new List<RealEstate>();
+            List<RealEstateModel> realEstates = new List<RealEstateModel>();
             foreach (var item in data)
             {
-                if(item.areaID == areaID)
-                    realEstates.Add(item);
+                
+                if (item.areaID == areaID)
+                {
+                    
+                    RealEstateModel realEstateModel = new RealEstateModel();
+                    realEstateModel.id = item.id;
+                    realEstateModel.areaID = item.areaID;
+                    
+                    foreach (var realEstateType in realEstateTypes)
+                    {
+                        if (realEstateType.id == item.typeID)
+                        {
+                            realEstateModel.type = realEstateType.name;
+                            break;
+                        }
+                    }
+                    
+                    realEstateModel.name = item.name;
+                    realEstateModel.acreage = item.acreage;
+                    realEstateModel.bathRoom = item.bathRoom;
+                    realEstateModel.bedRoom = item.bedRoom;
+                    realEstateModel.DateCreated = item.DateCreated;
+                    realEstateModel.DateModify = item.DateModify;
+                    realEstateModel.facade = item.facade;
+                    realEstateModel.floor = item.floor;
+                    realEstateModel.length = item.length;
+                    realEstateModel.width = item.width;
+                    realEstateModel.orientation = item.orientation;
+                    realEstateModel.price = item.price;
+                    realEstateModel.location = item.location;
+                    realEstateModel.mainLine = item.mainLine;
+                    realEstateModel.sell= item.sell;
+                    realEstateModel.realEstateMedia = _context.RealEstateMedia
+                        .Where(x => x.RealEstateId == realEstateModel.id).ToList();
+                    
+                    realEstates.Add(realEstateModel);
+                }
+                    
             }
+            
+            /*var result = await _context.RealEstate.LeftJoin(
+                _context.RealEstateMedia,
+                realEstateModel => realEstateModel.id,
+                realEstateMedia => realEstateMedia.RealEstateId,
+                (realEstateModel, projectMedia) => new RealEstateModel()
+                {
+                    id = realEstateModel.id,
+                    areaID = realEstateModel.areaID,
+                    name = realEstateModel.name,
+                    type = realEstateModel.name,
+                    acreage = realEstateModel.acreage,
+                    bathRoom = realEstateModel.bathRoom,
+                    bedRoom = realEstateModel.bedRoom,
+                    DateCreated = realEstateModel.DateCreated,
+                    DateModify = realEstateModel.DateModify,
+                    facade = realEstateModel.facade,
+                    floor = realEstateModel.floor,
+                    length = realEstateModel.length,
+                    width = realEstateModel.width,
+                    orientation = realEstateModel.orientation,
+                    price = realEstateModel.price,
+                    location = realEstateModel.location,
+                    mainLine = realEstateModel.mainLine,
+                    sell = realEstateModel.sell,
+                    realEstateMedia =  _context.RealEstateMedia.Where(x => x.RealEstateId == realEstateModel.id).ToList()
+                }
+                
+                
+            ).Where(x=>x.areaID == areaID).ToListAsync();*/
 
             return realEstates;
         }

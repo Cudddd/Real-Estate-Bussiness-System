@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using BDS.Data.Enum;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.WebApp.Models.RealEstate;
@@ -27,7 +29,7 @@ namespace BDS.WebApp.Controllers
 
             RealEstateViewModel realEstateViewModel = new RealEstateViewModel();
             realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 4).Result;
-            
+
             return View(realEstateViewModel);
         }
 
@@ -36,6 +38,9 @@ namespace BDS.WebApp.Controllers
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             var data = _realEstateService.GetById(id).Result;
+
+            var temp = data.realEstateMedia.Where(x => x.Type == MediaType.NormalImg).ToList();
+            data.realEstateMedia = temp;
 
             return View(data);
         }

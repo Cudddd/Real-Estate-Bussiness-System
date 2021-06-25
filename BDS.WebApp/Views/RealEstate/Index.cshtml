@@ -1,3 +1,4 @@
+@using BDS.Data.Enum
 @model BDS.WebApp.Models.RealEstate.RealEstateViewModel
 @{
     ViewData["Title"] = "Nhà đất";
@@ -68,7 +69,17 @@
                                             {
                                                 <div class="row margin-left-right margin-top-8px " >
                                                     <div class = " l-3 margin-left-8px border-2px background-color position-initial">
-                                                        <img src="~/assets/img/home.png">
+                                                        @{
+                                                            if (item.realEstateMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg)!= null)
+                                                            {
+                                                                <img src="~/@item.realEstateMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg).Path">
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="">
+                                                            }
+
+                                                        }
                                                         @if (@item.sell)
                                                         {
                                                             <span class="position-absolute"> BÁN</span>

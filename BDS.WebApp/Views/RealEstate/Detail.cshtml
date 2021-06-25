@@ -30,11 +30,13 @@
                     <div class=" row ">
                         <section id="project--banner">
                             <div class="imgBx">
-                                
-                                <img class="col l-8 l-o-2" src="~/assets/img/home.png" alt="" >
-                                <img class="col l-8 l-o-2" src="~/assets/img/img1.jpeg" alt="">
-                                <img class="col l-8 l-o-2" src="~/assets/img/img2.jpeg" alt="" >
-                                <img class=" active col l-8 l-o-2" src="~/assets/img/img3.jpeg" alt="">
+                                @{
+                                    foreach (var item in Model.realEstateMedia)
+                                    {
+                                        <img class=" active col l-8 l-o-2" src="~/@item.Path" alt="">
+                                    }
+                                }
+
                             </div>
                             <ul class="controls grid ">
                                 <li onclick = "PrevSlide();PrevSlideText();"></li>

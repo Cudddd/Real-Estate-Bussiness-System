@@ -2,6 +2,7 @@ using System;
 using BDS.Services.Area;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
+using BDS.WebApp.Models.AreaViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BDS.WebApp.Controllers
@@ -24,9 +25,11 @@ namespace BDS.WebApp.Controllers
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
             ViewBag.AreaName = name;
 
-            var realEsate = _realEstateService.GetByAreaId(id).Result;
+            AreaViewModel areaViewModel = new AreaViewModel();
 
-            return View(realEsate);
+            areaViewModel.realEstates = _realEstateService.GetByAreaId(id).Result;
+
+            return View(areaViewModel);
         }
     }
 }

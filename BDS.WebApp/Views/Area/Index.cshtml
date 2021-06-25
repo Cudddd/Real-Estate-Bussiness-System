@@ -1,22 +1,31 @@
 @using BDS.Data.Entities;
-@model List<RealEstate>
+@using BDS.Data.Enum
+@model BDS.WebApp.Models.AreaViewModel.AreaViewModel
 @{
     ViewData["Title"] = "Phân khu " + @ViewBag.AreaName;
 }
 
 <head>
     <link rel="stylesheet" href="~/assets/css/zone.css">
+    <style>
+        .product--list--item--info h1 a{
+            text-align: left;
+            font-size: 18px;
+            color: #f94c08;
+            text-decoration: none
+        }
+    </style>
 </head>
 <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="./index.html" > Trang Chủ >></a>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
                </div>
                <div class="row font-size-20px">
-                    <a href="./project.html" class="font-size-20px">Dự Án</a>
+                    <a href="@Url.ActionLink("Index","Project")" class="font-size-20px">Dự Án</a>
                </div>
                <div>
-                    <a class="font-size-20px">Phân Khu</a>
+                    <a href="@Url.ActionLink("Index","Area")" class="font-size-20px">Phân Khu</a>
                </div>
                 </div>
         </div>
@@ -36,31 +45,57 @@
                       </div>
                     
                       @{
-                          foreach (var item in Model)
+                          foreach (var item in Model.realEstates)
                           {
                               <div   class="row margin-left-right margin-top-8px">
-                                  <div class = " l-3 margin-left-8px border-2px background-color">
-                                      <img src="~/assets/img/home.png">
+                                  <div class=" l-3 margin-left-8px border-2px background-color">
+                                      @{
+                                          string thumnailPath = "";
+                                          foreach (var media in item.realEstateMedia)
+                                          {
+                                              if (media.Type == MediaType.ThumnailImg)
+                                              {
+                                                  <img src="~/@media.Path" alt=""> 
+                                                  break;
+                                              }
+                                              else
+                                              {
+                                                  <img src="" alt="">
+                                              }
+
+
+                                          }
+                                      }
+                                      
                                   </div>
                                   <div class = " product--list--item--info  l-9 ">
-                                      <h1>Biệt thự VinhomesGrandpark phân khu the origami lô 1A</h1>
-                                      <p class="text">Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
-Diện tích: 200m2 dài 20m, rộng 10m
-Hướng: Đông 
-Giá: 60 TR/m2
-Tầng: 2
-Số phòng ngủ: 5
-Số toilet: 2                                        
+                                      <h1><a href="@Url.ActionLink("Detail","RealEstate", new { @item.id })" >@item.name</a></h1>
+                                      <p class="text">@item.location
+Diện tích: @item.acreage m2 (dài @item.length m, rộng @item.width m)
+Hướng: @item.orientation 
+Giá: @item.price TR/m2
+Tầng: @item.floor
+Số phòng ngủ: @item.bedRoom
+Số toilet: @item.bathRoom                                       
                                       </p>
                                   </div>
                               </div>
                           }
                       }
-                    
+                      <div class="grid wide row">
+                                      <div class="pagination">
+                                          <a href="#" class="margin-left-12px">&laquo;</a>
+                                          <a href="#" class="active">1</a>
+                                           @{
+                                               for (int pageIndex = 2; pageIndex < 10; pageIndex++)
+                                               {
+                                                   <a href="@Url.ActionLink("Index", "RealEstate", new { @pageIndex })">@pageIndex</a>
+                                               }
+                                           }
+                                          <a href="#">&raquo;</a>
+                                        </div>
 
-                      <div class=" grid wide row">
-                          <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> xem thêm </a>
-                      </div>
+                                  </div>
                   </div>
               </div>
               </div>
