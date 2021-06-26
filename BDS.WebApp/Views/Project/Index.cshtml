@@ -11,10 +11,12 @@
 
 <section id="project--banner">
               <div class="imgBx">
-                  <img  src="./assets/img/img2.jpeg" >
-                  <img src="./assets/img/img2.jpeg" >
-                  <img src="./assets/img/img3.jpeg" class="active">
-                  <img src="./assets/img/aboutproject/vinhomesquan9.jpeg">
+                  @{
+                      foreach (var item in Model.projectBanners)
+                      {
+                          <img src="./@item.Path" class="active">
+                      }
+                  }
               </div>
               
               <ul class="controls grid ">

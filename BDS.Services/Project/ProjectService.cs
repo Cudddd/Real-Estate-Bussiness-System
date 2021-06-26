@@ -1,10 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Common;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using ContentDispositionHeaderValue = System.Net.Http.Headers.ContentDispositionHeaderValue;
 
 namespace BDS.Services.Project
 {
@@ -13,10 +26,13 @@ namespace BDS.Services.Project
     public class ProjectService : IProjectService
     {
         private readonly BdsDbContext _context;
+        private readonly IStorageService _storageService;
+        private const string USER_CONTENT_FOLDER_NAME = "user-content";
         
-        public ProjectService(BdsDbContext context)
+        public ProjectService(BdsDbContext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
 
         public async Task<int> Create(Project p)
@@ -105,6 +121,21 @@ namespace BDS.Services.Project
             var data = await _context.ProjectMedia.Where(x => x.ProjectId == projectId).ToListAsync();
 
             return data;
+        }
+
+        public async Task<List<ProjectBanner>> GetProjectBanner()
+        {
+            var data = await _context.ProjectBanner.ToListAsync();
+
+            return data;
+        }
+        
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
     }
 }

@@ -1,9 +1,10 @@
-@model BDS.Data.Entities.News
+@using BDS.Data.Enum
+@model BDS.Services.Model.NewsModel
  @{
      ViewData["Title"] = Model.title;
  }
 <head>
-    <link rel="stylesheet" href="~/assets/css/news-infomation.css">
+    <link rel="stylesheet" href="~/assets/css/news-infomationn.css">
 </head>
 
 
@@ -25,7 +26,13 @@
             <div class=" border-around-4px grid wide row">
                 <div class="new--body col l-12 m-12 o-12">
                     <div class=" row  ">
-                        <img class="col l-12" src="~/assets/img/home.png" alt="">
+                        @{
+                            String imgPath = "";
+                            var img = Model.newsMedia.FirstOrDefault(x => x.Type == MediaType.NormalImg);
+                            if (img != null)
+                                imgPath = img.Path;
+                        }
+                        <img class="col l-12" src="~/@imgPath" alt="">
                     </div>
                     <div >
                         <div class = "news--info">
@@ -33,7 +40,7 @@
                            <div class="text">
                             <p>@Model.content</p>
                            </div>
-                            <div class="date-submit">
+                            <<div class="col l-12 date-submit1">
                                     <p>@Model.dateCreated</p>
                                 </div>
                         </div>

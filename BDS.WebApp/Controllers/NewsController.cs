@@ -20,7 +20,7 @@ namespace BDS.WebApp.Controllers
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             var data = _newsService.GetAllPaging(pageIndex, 4).Result;
-            
+
             return View(data);
         }
 

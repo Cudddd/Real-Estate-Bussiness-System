@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Services.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.Recruitment
@@ -42,13 +43,28 @@ namespace BDS.Services.Recruitment
             throw new System.NotImplementedException();
         }
 
-        public async Task<List<Data.Entities.Recruitment>> GetAllPaging(int pageIndex, int pageSize)
+        public async Task<List<RecruitmentModel>> GetAllPaging(int pageIndex, int pageSize)
         {
             var data = await _context.Recruitment.OrderByDescending(r => r.dateModify).ToListAsync();
 
-            var recruitments = data.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            List<RecruitmentModel> recruitmentModels = new List<RecruitmentModel>();
+            foreach (var item in data)
+            {
+                RecruitmentModel recruitmentModel = new RecruitmentModel();
+                recruitmentModel.id = item.id;
+                recruitmentModel.title = item.title;
+                recruitmentModel.detail = item.detail;
+                recruitmentModel.description = item.description;
+                recruitmentModel.dateCreated = item.dateCreated;
+                recruitmentModel.dateModify = item.dateModify;
+                recruitmentModel.recruitmentMedia = _context.RecruitmentMedia.Where(x => x.RecruitmentId == item.id).ToList();
+                
+                recruitmentModels.Add(recruitmentModel);
+            }
+            
+            recruitmentModels = recruitmentModels.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
-            return recruitments;
+            return recruitmentModels;
         }
     }
 }

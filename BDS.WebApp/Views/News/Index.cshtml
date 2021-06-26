@@ -1,4 +1,5 @@
-@model List<BDS.Data.Entities.News>
+@using BDS.Data.Enum
+@model List<BDS.Services.Model.NewsModel>
 @{
     ViewData["Title"] = "Tin tức";
 }
@@ -39,8 +40,14 @@
                         foreach (var item in Model)
                         {
                             <div class="row margin-left-right margin-top-8px">
-                                <div class = " l-3 margin-left-8px border-2px background-color">
-                                    <img src="./assets/img/home.png">
+                                <div class=" l-3 margin-left-8px border-2px background-color">
+                                    @{
+                                        String thumbnailPath = "";
+                                        var thumbnail = item.newsMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg);
+                                        if (thumbnail != null)
+                                            thumbnailPath = thumbnail.Path;
+                                    }
+                                    <img src="./@thumbnailPath">
                                 </div>
                                 <div class = " news--list--item--info  l-9 ">
                                     <a class="text-decoration-none" href="@Url.ActionLink("Detail","News", new { @item.id })"><h1>@item.title</h1></a>

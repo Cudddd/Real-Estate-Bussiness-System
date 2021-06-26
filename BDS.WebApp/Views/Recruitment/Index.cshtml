@@ -1,12 +1,13 @@
 @using BDS.Data.Entities
-@model List<BDS.Data.Entities.Recruitment>
+@using BDS.Data.Enum
+@model List<BDS.Services.Model.RecruitmentModel>
 
 @{
     ViewData["Title"] = "Tuyển dụng";
 }
 
 <head>
-    <link rel="stylesheet" href="~/assets/css/ recruitment.css">
+    <link rel="stylesheet" href="~/assets/css/recruitment.css">
 </head>
 
 
@@ -26,7 +27,13 @@
             {
                 <div class="row recruitment--list--item">
                     <div class=" ecruitment--list--item1 l-6 m-0 c-0">
-
+                        @{
+                            String thumbnailImg = "";
+                            var thumbnail = Model[i].recruitmentMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg);
+                            if (thumbnail != null)
+                                thumbnailImg = thumbnail.Path;
+                        }
+                        <img class=" l-12" src="~/@thumbnailImg">
                     </div>
                     <div class="l-6 m-12 c-12">
                         <div class="l-12 ">
@@ -53,18 +60,21 @@
                             <p class="l-12">@Model[i].description</p>
                         </div>
                     </div>
+                    <div class=" ecruitment--list--item1 l-6 m-0 c-0">
+                         @{
+                             String thumbnailImg = "";
+                             var thumbnail = Model[i].recruitmentMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg);
+                             if (thumbnail != null)
+                                 thumbnailImg = thumbnail.Path;
+                         }
+                         <img class=" l-12" src="~/@thumbnailImg">
+                    </div>
                     </div>
             }
         }
-    }
-    
-   
-    
-        <div class=" ecruitment--list--item1 l-6 m-0 c-0">
+}
 
-        </div>
-
-    </div>
+</div>
     <div class="grid row">
         <div class="pagination l-4 l-o-4">
             <a href="#" class="margin-left-12px">&laquo;</a>

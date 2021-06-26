@@ -36,6 +36,7 @@ namespace BDS.Data.EF
         public DbSet<RealEstateMedia> RealEstateMedia { get; set; }
         public DbSet<NewsMedia> NewsMedia { get; set; }
         public DbSet<RecruitmentMedia> RecruitmentMedia { get; set; }
+        public DbSet<ProjectBanner> ProjectBanner { get; set; }
         
         
         
@@ -73,6 +74,8 @@ namespace BDS.Data.EF
                 .HasKey("Id");
             builder.Entity<IdentityUserToken<long>>()
                 .HasNoKey();
+            builder.Entity<ProjectBanner>()
+                .HasKey("id");
         }
 
         public override int SaveChanges()

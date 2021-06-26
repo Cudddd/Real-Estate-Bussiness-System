@@ -1,0 +1,56 @@
+.account-form{
+  width:100%;
+ }
+.account{
+  width:100%;
+  padding:60px;
+left:50%;
+margin: 20px 0 200px 0;
+}
+     .loginh2 {
+    margin-left:30px;
+    margin-bottom:10px;
+   }
+   
+ 
+   .second-button2 {
+    color: white;
+    font-size: 18px;
+    margin-left:34px;
+    margin-top:20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px;
+    border-radius: 4px;
+    border: none;
+    background: #25c8b4;
+  
+    transition: box-shadow .35s ease !important;
+    outline: none;
+    }
+    
+    .second-button2:active{
+    background: linear-gradient(145deg,#222222, #292929);
+    box-shadow: 5px 5px 10px #262626, -5px -5px 10px #262626;
+    border: none;
+    outline: none;
+    }
+    .loginp{
+      fotn-size:12px;
+      margin-left:20px;
+    }
+    .account-info h1{
+      text-align: left;
+      line-height: 30px;
+    }
+    .account-info p{
+      text-align: left;
+      font-size:14px;
+    }
+.margin-top-20px{
+  margin-top:60px;
+}
+.border-4px{
+  border:4px solid #c0f7fb;
+}

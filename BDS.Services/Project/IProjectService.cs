@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BDS.Services.Common;
+using Microsoft.AspNetCore.Http;
 
 namespace BDS.Services.Project
 {
@@ -19,6 +20,8 @@ namespace BDS.Services.Project
         Task<List<Project>> FilterByInvesloper(string invesloper);
 
         Task<List<ProjectMedia>> GetProjectMedia(long projectId);
+
+        Task<List<ProjectBanner>> GetProjectBanner();
 
     }
 }

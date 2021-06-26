@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BDS.Services.Model;
 
 namespace BDS.Services.Recruitment
 {
@@ -11,6 +12,6 @@ namespace BDS.Services.Recruitment
         Task<int> Delete(long recruitmentID );
         Task<Recruitment> GetById(long recruitmentID);
         Task<List<Recruitment>> GetAll();
-        Task<List<Recruitment>> GetAllPaging(int pageIndex, int pageSize);
+        Task<List<RecruitmentModel>> GetAllPaging(int pageIndex, int pageSize);
     }
 }

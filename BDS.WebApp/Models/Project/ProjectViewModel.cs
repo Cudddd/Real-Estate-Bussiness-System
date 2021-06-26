@@ -7,5 +7,7 @@ namespace BDS.WebApp.Models.Project
     public class ProjectViewModel
     {
         public List<Project> VinhomesProjects { get; set; }
+        
+        public List<ProjectBanner> projectBanners { get; set; }
     }
 }

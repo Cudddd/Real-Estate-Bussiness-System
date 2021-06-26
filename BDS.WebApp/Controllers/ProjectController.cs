@@ -23,6 +23,7 @@ namespace BDS.WebApp.Controllers
 
             ProjectViewModel projectViewModel = new ProjectViewModel();
             projectViewModel.VinhomesProjects = _projectService.FilterByInvesloper("Vinhomes").Result;
+            projectViewModel.projectBanners = _projectService.GetProjectBanner().Result;
             
             return View(projectViewModel);
         }

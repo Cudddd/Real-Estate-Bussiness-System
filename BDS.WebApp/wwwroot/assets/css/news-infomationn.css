@@ -88,12 +88,11 @@ background-color:#c0f7fb;
     cursor: pointer;
     text-decoration: underline;
 }
-.date-submit{
-    
-    right:0;
-    bottom:0;
-    }
-.date-submit p{
-        color:rgb(90, 86, 86);
-        padding:20px;
+.date-submit1{
+    color:#c0f7fb;
+}
+.date-submit1 p{
+    color:rgb(90, 86, 86);
+    padding:20px;
+    text-align: right;
 }
