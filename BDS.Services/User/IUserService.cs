@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BDS.Services.User
@@ -7,5 +8,7 @@ namespace BDS.Services.User
         public Task<bool> Authenticate(string userName, string password, bool rememberMe);
         public Task Logout();
         public Task<bool> Register();
+
+        public Task<Data.Entities.User> GetCurrentUser(ClaimsPrincipal User);
     }
 }

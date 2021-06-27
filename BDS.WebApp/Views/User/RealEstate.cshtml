@@ -1,0 +1,155 @@
+@model BDS.Data.Entities.User
+
+@{
+    ViewData["Title"] = "Nhà đất đã mua";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/estate.css">
+</head>
+<div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="./index.html" > Trang Chủ >></a>
+               </div>
+               <div>
+                    <a href="aboutproject.html" class="font-size-20px">Nhà Đất Đã Mua</a>
+               </div>
+                </div>
+        </div>
+<!-- ----------------------------------------------- -->        
+          <div id="product--list--estate" class="grid">
+            <div class=" border-around-4px grid wide row">
+                <div class="product--list--estate--item col l-12 ">
+                    <div class=" row  margin-left-right ">
+                        <div class="m col l-3 border-4px-2 ">
+                            <div class=" col row">
+                                <a  class=" active product-btn-estate1  l-10 l-o-1 border-2px">
+                                    Nhà Đất Đã Mua
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="row margin-left-right margin-top-8px " >
+                        <div class = " l-3 margin-left-8px border-2px background-color position-initial">
+                            <img src="./assets/img/home.png">
+                        </div>
+                        <div class = " product--list--estate--item--info  l-9 m-12 c-12 ">
+                           <div class="row">
+                                <div class="col l-11 m-11 c-11"> 
+                                  <a class="text-decoration-none-red" href="@Url.ActionLink("RealEstateDetail","User")">
+                                 <h1>Biệt thự VinhomesGrandpark </h1>
+                                  </a>
+
+                                  <p class="text" >Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
+Diện tích: 200m2 dài 20m, rộng 10m
+Hướng: Đông 
+Giá: 60 TR/m2
+Tầng: 2
+</p>
+                        
+                            </div>
+                           </div>
+                           <div class="row right0">
+                               <p>20/06/2000</p>
+                           </div>
+                           
+                        </div>
+                    </div>
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " l-3 margin-left-8px border-2px background-color">
+                            <img src="./assets/img/home2.jpg">
+                        </div>
+                        <div class = " product--list--estate--item--info  l-9 m-12 c-12 ">
+                            <div class="row">
+                                 <div class="col l-11 m-11 c-11"> 
+                                   <a class="text-decoration-none-red" href="./estate-purchased-information.html">
+                                  <h1>Biệt thự VinhomesGrandpark </h1>
+                                   </a>
+ 
+                                   <p class="text" >Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
+ Diện tích: 200m2 dài 20m, rộng 10m
+ Hướng: Đông 
+ Giá: 60 TR/m2
+ Tầng: 2
+ </p>
+                         
+                             </div>
+                           
+                            </div>
+                            <div class="row right0">
+                                <p>20/06/2000</p>
+                            </div>
+                            
+                         </div>
+                    </div>
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " l-3 margin-left-8px border-2px background-color">
+                            <img src="./assets/img/home3.jpg">
+                        </div>
+                       <div class = " product--list--estate--item--info  l-9 m-12 c-12 ">
+                           <div class="row">
+                                <div class="col l-11 m-11 c-11"> 
+                                  <a class="text-decoration-none-red" href="./estate-purchased-information.html">
+                                 <h1>Biệt thự VinhomesGrandpark </h1>
+                                  </a>
+
+                                  <p class="text" >Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
+Diện tích: 200m2 dài 20m, rộng 10m
+Hướng: Đông 
+Giá: 60 TR/m2
+Tầng: 2
+</p>
+                                </div>
+                           </div>
+                           <div class="row right0">
+                               <p>20/06/2000</p>
+                           </div>
+                           
+                        </div>
+                    </div>
+                    <div class="row margin-left-right margin-top-8px">
+                        <div class = " l-3 margin-left-8px border-2px background-color">
+                            <img src="./assets/img/home2.jpg">
+                        </div>
+                        <div class = " product--list--estate--item--info  l-9 m-12 c-12 ">
+                            <div class="row">
+                                 <div class="col l-11 m-11 c-11"> 
+                                   <a class="text-decoration-none-red" href="./estate-purchased-information.html">
+                                  <h1>Biệt thự VinhomesGrandpark </h1>
+                                   </a>
+ 
+                                   <p class="text" >Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
+ Diện tích: 200m2 dài 20m, rộng 10m
+ Hướng: Đông 
+ Giá: 60 TR/m2
+ Tầng: 2
+ </p>
+                                 </div>
+                            </div>
+                            <div class="row right0">
+                                <p>20/06/2000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid wide row">
+                <div class="pagination">
+                    <a href="#" class="margin-left-12px">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">6</a>
+                    <a href="#">7</a>
+                    <a href="#">8</a>
+                    <a href="#">9</a>
+                    <a href="#">12</a>
+                    <a href="#">&raquo;</a>
+                  </div>
+            </div>
+          </div>
+          
+          <!-- ------------------------------- -->

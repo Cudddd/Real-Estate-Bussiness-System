@@ -37,6 +37,8 @@ namespace BDS.Data.EF
         public DbSet<NewsMedia> NewsMedia { get; set; }
         public DbSet<RecruitmentMedia> RecruitmentMedia { get; set; }
         public DbSet<ProjectBanner> ProjectBanner { get; set; }
+        public DbSet<UserRealEstate> UserRealEstate { get; set; }
+        public DbSet<UserRealEstateMedia> UserRealEstateMedia { get; set; }
         
         
         
@@ -75,6 +77,10 @@ namespace BDS.Data.EF
             builder.Entity<IdentityUserToken<long>>()
                 .HasNoKey();
             builder.Entity<ProjectBanner>()
+                .HasKey("id");
+            builder.Entity<UserRealEstate>()
+                .HasKey("id");
+            builder.Entity<UserRealEstateMedia>()
                 .HasKey("id");
         }
 

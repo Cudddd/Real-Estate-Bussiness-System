@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
+using System.Security.Claims;
 using BDS.Services.Project;
 using BDS.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,6 +56,50 @@ namespace BDS.WebApp.Controllers
         {
             _userService.Logout();
             return LocalRedirect("~/");
+        }
+
+        [Authorize]
+        public IActionResult Infomation()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var user = _userService.GetCurrentUser(User).Result;
+            
+            return View(user);
+        }
+
+        [Authorize]
+        public IActionResult UpdateInfomation()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var user = _userService.GetCurrentUser(User).Result;
+            
+            return View(user);
+        }
+        [Authorize]
+        public IActionResult ChangePassword()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var user = _userService.GetCurrentUser(User).Result;
+            
+            return View(user);
+        }
+        
+        [Authorize]
+        public IActionResult RealEstate()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var user = _userService.GetCurrentUser(User).Result;
+            
+            return View(user);
+        }
+        
+        [Authorize]
+        public IActionResult RealEstateDetail()
+        {
+            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var user = _userService.GetCurrentUser(User).Result;
+            
+            return View(user);
         }
     }
 }

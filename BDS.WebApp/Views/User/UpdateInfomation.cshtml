@@ -1,0 +1,78 @@
+@model BDS.Data.Entities.User
+
+@{
+  ViewData["Title"] = "Cập nhật tài khoản";
+}
+
+<head>
+  <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+</head>
+<!-- ------------------------------- -->
+        <div class="grid margin-top-60px background-color">
+           <div class="navigation-bar grid wide ">
+               <div class=row>
+                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+               </div>
+               <div>
+                    
+               </div>
+               <a href="@Url.ActionLink("UpdateInfomation","User")" class="font-size-20px">Cập nhật tài khoản</a>
+                </div>
+        </div>
+ <!-- ----------------------------------------------- -->        
+          <div id="sell-rent" class="grid">
+            <div class=" grid wide row">
+              <div class="sell-rent-info col l-12 ">
+                    <div class="row border-bottom-4px margin-left-right ">
+                      <a class="sell-rent-btn l-2 l-o-5 m-2 m-o-5 c-4 c-o-4 ">Tài khoản</a>
+                    </div>
+                  <div class="container border-around-4px  margin-left-right">
+                        <form action="">
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="">Tài Khoản</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="" name="userName" value="@Model.UserName">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="">Tên</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="n" name="name" value="@Model.UserName">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="numberoftoilet">Số Điện thoại</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="" name="phoneNumber" value="@Model.PhoneNumber">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="">Email</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="" name="email" value="@Model.Email">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-25">
+                              <label for="mainstreet">Địa chỉ</label>
+                            </div>
+                            <div class="col-75">
+                              <input type="text" id="" name="" placeholder="">
+                            </div>
+                          </div>
+                          <div class="row">
+                            <input type="submit" class="l-2 l-o-5 m-2 m-o-5 c-4 c-o-4" value="CẬP NHẬT THÔNG TIN">
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>

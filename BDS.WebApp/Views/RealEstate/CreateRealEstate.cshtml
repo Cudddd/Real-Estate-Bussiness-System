@@ -1,4 +1,5 @@
 @using BDS.Data.Enum
+@@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers;
 @model BDS.WebApp.Models.RealEstate.RealEstateSellViewModel
 
 @{
@@ -7,6 +8,14 @@
 
 <head>
   <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+  <style>
+      .field-validation-error { 
+          color: red
+      }
+      .validation-summary-errors {
+          color: red
+      }
+  </style>
 </head>
 
 <!-- ---------------------------------------------------------------- -->
@@ -50,17 +59,19 @@
                             <div class="col-25">
                               <label for="location">Tên nhà</label>
                             </div>
-                            <div class="col-75">
-                              <input  type="text" id="location" name="name" placeholder="Tên nhà..">
-                            </div>
+                              <div class="col-75">
+                                <input  type="text" id="location" asp-for="request.name" placeholder="Tên nhà..">
+                              </div>
+                              <span asp-validation-for="@Model.request.name">adasd</span>
                           </div>
                           <div class="row">
                             <div class="col-25">
                               <label for="location">Vị trí</label>
                             </div>
                             <div class="col-75">
-                              <input type="text" id="location" name="location" placeholder="Vị trí..">
+                              <input type="text" id="location" asp-for="request.location" placeholder="Vị trí..">
                             </div>
+                            <span asp-validation-for="@Model.request.location">222</span>
                           </div>
                           <div class="row">
                             <div class="col-25">

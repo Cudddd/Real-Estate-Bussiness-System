@@ -1,0 +1,59 @@
+@model BDS.Data.Entities.User
+
+@{
+    ViewData["Title"] = "Thông tin tài khoản";
+}
+<head>
+    <link rel="stylesheet" href="~/assets/css/account.css">
+    <link rel="stylesheet" href="~/assets/css/estateinfomation.css">
+</head>
+
+
+<!-- ------------------------------- -->
+<div class="grid margin-top-60px background-color">
+    <div class="navigation-bar grid wide ">
+        <div class=row>
+            <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+        </div>
+        <div>
+        </div>
+        <a href="@Url.ActionLink("Infomation","User")" class="font-size-20px">Tài Khoản</a>
+    </div>
+</div>
+
+<!-- ----------------------------------------------- -->        
+       
+<div class="account-form grid wide row">
+                
+              
+    <div class="account col  border-4px margin-top-20px ">
+                     
+                     
+        <div class="content">
+            <h1 class="loginh2" >THÔNG TIN TÀI KHOẢN</h1> 
+            <form>
+                @{
+                    if (Model != null)
+                    {
+                        <div class="grid account-info row">
+                            <h1 class="col l-3 l-o-2 ">Tài Khoản:</h1>
+                            <p class="col l-1">@Model.UserName</p></div>
+                        <div class="grid account-info  row">
+                            <h1 class="col l-3 l-o-2 ">Mật Khẩu:</h1>
+                            <p class="col l-1">XXXXXXX</p></div>
+                        <div class="grid account-info  row">
+                            <h1 class="col l-3 l-o-2 ">Email:</h1>
+                            <p class="col l-1">@Model.Email</p></div>
+                        <div class="grid account-info  row">
+                            <h1 class="col l-3 l-o-2 ">Số Điện Thoại:</h1>
+                            <p class="col l-1">@Model.PhoneNumber</p></div>
+                    }
+                }
+            
+                <button asp-action="UpdateInfomation" asp-controller="User" class="second-button2 margin-top-20px">CẬP NHẬT THÔNG TIN</button>
+            </form>
+            </div>
+                     
+    </div>
+                
+</div>

@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Data.Entities;
 using BDS.Services.Area;
+using BDS.Services.Common;
 using BDS.Services.News;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
@@ -58,6 +60,7 @@ namespace BDS.WebApp
             services.AddTransient<UserManager<User>,UserManager<User>>();
             services.AddTransient<SignInManager<User>,SignInManager<User>>();
             services.AddTransient<IUserService,UserService>();
+            services.AddTransient<IStorageService,FileStorageService>();
             
 
 

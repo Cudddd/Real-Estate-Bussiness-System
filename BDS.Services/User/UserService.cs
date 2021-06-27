@@ -69,5 +69,11 @@ namespace BDS.Services.User
             var result = await _userManager.CreateAsync(user, "Asdabcabc@1");
             return result.Succeeded;
         }
+
+        public async Task<User> GetCurrentUser(ClaimsPrincipal User)
+        {
+            User user = await _userManager.GetUserAsync(User);
+            return user;
+        }
     }
 }
