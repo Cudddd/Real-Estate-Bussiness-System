@@ -83,6 +83,12 @@ namespace BDS.Services.User
             return user;
         }
 
+        public long GetUserId(ClaimsPrincipal User)
+        {
+            string userId =  _userManager.GetUserId(User);
+            return long.Parse(userId);
+        }
+
         public async Task<List<UserRealEstateModel>> GetAllUserRealEstate(long userId)
         {
             var data = await _context.UserRealEstate.ToListAsync();

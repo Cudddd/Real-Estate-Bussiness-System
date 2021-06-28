@@ -1,5 +1,10 @@
 ﻿@using BDS.Data.Entities
+@using BDS.Services.Model
 
+@{
+    WishlistModel wishlist = new WishlistModel();
+    wishlist = ViewBag.wishlist;
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +17,7 @@
 
         <link rel="stylesheet" href="~/assets/css/base.css">
         <link rel="stylesheet" href="~/assets/css/main.css">
-        <link rel="stylesheet" href="~/assets/css/gridd.css">
+        <link rel="stylesheet" href="~/assets/css/griddd.css">
         <link rel="stylesheet" href="~/assets/fonts/themify-icons.css">
         <style>
 
@@ -26,7 +31,7 @@
             <div id="header">
                 <div id="nav" class="grid">
                     <ul class="nav-item">
-                        <li><a href="@Url.ActionLink("Index", "Home")"><img src="~/assets/img/introduce-section/logo-bat-dong-san-8.webp" alt="" class="header-img"></a></li>
+                        <li><a href="@Url.ActionLink("Index", "Home")"><img src="~/assets/img/introduce-section/logo-bat-dong-san-8.webp" alt="" class="header-img"></a>
                     </ul>
                     <ul class="nav-item">
                         <!-- <li><a href=""><i class="icon-home ti-home"></i>T</a></li> -->
@@ -69,8 +74,51 @@
                             }
                         }
                         
-                       
-                        <li><a href=""><img src="~/assets/img/introduce-section/iconfinder_heart_299063.png" alt="" class="header-wishlist"></a></li>
+                        <li><a href=""><img src="~/assets/img/introduce-section/iconfinder_heart_299063.png" alt="" class="header-wishlist"></a>
+                            <ul class=" nav-item ">
+                            <div class="wishlist">
+                            <li class=" cha row"><a></a></li>    
+                                @{
+                                if (wishlist != null)
+                                {
+                                    foreach (var item in wishlist.realEstates)
+                                    {
+                                        
+                                                
+                                                <li class=" cha row">
+                                                    <div class=" l-3">
+                                                        <img class="wl-img height-120px" src="./assets/img/home.png">
+                                                    </div>
+                                                    <div class=" wl--estate--item--info height-120px l-9 l-o-1 m-12 c-12 ">
+                                                        <div class="">
+                                                            <div class="col l-11 m-11 c-11">
+                                                                <a class="text-decoration-none-red" href="">
+                                                                    <h1>@item.name</h1>
+                                                                </a>
+                                                                <p class="text">Vị trí: @item.location
+Diện tích: @item.acreage m2 (Dài @item.length m, rộng @item.width m)
+Hướng: @item.orientation
+Giá: @item.price TR/m2
+Tầng: @item.floor</p>
+                                                            </div>
+                                                            <div class="col l-1 m-1 c-1">
+                                                                <i class=ti-heart></i>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </li>
+                                         
+                                    }
+                                }
+                            }
+                               </div>
+                                </ul>
+                        </li>
+
+
+
                     </ul>
 
                 </div>

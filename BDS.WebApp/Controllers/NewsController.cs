@@ -1,5 +1,7 @@
 using BDS.Services.News;
 using BDS.Services.Project;
+using BDS.Services.User;
+using BDS.Services.Wishlist;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BDS.WebApp.Controllers
@@ -8,11 +10,16 @@ namespace BDS.WebApp.Controllers
     {
         private readonly INewsService _newsService;
         private readonly IProjectService _projectService;
+        private readonly IWishlistService _wishlistService;
+        private readonly IUserService _userService;
 
-        public NewsController(INewsService newsService, IProjectService projectService)
+        public NewsController(INewsService newsService, IProjectService projectService,
+            IWishlistService wishlistService, IUserService userService)
         {
             _newsService = newsService;
             _projectService = projectService;
+            _wishlistService = wishlistService;
+            _userService = userService;
         }
         // GET
         public IActionResult Index(int pageIndex = 1)

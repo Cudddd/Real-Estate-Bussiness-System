@@ -13,6 +13,7 @@ namespace BDS.Services.User
         public Task<bool> Register();
 
         public Task<Data.Entities.User> GetCurrentUser(ClaimsPrincipal User);
+        public long GetUserId(ClaimsPrincipal User);
 
         public Task<List<UserRealEstateModel>> GetAllUserRealEstate(long userId);
         public Task<UserRealEstateModel> GetUserRealEstateById(long id);

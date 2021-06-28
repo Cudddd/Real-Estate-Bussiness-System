@@ -12,6 +12,7 @@ using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.Recruitment;
 using BDS.Services.User;
+using BDS.Services.Wishlist;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -61,6 +62,8 @@ namespace BDS.WebApp
             services.AddTransient<SignInManager<User>,SignInManager<User>>();
             services.AddTransient<IUserService,UserService>();
             services.AddTransient<IStorageService,FileStorageService>();
+            services.AddTransient<IWishlistService,WishlistService>();
+
             
 
 

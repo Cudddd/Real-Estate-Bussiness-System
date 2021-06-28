@@ -39,6 +39,8 @@ namespace BDS.Data.EF
         public DbSet<ProjectBanner> ProjectBanner { get; set; }
         public DbSet<UserRealEstate> UserRealEstate { get; set; }
         public DbSet<UserRealEstateMedia> UserRealEstateMedia { get; set; }
+        public DbSet<Wishlist> Wishlist { get; set; }
+        public DbSet<WishlistRealEstate> WishlistRealEstate { get; set; }
         
         
         
@@ -81,6 +83,10 @@ namespace BDS.Data.EF
             builder.Entity<UserRealEstate>()
                 .HasKey("id");
             builder.Entity<UserRealEstateMedia>()
+                .HasKey("id");
+            builder.Entity<Wishlist>()
+                .HasKey("id");
+            builder.Entity<WishlistRealEstate>()
                 .HasKey("id");
         }
 
