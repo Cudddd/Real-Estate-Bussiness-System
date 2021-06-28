@@ -21,7 +21,7 @@ namespace BDS.Services.Common
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
             await SaveFileAsync(file.OpenReadStream(), fileName);
-            return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
+            return USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)
         {

@@ -20,14 +20,15 @@ namespace BDS.WebApp.Controllers
             _realEstateService = realEstateService;
         }
         // GET
-        public IActionResult Index(long id, string name)
+        public IActionResult Index(long id, string name,int pageIndex = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
             ViewBag.AreaName = name;
-
+            ViewBag.AreaId = id;
             AreaViewModel areaViewModel = new AreaViewModel();
 
-            areaViewModel.realEstates = _realEstateService.GetByAreaId(id).Result;
+            areaViewModel.realEstates = _realEstateService.GetByAreaId(id,pageIndex,6).Result;
+            areaViewModel.pageIndex = pageIndex;
 
             return View(areaViewModel);
         }

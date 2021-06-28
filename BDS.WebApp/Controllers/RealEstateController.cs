@@ -25,14 +25,15 @@ namespace BDS.WebApp.Controllers
             _userService = userService;
         }
         // GET
-        public IActionResult Index(int pageIndex)
+        public IActionResult Index(int pageIndex = 1)
         {
            // pageIndex = 2;
 
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             RealEstateViewModel realEstateViewModel = new RealEstateViewModel();
-            realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 4).Result;
+            realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 6).Result;
+            realEstateViewModel.pageIndex = pageIndex;
 
             return View(realEstateViewModel);
         }
@@ -51,13 +52,38 @@ namespace BDS.WebApp.Controllers
 
 
         [Authorize]
-        public IActionResult Sell()
+        public IActionResult Sell(long id = -1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
 
             RealEstateSellViewModel model = new RealEstateSellViewModel();
             model.realEstateTypes = _realEstateService.GetAllRealEstateType().Result;
-            
+            UserRealEstateModel userRealEstateModel = new UserRealEstateModel();
+            if(id != -1)
+                userRealEstateModel = _userService.GetUserRealEstateById(id).Result;
+
+            if (userRealEstateModel != null && userRealEstateModel.id != 0)
+            {
+                model.realEstateModel = new RealEstateModel();
+                model.realEstateModel.id = userRealEstateModel.id;
+                model.realEstateModel.name = userRealEstateModel.name;
+                model.realEstateModel.sell = userRealEstateModel.sell;
+                model.realEstateModel.length = userRealEstateModel.length;
+                model.realEstateModel.width = userRealEstateModel.width;
+                model.realEstateModel.orientation = userRealEstateModel.orientation;
+                model.realEstateModel.acreage = userRealEstateModel.acreage;
+                model.realEstateModel.price = userRealEstateModel.price;
+                model.realEstateModel.location = userRealEstateModel.location;
+                model.realEstateModel.type = userRealEstateModel.type;
+                model.realEstateModel.facade = userRealEstateModel.facade;
+                model.realEstateModel.mainLine = userRealEstateModel.mainLine;
+                model.realEstateModel.floor = userRealEstateModel.floor;
+                model.realEstateModel.bedRoom = userRealEstateModel.bedRoom;
+                model.realEstateModel.bathRoom = userRealEstateModel.bathRoom;
+                model.realEstateModel.DateCreated = userRealEstateModel.DateCreated;
+                model.realEstateModel.DateModify = userRealEstateModel.DateModify;
+            }
+
             return View(model);
         }
 

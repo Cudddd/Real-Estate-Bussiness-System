@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BDS.Data.Entities;
+using BDS.Services.Model;
 using BDS.Services.Request;
 
 namespace BDS.WebApp.Models.RealEstate
@@ -9,6 +10,8 @@ namespace BDS.WebApp.Models.RealEstate
         public List<RealEstateType> realEstateTypes { get; set; }
         
         public RealEstateCreateRequest request { get; set; }
+        
+        public RealEstateModel realEstateModel { get; set; }
         
     }
 }

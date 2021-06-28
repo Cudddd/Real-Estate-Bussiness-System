@@ -8,5 +8,7 @@ namespace BDS.WebApp.Models.AreaViewModel
     {
         public List<RealEstateModel> realEstates { get; set; }
         
+        public  int pageIndex { get; set; }
+        
     }
 }

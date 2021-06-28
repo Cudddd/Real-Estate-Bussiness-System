@@ -930,3 +930,18 @@ margin-left:-24px;
    .position-absolute{
        position:absolute;
    }
+   
+   .subnavli{
+       width: 250px;
+       transform: translate(-50%,0);
+       font-size: 20px;
+   }
+
+input[type=password], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}

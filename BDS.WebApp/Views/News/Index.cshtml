@@ -23,61 +23,85 @@
         </div>
 <!-- ----------------------------------------------- -->        
           <div id="news--list--news" class="grid">
-            <div class=" border-around-4px grid wide row">
-                <div class="news--list--item col l-12 ">
-                    <div class="row border-bottom-4px">
-                        <a class="news-btn l-4 l-o-4 m-4 m-o-4 c-4 c-o-4">
-                            Tin tức mới nhất
-                        </a>
-                    </div>
-                    <div >
-                        <a class="sort-btn l-2   l-o-10 m-4 m-o-4 c-4 c-o-4">
-                            SẮp xếp <i class=ti-angle-down></i>
-                        </a>
-                    </div>
+              <div class=" border-around-4px grid wide row">
+                  <div class="news--list--item col l-12 ">
+                      <div class="row border-bottom-4px">
+                          <a class="news-btn l-4 l-o-4 m-4 m-o-4 c-4 c-o-4">
+                              Tin tức mới nhất
+                          </a>
+                      </div>
+                      <div >
+                          <a class="sort-btn l-2   l-o-10 m-4 m-o-4 c-4 c-o-4">
+                              SẮp xếp <i class=ti-angle-down></i>
+                          </a>
+                      </div>
                     
-                    @{
-                        foreach (var item in Model)
-                        {
-                            <div class="row margin-left-right margin-top-8px">
-                                <div class=" l-3 margin-left-8px border-2px background-color">
-                                    @{
-                                        String thumbnailPath = "";
-                                        var thumbnail = item.newsMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg);
-                                        if (thumbnail != null)
-                                            thumbnailPath = thumbnail.Path;
-                                    }
-                                    <img src="./@thumbnailPath">
-                                </div>
-                                <div class = " news--list--item--info  l-9 ">
-                                    <a class="text-decoration-none" href="@Url.ActionLink("Detail","News", new { @item.id })"><h1>@item.title</h1></a>
-                                    <p>@item.description</p>
-                                    <div class="date-submit">
-                                        <p>@item.dateCreated</p>
-                                    </div>
-                                </div>
+                      @{
+                          foreach (var item in Model)
+                          {
+                              <div class="row margin-left-right margin-top-8px">
+                                  <div class=" l-3 margin-left-8px border-2px background-color">
+                                      @{
+                                          String thumbnailPath = "";
+                                          var thumbnail = item.newsMedia.FirstOrDefault(x => x.Type == MediaType.ThumnailImg);
+                                          if (thumbnail != null)
+                                              thumbnailPath = thumbnail.Path;
+                                      }
+                                      <img src="./@thumbnailPath">
+                                  </div>
+                                  <div class = " news--list--item--info  l-9 ">
+                                      <a class="text-decoration-none" href="@Url.ActionLink("Detail","News", new { @item.id })"><h1>@item.title</h1></a>
+                                      <p>@item.description</p>
+                                      <div class="date-submit">
+                                          <p>@item.dateCreated</p>
+                                      </div>
+                                  </div>
                       
-                            </div>
-                        }
-                    }
-</div>
-                </div>
-            <div class="grid wide row">
-                            <div class="pagination">
-                                <a href="#" class="margin-left-12px">&laquo;</a>
-                                <a href="#" class="active">1</a>
-                                 @{
-                                     for (int pageIndex = 2; pageIndex < 10; pageIndex++)
-                                     {
-                                         <a href="@Url.ActionLink("Index", "News", new { @pageIndex })">@pageIndex</a>
-                                     }
-                                 }
-                                <a href="#">&raquo;</a>
                               </div>
-                              <!-- <ul class="controls grid ">
-                                <li onclick = "PrevSlide();PrevSlideText();"></li>
-                                <li onclick ="nextSlide();nextSlideText();"></li>
-                            </ul> -->
-                        </div>     
+                          }
+                      }
+                  </div>
+              </div>
+                        <div class="grid wide row">
+                          <div class="pagination">
+                              @{
+                                  int currentPageIndex = ViewBag.pageIndex;
+                              }
+                              <a href="@Url.ActionLink("Index", "News")" class="margin-left-12px">&laquo;</a>
+                              
+                              @{
+                                 if(currentPageIndex < 9)
+                                 {
+                                     for (int pageIndex = 1; pageIndex < 10; pageIndex++)
+                                     {
+                                        if (pageIndex == currentPageIndex)
+                                        {
+                                            <a href="@Url.ActionLink("Index", "News", new {@pageIndex})" class="active">@pageIndex</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.ActionLink("Index", "News", new {@pageIndex})">@pageIndex</a>
+                                        }
+                                    }
+                                 }
+                                  else
+                                 {
+                                     for (int pageIndex = @currentPageIndex - 7; pageIndex < @currentPageIndex - 8 + 10; pageIndex++)
+                                     {
+                                         if (pageIndex == currentPageIndex)
+                                         {
+                                             <a href="@Url.ActionLink("Index", "News", new {@pageIndex})" class="active">@pageIndex</a>
+                                         }
+                                         else
+                                         {
+                                             <a href="@Url.ActionLink("Index", "News", new {@pageIndex})">@pageIndex</a>
+                                         }
+                                     }
+                                  }
+                                 
+                              }
+                              <a href="#">&raquo;</a>
+                          </div>
+                      </div>
           </div>
           <!-- ------------------------------- -->

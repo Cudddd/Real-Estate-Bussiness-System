@@ -2,7 +2,9 @@ using System;
 using System.Linq;
 using System.Security.Claims;
 using BDS.Services.Project;
+using BDS.Services.RealEstate;
 using BDS.Services.User;
+using BDS.WebApp.Models.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -88,18 +90,21 @@ namespace BDS.WebApp.Controllers
         public IActionResult RealEstate()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
-            var user = _userService.GetCurrentUser(User).Result;
+           
+            RealEstateViewModel model = new RealEstateViewModel();
+            model.user = _userService.GetCurrentUser(User).Result;
+            model.realEstates = _userService.GetAllUserRealEstate(model.user.Id).Result;
             
-            return View(user);
+            return View(model);
         }
         
         [Authorize]
-        public IActionResult RealEstateDetail()
+        public IActionResult RealEstateDetail(long id)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
-            var user = _userService.GetCurrentUser(User).Result;
+            var model = _userService.GetUserRealEstateById(id).Result;
             
-            return View(user);
+            return View(model);
         }
     }
 }

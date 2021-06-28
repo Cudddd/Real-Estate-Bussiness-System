@@ -7,6 +7,8 @@ namespace BDS.WebApp.Models.RealEstate
     public class RealEstateViewModel
     {
         public List<RealEstateModel> realEstates { get; set; }
+        
+        public  int pageIndex { get; set; }
 
     }
 }

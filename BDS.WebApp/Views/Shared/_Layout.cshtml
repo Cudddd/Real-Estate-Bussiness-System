@@ -44,7 +44,7 @@
                         <li><a href="@Url.ActionLink("Index","RealEstate")">NHÀ ĐẤT</a></li>
                         <li><a href="@Url.ActionLink("Index","News")">TIN TỨC</a></li>
                         <li><a href="@Url.ActionLink("Index","Recruitment")">TUYỂN DỤNG</a></li>
-                        <li><a href="@Url.ActionLink("Sell","RealEstate")">NHỜ BÁN/THUÊ</a></li>
+                        <li><a asp-action="Sell" asp-controller="RealEstate" asp-route-id="-1" >NHỜ BÁN/THUÊ</a></li>
                         @{
                             System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
                             if (User.Identity.IsAuthenticated)
@@ -53,7 +53,7 @@
                                     <ul class="subnav">
                                         <li class="subnavli"><a href="@Url.ActionLink("Infomation","User")">Thông tin</a></li>
                                         <li class="subnavli"><a href="@Url.ActionLink("RealEstate","User")">Nhà đất</a></li>
-                                        <li class="subnavli"><a href="@Url.ActionLink("ChangePassword","User")">Đổi</a></li>
+                                        <li class="subnavli"><a href="@Url.ActionLink("ChangePassword","User")">Đổi mật khẩu</a></li>
                                         <li class="subnavli"><a href="@Url.ActionLink("Logout","User")">Đăng xuất</a></li>
                                     </ul>
                                 </li>

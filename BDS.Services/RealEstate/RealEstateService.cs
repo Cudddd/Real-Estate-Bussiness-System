@@ -167,7 +167,7 @@ namespace BDS.Services.RealEstate
             return realEstates;
         }
 
-        public async Task<List<RealEstateModel>> GetByAreaId(long areaID)
+        public async Task<List<RealEstateModel>> GetByAreaId(long areaID,int pageIndex,int pageSize)
         {
             var data = await _context.RealEstate.ToListAsync();
             var realEstateTypes = await _context.RealEstateType.ToListAsync();
@@ -215,35 +215,7 @@ namespace BDS.Services.RealEstate
                     
             }
             
-            /*var result = await _context.RealEstate.LeftJoin(
-                _context.RealEstateMedia,
-                realEstateModel => realEstateModel.id,
-                realEstateMedia => realEstateMedia.RealEstateId,
-                (realEstateModel, projectMedia) => new RealEstateModel()
-                {
-                    id = realEstateModel.id,
-                    areaID = realEstateModel.areaID,
-                    name = realEstateModel.name,
-                    type = realEstateModel.name,
-                    acreage = realEstateModel.acreage,
-                    bathRoom = realEstateModel.bathRoom,
-                    bedRoom = realEstateModel.bedRoom,
-                    DateCreated = realEstateModel.DateCreated,
-                    DateModify = realEstateModel.DateModify,
-                    facade = realEstateModel.facade,
-                    floor = realEstateModel.floor,
-                    length = realEstateModel.length,
-                    width = realEstateModel.width,
-                    orientation = realEstateModel.orientation,
-                    price = realEstateModel.price,
-                    location = realEstateModel.location,
-                    mainLine = realEstateModel.mainLine,
-                    sell = realEstateModel.sell,
-                    realEstateMedia =  _context.RealEstateMedia.Where(x => x.RealEstateId == realEstateModel.id).ToList()
-                }
-                
-                
-            ).Where(x=>x.areaID == areaID).ToListAsync();*/
+            realEstates = realEstates.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
             return realEstates;
         }

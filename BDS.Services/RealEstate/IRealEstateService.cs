@@ -16,7 +16,7 @@ namespace BDS.Services.RealEstate
         Task<PageResult<RealEstate>> GetAll();
         Task<List<RealEstateModel>> GetAllPaging(int pageIndex, int pageSize);
 
-        Task<List<RealEstateModel>> GetByAreaId(long areaID);
+        Task<List<RealEstateModel>> GetByAreaId(long areaID,int pageIndex,int pageSize);
         Task<List<RealEstateType>> GetAllRealEstateType();
 
     }

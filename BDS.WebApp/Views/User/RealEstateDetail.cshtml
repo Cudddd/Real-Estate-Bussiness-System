@@ -1,7 +1,8 @@
-@model BDS.Data.Entities.User
+@using BDS.Services.Model
+@model BDS.Services.Model.UserRealEstateModel
 
 @{
-    ViewData["Title"] = "Chi tiết";
+    ViewData["Title"] = @Model.name;
 }
 
 
@@ -15,10 +16,10 @@
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="./index.html" > Trang Chủ >></a>
+                    <a href=".@Url.ActionLink("Index", "Home")" > Trang Chủ >></a>
                </div>
                <div>
-                    <a href="./project.html" class="font-size-20px">Nhà Đất Đã mua>></a>
+                    <a href="@Url.ActionLink("RealEstate","User")" class="font-size-20px">Nhà Đất Đã mua>></a>
                </div>
           
             </div>
@@ -31,7 +32,13 @@
                     <div class=" row ">
                         <section id="project--banner">
                             <div class="imgBx">
-                                <img class=" active col l-8 l-o-2" src="./assets/img/img3.jpeg" alt="">
+                                @{
+                                    foreach (var item in Model.userRealEstateMedia)
+                                    {
+                                        <img class=" active col l-8 l-o-2" src="~/@item.Path" alt="">
+                                    }
+                                }
+                                
                             </div>
                           
                         </section>
@@ -42,27 +49,28 @@
                     <div class="row margin-left-right margin-top-8px">
                       <div class="l-12 background-color-blue">
                         <div class = " product--estateinfomation--item--info  l-10 l-o-1 ">
-                            <h1>Biệt thự VinhomesGrandpark </h1>
+                            <h1>@Model.name</h1>
                             <p class="text">
-Loại nhà: Biệt thự 
-Mặt tiền: 40m 
-Đường chính: Nguyễn Văn Linh 
-Vị trí:Dự án VinHomes Grand Park, đường Lê Văn Việt Phường Tăng Nhơn PhúA, quận 9.
-Diện tích: 200m2 dài 20m, rộng 10m
-Hướng: Đông 
-Giá: 60 TR/m2
-Tầng: 2
-Số phòng ngủ: 5
-Số toilet: 2 
-
-</p>
+Loại nhà: @Model.type 
+Mặt tiền: @Model.facade m 
+Đường chính: @Model.mainLine 
+Vị trí: @Model.location
+Diện tích: @Model.acreage m2 (Dài @Model.length m, rộng @Model.width m)
+Hướng: @Model.orientation 
+Giá: @Model.price TR/m2
+Tầng: @Model.floor
+Số phòng ngủ: @Model.bedRoom
+Số toilet: @Model.bathRoom
+                            </p>
                         </div>
                       </div>
                     </div>
                 </div>
             </div>
-            <div class=" grid wide row">
-                <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> Đăng bán </a>
-        </div>
+              <div class=" grid wide row">
+                  <form>
+                  <button asp-action="Sell" asp-controller="RealEstate" asp-route-id="@Model.id" class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> Đăng bán </button>
+                  </form>
+              </div>
           </div>
 <!-- ------------------------------- -->

@@ -1,9 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using BDS.Data.EF;
+using BDS.Services.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BDS.Services.User
@@ -13,10 +18,12 @@ namespace BDS.Services.User
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public UserService(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly BdsDbContext _context;
+        public UserService(UserManager<User> userManager, SignInManager<User> signInManager,BdsDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         public async Task<bool> Authenticate(string userName, string password, bool rememberMe)
         {
@@ -74,6 +81,72 @@ namespace BDS.Services.User
         {
             User user = await _userManager.GetUserAsync(User);
             return user;
+        }
+
+        public async Task<List<UserRealEstateModel>> GetAllUserRealEstate(long userId)
+        {
+            var data = await _context.UserRealEstate.ToListAsync();
+
+            List<UserRealEstateModel> userRealEstateModels = new List<UserRealEstateModel>();
+            foreach (var item in data)
+            {
+                UserRealEstateModel userRealEstateModel = new UserRealEstateModel();
+                userRealEstateModel.id = item.id;
+                userRealEstateModel.UserId = item.UserId;
+                userRealEstateModel.name = item.name;
+                userRealEstateModel.sell = item.sell;
+                userRealEstateModel.length = item.length;
+                userRealEstateModel.width = item.width;
+                userRealEstateModel.orientation = item.orientation;
+                userRealEstateModel.acreage = item.acreage;
+                userRealEstateModel.price = item.price;
+                userRealEstateModel.location = item.location;
+                userRealEstateModel.type = _context.RealEstateType.FirstOrDefault(x => x.id == item.typeId)?.name;
+                userRealEstateModel.facade = item.facade;
+                userRealEstateModel.mainLine = item.mainLine;
+                userRealEstateModel.floor = item.floor;
+                userRealEstateModel.bedRoom = item.bedRoom;
+                userRealEstateModel.bathRoom = item.bathRoom;
+                userRealEstateModel.DateCreated = item.DateCreated;
+                userRealEstateModel.DateModify = item.DateModify;
+                userRealEstateModel.description = item.description;
+                userRealEstateModel.userRealEstateMedia = 
+                    await _context.UserRealEstateMedia.Where(x => x.UserRealEstateId == item.id).ToListAsync();
+                
+                userRealEstateModels.Add(userRealEstateModel);
+            }
+            
+            return userRealEstateModels;
+        }
+
+        public async Task<UserRealEstateModel> GetUserRealEstateById(long id)
+        {
+            var item = await _context.UserRealEstate.FirstOrDefaultAsync(x=>x.id == id);
+            
+            UserRealEstateModel userRealEstateModel = new UserRealEstateModel();
+            userRealEstateModel.id = item.id;
+            userRealEstateModel.UserId = item.UserId;
+            userRealEstateModel.name = item.name;
+            userRealEstateModel.sell = item.sell;
+            userRealEstateModel.length = item.length;
+            userRealEstateModel.width = item.width;
+            userRealEstateModel.orientation = item.orientation;
+            userRealEstateModel.acreage = item.acreage;
+            userRealEstateModel.price = item.price;
+            userRealEstateModel.location = item.location;
+            userRealEstateModel.type = _context.RealEstateType.FirstOrDefault(x => x.id == item.typeId)?.name;
+            userRealEstateModel.facade = item.facade;
+            userRealEstateModel.mainLine = item.mainLine;
+            userRealEstateModel.floor = item.floor;
+            userRealEstateModel.bedRoom = item.bedRoom;
+            userRealEstateModel.bathRoom = item.bathRoom;
+            userRealEstateModel.DateCreated = item.DateCreated;
+            userRealEstateModel.DateModify = item.DateModify;
+            userRealEstateModel.description = item.description;
+            userRealEstateModel.userRealEstateMedia =
+                await _context.UserRealEstateMedia.Where(x => x.UserRealEstateId == id).ToListAsync();
+            
+            return userRealEstateModel;
         }
     }
 }

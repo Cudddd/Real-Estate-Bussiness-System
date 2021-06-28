@@ -15,10 +15,10 @@ namespace BDS.WebApp.Controllers
             _projectService = projectService;
         }
         // GET
-        public IActionResult Index(int pageIndex)
+        public IActionResult Index(int pageIndex = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
-
+            ViewBag.pageIndex = pageIndex;
             var data = _newsService.GetAllPaging(pageIndex, 4).Result;
 
             return View(data);
