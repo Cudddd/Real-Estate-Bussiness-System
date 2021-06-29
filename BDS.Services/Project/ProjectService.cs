@@ -78,12 +78,10 @@ namespace BDS.Services.Project
             return entity;
         }
 
-        public async Task<PageResult<Project>> GetAll()
+        public async Task<List<Project>> GetAll()
         {
-            PageResult<Project> result = new PageResult<Project>();
-            result.Items = await _context.Project.ToListAsync();
-            result.totalRecord = result.Items.Count;
-          
+            var  result = await _context.Project.ToListAsync();
+
             return result;
         }
 

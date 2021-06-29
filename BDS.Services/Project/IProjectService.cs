@@ -14,7 +14,7 @@ namespace BDS.Services.Project
         Task<int> Delete(long projectId);
         Task<List<Project>> GetHighlightProject();
         Task<Project> GetById(long projectId);
-        Task<PageResult<Project>> GetAll();
+        Task<List<Project>> GetAll();
         Task<PageResult<Project>> GetAllPaging(string keyword, Page page);
 
         Task<List<Project>> FilterByInvesloper(string invesloper);

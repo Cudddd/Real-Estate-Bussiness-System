@@ -1,0 +1,71 @@
+.admin-form{
+    width:100%;
+    margin:0 60px;
+   }
+  .admin{
+    width:100%;
+    padding:10px;
+
+  margin: 20px 0;
+  }
+       .loginh2 {
+      margin-left:30px;
+      margin-bottom:10px;
+     }
+     
+   
+     .second-button2 {
+      color: white;
+      font-size: 18px;
+      margin-left:34px;
+      margin-top:20px;
+      font-weight: 500;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding: 10px 30px;
+      border-radius: 4px;
+      border: none;
+      background: #080a0a;
+    
+      transition: box-shadow .35s ease !important;
+      outline: none;
+      }
+      
+      .second-button2:active{
+      background: linear-gradient(145deg,#222222, #292929);
+      box-shadow: 5px 5px 10px #262626, -5px -5px 10px #262626;
+      border: none;
+      outline: none;
+      }
+      .loginp{
+        font-size:12px;
+        margin-left:20px;
+      }
+      .account-info h1{
+        text-align: left;
+      }
+      .account-info p{
+        text-align: left;
+        font-size:14px;
+      }
+  .margin-top-20px{
+    margin-top:60px;
+  }
+  .border-4px{
+    border:4px solid #c0f7fb;
+  }
+  .i-1{
+    padding:0px;
+    width:40px;
+    height:40px;
+    margin-left: 50px;
+}
+.i-1 i{
+    line-height:40px;  font-size:20px;
+   
+}
+
+.right0 img{
+    height:120px;
+
+}

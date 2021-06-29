@@ -1,0 +1,70 @@
+@using BDS.Data.Enum
+@model BDS.Services.Model.NewsModel
+
+@{
+    ViewData["Title"] = "Thông tin tin tức";
+    Layout = "_AdminLayout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    <link rel="stylesheet" href="~/assets/css/admin-info.css">
+    <style>
+        .right0 img{
+          height:120px;
+        }
+    </style>
+</head>
+
+<div style="width: 100%" class="admin-form grid wide row">
+<div class="admin col">
+    <div class="content">
+        <h1 class="loginh2" >THÔNG TIN TIN TỨC</h1> 
+        <div class="grid account-info row"><h1 class="col l-2  ">Tiêu đề:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.title</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Mô tả:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.description</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Nội dung:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.content</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Ngày đăng:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.dateCreated</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Ngày sửa:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.dateModify</p>
+            </div>
+        </div>
+        
+        <div class="grid account-info  row"><h1 class="col l-2  ">Hình ảnh:</h1> 
+            <div class="col l-9 right0">
+                <div class="row right0">
+                    @{
+                        foreach (var item in Model.newsMedia)
+                        {
+                            if (item.Type != MediaType.IntroduceVideo && item.Type != MediaType.ProcedureVideo)
+                            {
+                                <div class="col l-2">
+                                    <img style="margin-left: 10px" src="~/@item.Path" alt="">
+                                    <div style="margin-right: 50px" class="i-1">
+                                        <i class=ti-pencil></i>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <form>
+            <button asp-action="UpdateProject" asp-controller="Admin" asp-route-id="@Model.id" class="second-button2 margin-top-20px">CẬP NHẬT THÔNG TIN</button>
+        </form>
+    </div>
+                     
+</div>
+</div>

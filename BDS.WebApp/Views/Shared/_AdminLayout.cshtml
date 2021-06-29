@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Bảng điều khiển</title>
+    <link rel="shortcut icon" href="~/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/assets/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/assets/css/base.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/gridddd.css">
+    <link rel="stylesheet" href="~/assets/fonts/themify-icons.css">
+    <link rel="stylesheet" href="~/assets/css/news-infomationn.css">
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    
+
+</head>
+<body>
+    <div id="main">
+        <!-- ----------------------------------------------- -->
+        <div id="header-admin">
+            <div id="nav-admin" class="grid">
+
+                <ul class="nav-item">
+                    <li ><a href="@Url.ActionLink("Index","Admin")">Trang chính</a></li>
+                </ul>
+                <ul class="nav-item">
+                  <li ><a><i class=ti-user></i></a>
+                    <ul class="subnav">
+                      <li><a href="./aboutproject.html">VinHomes Grand Park</a></li>  
+                      <li><a href="">VinHomes Ocean Park</a></li>
+                      <li><a href="">VinHomes Smart City</a></li>
+                  </ul></li>
+              </ul>
+            </div>
+         
+          </div>
+            
+        </div>
+<!-- ----------------------------------------------- -->       
+
+<div id="news--list--infomation" class="grid row ">
+          <nav class="sidebar">
+            <ul class="sibarscroll">
+                  <div class="d1"><a>CORE</a></div>
+                  <li><a href="@Url.ActionLink("Index","Admin")"><i class="ti-dashboard"> </i>Bảng điều khiển</a></li>
+                  <div class="d1"><a>QUẢN LÍ</a></div>
+                <li>
+                    <a href="#" class="project-btn"><i class="ti-map"> </i>Dự án<i class=ti-angle-down></i></a>
+                    <ul class="project-show">
+                        <li><a href="@Url.ActionLink("Project","Admin")">Tất cả dự án</a></li>
+                        <li><a href="@Url.ActionLink("NewProject","Admin")">Thêm dự án mới</a></li>
+                        <li><a href="@Url.ActionLink("HighlightProject","Admin")">Dự án tiêu biểu</a></li>
+                        <li><a href="#">Cài đặt trang dự án</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="area-btn"><i class="ti-map"> </i>Phân khu<i class=ti-angle-down></i></a>
+                    <ul class="area-show">
+                        <li><a href="@Url.ActionLink("Area","Admin")">Tất cả phân khu</a></li>
+                        <li><a href="@Url.ActionLink("NewArea","Admin")">Thêm phân khu mới</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="realestate-btn"><i class="ti-map"> </i>Nhà đất<i class=ti-angle-down></i></a>
+                    <ul class="realestate-show">
+                        <li><a href="@Url.ActionLink("RealEstate","Admin")">Tất cả nhà đất</a></li>
+                        <li><a href="@Url.ActionLink("NewRealEstate","Admin")">Thêm nhà đất mới</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="news-btn"><i class="ti-map"> </i>Tin tức<i class=ti-angle-down></i></a>
+                    <ul class="news-show">
+                        <li><a href="@Url.ActionLink("News","Admin")">Tất cả tin tức</a></li>
+                        <li><a href="#">Thêm tin tức mới</a></li>
+                    </ul>  
+                </li>
+                <li>
+                    <a href="#" class="recruitment-btn"><i class="ti-map"> </i>Tuyển dụng<i class=ti-angle-down></i></a>
+                    <ul class="recruitment-show">
+                        <li><a href="#">Tất cả tin tuyển dụng</a></li>
+                        <li><a href="#">Thêm tuyển dụng mới</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" class="user-btn"><i class="ti-map"> </i>Người dùng<i class=ti-angle-down></i></a>
+                    <ul class="user-show">
+                        <li><a href="#">Danh sách người dùng</a></li>
+                        <li><a href="#">Thêm người dùng mới</a></li>
+                    </ul>  
+                </li>
+            </ul> 
+                <div class="logined">
+                  <a>Đăng nhập bởi:</a>
+                  <p>Duongsieuvip</p>
+                </div>
+            </nav>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript">
+              $('.user-btn').click(function(){
+                $('nav ul .user-show').toggleClass("show");
+              });
+          </script>
+            <script type="text/javascript">
+              $('.project-btn').click(function(){
+                $('nav ul .project-show').toggleClass("show");
+              });
+          </script>
+            <script type="text/javascript">
+                          $('.area-btn').click(function(){
+                            $('nav ul .area-show').toggleClass("show");
+                          });
+                      </script>
+            <script type="text/javascript">
+                          $('.realestate-btn').click(function(){
+                            $('nav ul .realestate-show').toggleClass("show");
+                          });
+                      </script>
+            <script type="text/javascript">
+                          $('.news-btn').click(function(){
+                            $('nav ul .news-show').toggleClass("show");
+                          });
+                      </script>
+             <script type="text/javascript">
+                          $('.recruitment-btn').click(function(){
+                            $('nav ul .recruitment-show').toggleClass("show");
+                          });
+                      </script>
+
+            <!--  -->
+           <div class=" content-mid ">
+            <div class=" ttn  data-name colordfdfdf ">
+                <a href="@Url.ActionLink("Index","Admin")" class="body-content">Trang chính</a>
+           </div>
+           <div class="ttn data-name colordfdfdf ">
+           
+            <a class=" body-content lineheight">Bảng điều khiển/bảng</a>
+       </div>
+           <div class="data-name ">
+           
+       </div>
+              <div class="border-space minwidth900px">
+                <div class="data-name border-1px colordfdfdf ">
+                   <a class="body-content"><i class=ti-target></i> BẢNG DỮ LIỆU</a>
+                </div>
+                @RenderBody();
+              </div>
+              
+        </div>
+            @RenderSection("paging",required:false);
+            <div id="footer " class="grid ">
+            <div class="fot">
+                <a href="" class="">©CopyRight  Ocean & Cudddd</a>
+           </div>
+        </div>
+        <!-- ---------------------------------------------------------------- -->
+        
+    </div>
+   
+</body>
+</html>
+
+
+<!-- nha kich thuoc 340 290 -->

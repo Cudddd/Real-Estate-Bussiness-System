@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Common;
+using BDS.Services.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.Area
@@ -40,9 +42,27 @@ namespace BDS.Services.Area
             throw new System.NotImplementedException();
         }
 
-        public Task<PageResult<Data.Entities.Area>> GetAllPaging(string keyword, Page page)
+        public async Task<List<AreaModel>> GetAllPaging(int pageIndex,int pageSize)
         {
-            throw new System.NotImplementedException();
+            var data = await _context.Area.ToListAsync();
+            List<AreaModel> areaModels = new List<AreaModel>();
+            foreach (var item in data)
+            {
+                if (item != null)
+                {
+                    AreaModel areaModel = new AreaModel()
+                    {
+                        id = item.id,
+                        name = item.name,
+                        projectName = _context.Project.FirstOrDefault(x => x.id == item.projectID)?.name
+                    };
+                    areaModels.Add(areaModel);
+                }
+
+                
+            }
+
+            return areaModels;
         }
 
         public async Task<List<Area>> GetByProjectId(long projectId)

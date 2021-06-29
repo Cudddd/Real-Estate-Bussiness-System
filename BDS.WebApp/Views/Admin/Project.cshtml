@@ -1,0 +1,67 @@
+@model List<BDS.Data.Entities.Project>
+
+@{
+  ViewData["Title"] = "Dự án";
+    Layout = "_AdminLayout";
+}
+
+
+
+<div class="data-name body-content ">
+    <div class="input-field1">
+        <div class="s">         
+            <a >TÌM KIẾM:</a>  <input placeholder="" class="validate search"><a><i  class=ti-search></i></a>
+            <span class="plus"><i  class=ti-plus></i></span>
+        </div>          
+    </div>
+</div>
+<div class="body-content">
+  <table class="">
+    <tr class="col">
+      <th class="col">ID</th>
+      <th style="width: 60%" class="col">Tên</th>
+      <th style="width: 40%" class="col">Nhà đầu tư</th>
+      <th class="col">Action</th>
+
+    </tr>
+    @{
+      foreach (var item in Model)
+      {
+        <tr>
+          <td>@item.id</td>
+          <td><a asp-action="ProjectDetail" asp-controller="Admin" asp-route-id="@item.id" style="text-decoration: none;color: black;">@item.name</a></td>
+          <td>@item.invesloper</td>
+          <td class="last">
+            <div class="i-1">
+              <i class=ti-pencil></i>
+            </div>
+            <div class="i-2">
+              <i class=ti-close></i>
+            </div>
+          </td>
+        </tr>
+      }
+    }
+    
+    
+  </table>
+</div>
+
+@section paging
+{
+  <div class="grid row">
+    <div class="pagination1 l-4 l-o-3">
+      <a href="#" class="margin-left-12px">&laquo;</a>
+      <a href="#" class="active">1</a>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">6</a>
+      <a href="#">7</a>
+      <a href="#">8</a>
+      <a href="#">9</a>
+      <a href="#">&raquo;</a>
+    </div>
+  </div>
+}

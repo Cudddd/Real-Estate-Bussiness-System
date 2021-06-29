@@ -113,6 +113,8 @@ namespace BDS.Services.RealEstate
                     location = realEstate.location,
                     mainLine = realEstate.mainLine,
                     sell = realEstate.sell,
+                    description = realEstate.description,
+                    areaName = _context.Area.FirstOrDefault(x=>x.id == realEstate.areaID).name,
                     realEstateMedia = _context.RealEstateMedia
                         .Where(x => x.RealEstateId == realEstate.id).ToList()
                 }
@@ -156,6 +158,7 @@ namespace BDS.Services.RealEstate
                     realEstateModel.location = item.location;
                     realEstateModel.mainLine = item.mainLine;
                     realEstateModel.sell= item.sell;
+                    realEstateModel.type = _context.RealEstateType.FirstOrDefault(x => x.id == item.typeID)?.name;
                     realEstateModel.realEstateMedia = _context.RealEstateMedia
                         .Where(x => x.RealEstateId == realEstateModel.id).ToList();
                     
@@ -209,6 +212,7 @@ namespace BDS.Services.RealEstate
                     realEstateModel.location = item.location;
                     realEstateModel.mainLine = item.mainLine;
                     realEstateModel.sell= item.sell;
+                    realEstateModel.description = item.description;
                     realEstateModel.realEstateMedia = _context.RealEstateMedia
                         .Where(x => x.RealEstateId == realEstateModel.id).ToList();
                     

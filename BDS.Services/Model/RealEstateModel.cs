@@ -9,6 +9,7 @@ namespace BDS.Services.Model
     {
         public long id { get; set; }
         public long areaID { get; set; }
+        public string areaName { get; set; }
         public  string name { get; set; }
         public bool sell { get; set; }
         public double length { get; set; }
@@ -27,6 +28,7 @@ namespace BDS.Services.Model
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
         public string address { get; set; }
+        public string description { get; set; }
 
         
         public List<RealEstateMedia> realEstateMedia { get; set; }

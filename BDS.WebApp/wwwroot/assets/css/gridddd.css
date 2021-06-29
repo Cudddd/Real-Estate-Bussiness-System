@@ -1034,3 +1034,6 @@ color: #C0F7FB;
     font-size: 20px;
 }
 
+.minwidth900px{
+    min-width:1150px;
+}

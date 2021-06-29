@@ -1,0 +1,35 @@
+@model List<BDS.Data.Entities.Project>
+@{
+    ViewData["Title"] = "Thêm phân khu";
+    Layout = "_AdminLayout";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    <link rel="stylesheet" href="~/assets/css/admin-info.css">
+    <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+</head>
+
+<div class="admin-form  grid wide row">
+                
+              
+<div class="admin col  ">
+    <div class="content">
+        <h1 class="loginh2" >THÔNG TIN PHÂN KHU</h1>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tên phân khu:</h1>
+            <div class="col l-10">
+                <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Tên phân khu..">
+            </div>
+        </div>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Dự án:</h1>
+            <div class="col l-10">
+                <select id="orient" name="typeId" asp-items="@(new SelectList(Model,"id","name"))">
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <button class="second-button2 margin-top-20px">THÊM</button>
+</div>
+</div>

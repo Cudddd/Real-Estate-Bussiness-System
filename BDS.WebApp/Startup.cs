@@ -48,6 +48,7 @@ namespace BDS.WebApp
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/User/Login");
+                options.AccessDeniedPath = new PathString("/Home/Error");
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
 
