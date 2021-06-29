@@ -25,6 +25,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Index(int pageIndex = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             ViewBag.pageIndex = pageIndex;
             var data = _newsService.GetAllPaging(pageIndex, 4).Result;
 
@@ -34,6 +39,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Detail(long id)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
 
             var data = _newsService.GetById(id).Result;
             

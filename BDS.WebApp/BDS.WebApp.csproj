@@ -461,10 +461,4 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\img\youtube.png" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\..\..\Downloads\favicon_io\favicon.ico">
-        <Link>wwwroot\favicon.ico</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>

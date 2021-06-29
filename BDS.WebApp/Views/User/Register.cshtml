@@ -32,12 +32,12 @@
                      
                         <div class="content">
                             <h1 class="loginh2" >ĐĂNG KÍ</h1> 
-                            <form>
-                            <div class="input-field"><i class=ti-user></i><input name="userName" placeholder="Tài khoản" class="validate"></div>
-                          <div class="input-field"><i class=ti-lock></i><input name="password" placeholder="Mật khẩu" class="validate"></div>
-                          <div class="input-field"><i class=ti-lock></i><input name="confirmPass" placeholder="Nhập lại mật khẩu" class="validate"></div>
-                          <div class="input-field"><i class=ti-email></i><input name="email" placeholder="Email" class="validate"></div>
-                          <div class="input-field"><i class=ti-tablet></i><input name="phoneNumber" placeholder="Số điện thoại" class="validate"></div>
+                            <form asp-action="Reg" method="post" asp-controller="User">
+                            <div class="input-field"><i class=ti-user></i><input name="UserName" placeholder="Tài khoản" class="validate"></div>
+                          <div class="input-field"><i class=ti-lock></i><input name="Password" type="password" placeholder="Mật khẩu" class="validate"></div>
+                          <div class="input-field"><i class=ti-lock></i><input name="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu" class="validate"></div>
+                          <div class="input-field"><i class=ti-email></i><input name="Email" type="email" placeholder="Email" class="validate"></div>
+                          <div class="input-field"><i class=ti-tablet></i><input name="PhoneNumber" type="number" placeholder="Số điện thoại" class="validate"></div>
                        
                             <input class="second-button2" type="submit" value="Đăng Kí">
                             </form>

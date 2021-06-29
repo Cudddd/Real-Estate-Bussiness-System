@@ -53,6 +53,8 @@ namespace BDS.Services.RealEstate
             userRealEstate.DateCreated = DateTime.Now;
             userRealEstate.DateModify =DateTime.Now;
             userRealEstate.UserId = user.Id;
+            userRealEstate.address = request.address;
+
             
             foreach (var item in request.realEstateImgs)
             {

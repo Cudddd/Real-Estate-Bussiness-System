@@ -26,6 +26,8 @@ namespace BDS.Data.Entities
         public DateTime DateModify { get; set; }
         
         public  string description { get; set; }
+        
+        public string address { get; set; }
 
     }
 }

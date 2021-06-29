@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Model;
+using BDS.Services.Request;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -63,18 +64,23 @@ namespace BDS.Services.User
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<bool> Register()
+        public async Task<bool> Register(UserCreateRequest request)
         {
             var user = new User()
             {
-                Id = 1,
-                DoB = DateTime.Now,
-                Email = "thamminhduc@gmail.com",
-                UserName = "admin1",
-                PhoneNumber = "0972986331",
+                Id = Utilities.UtilitiesService.GenerateID(),
+                Email = request.Email,
+                UserName = request.UserName,
+                PhoneNumber = request.PhoneNumber,
             };
-            var result = await _userManager.CreateAsync(user, "Asdabcabc@1");
-            return result.Succeeded;
+            IdentityResult result;
+            if(request.Password == request.ConfirmPassword)
+            {
+                result = await _userManager.CreateAsync(user, request.Password);
+                if (result.Succeeded) return true;
+            }
+
+            return false;
         }
 
         public async Task<User> GetCurrentUser(ClaimsPrincipal User)
@@ -116,6 +122,7 @@ namespace BDS.Services.User
                 userRealEstateModel.DateCreated = item.DateCreated;
                 userRealEstateModel.DateModify = item.DateModify;
                 userRealEstateModel.description = item.description;
+                userRealEstateModel.address = item.address;
                 userRealEstateModel.userRealEstateMedia = 
                     await _context.UserRealEstateMedia.Where(x => x.UserRealEstateId == item.id).ToListAsync();
                 
@@ -149,6 +156,7 @@ namespace BDS.Services.User
             userRealEstateModel.DateCreated = item.DateCreated;
             userRealEstateModel.DateModify = item.DateModify;
             userRealEstateModel.description = item.description;
+            userRealEstateModel.address = item.address;
             userRealEstateModel.userRealEstateMedia =
                 await _context.UserRealEstateMedia.Where(x => x.UserRealEstateId == id).ToListAsync();
             

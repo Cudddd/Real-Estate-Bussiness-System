@@ -1,9 +1,12 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using BDS.Data.Entities;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
+using BDS.Services.Request;
 using BDS.Services.User;
+using BDS.Services.Wishlist;
 using BDS.WebApp.Models.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -15,25 +18,53 @@ namespace BDS.WebApp.Controllers
     {
         private readonly IUserService _userService;
         private readonly IProjectService _projectService;
-        public UserController(IUserService userService, IProjectService projectService)
+        private readonly IWishlistService _wishlistService;
+        public UserController(IUserService userService, IProjectService projectService, 
+            IWishlistService wishlistService)
         {
             _userService = userService;
             _projectService = projectService;
+            _wishlistService = wishlistService;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             
             return View();
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
 
             return View();
+        }
+        [HttpPost]
+        public IActionResult Reg([FromForm] UserCreateRequest request)
+        {
+            var result =  _userService.Register(request).Result;
+
+            if (result)
+            {
+                var rs =  _userService.Authenticate(request.UserName, request.Password, true).Result;
+            
+                if(rs)
+                    return LocalRedirect("~/");
+            }
+            return LocalRedirect("~/User/Register");
         }
 
         [HttpPost]
@@ -64,6 +95,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Infomation()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             var user = _userService.GetCurrentUser(User).Result;
             
             return View(user);
@@ -73,6 +109,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult UpdateInfomation()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             var user = _userService.GetCurrentUser(User).Result;
             
             return View(user);
@@ -81,6 +122,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult ChangePassword()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             var user = _userService.GetCurrentUser(User).Result;
             
             return View(user);
@@ -90,6 +136,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult RealEstate()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
            
             RealEstateViewModel model = new RealEstateViewModel();
             model.user = _userService.GetCurrentUser(User).Result;
@@ -102,6 +153,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult RealEstateDetail(long id)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             var model = _userService.GetUserRealEstateById(id).Result;
             
             return View(model);

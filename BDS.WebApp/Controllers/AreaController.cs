@@ -30,6 +30,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Index(long id, string name,int pageIndex = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
             ViewBag.AreaName = name;
             ViewBag.AreaId = id;
             AreaViewModel areaViewModel = new AreaViewModel();

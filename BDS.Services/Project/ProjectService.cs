@@ -106,6 +106,20 @@ namespace BDS.Services.Project
             return result;
         }
 
+        public async Task<List<Project>> FilterOtherInvesloper()
+        {
+            var entities = await _context.Project.ToListAsync();
+            
+            List<Project> result = new List<Project>();
+            foreach (var item in entities)
+            {
+                if(item.invesloper != "Vinhomes")
+                    result.Add(item);
+            }
+
+            return result;
+        }
+
         public async Task<List<ProjectMedia>> GetProjectMedia(long projectId)
         {
             var data = await _context.ProjectMedia.Where(x => x.ProjectId == projectId).ToListAsync();

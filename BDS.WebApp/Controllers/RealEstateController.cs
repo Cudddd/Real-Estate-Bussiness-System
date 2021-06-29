@@ -6,6 +6,7 @@ using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.Request;
 using BDS.Services.User;
+using BDS.Services.Wishlist;
 using BDS.WebApp.Models.RealEstate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,15 @@ namespace BDS.WebApp.Controllers
         private readonly IRealEstateService _realEstateService;
         private readonly IProjectService _projectService;
         private readonly IUserService _userService;
+        private readonly IWishlistService _wishlistService;
 
-        public RealEstateController(IRealEstateService realEstateService,IProjectService projectService, IUserService userService)
+        public RealEstateController(IRealEstateService realEstateService,
+            IProjectService projectService, IWishlistService wishlistService,IUserService userService)
         {
             _realEstateService = realEstateService;
             _projectService = projectService;
             _userService = userService;
+            _wishlistService = wishlistService;
         }
         // GET
         public IActionResult Index(int pageIndex = 1)
@@ -30,6 +34,11 @@ namespace BDS.WebApp.Controllers
            // pageIndex = 2;
 
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
 
             RealEstateViewModel realEstateViewModel = new RealEstateViewModel();
             realEstateViewModel.realEstates = _realEstateService.GetAllPaging(pageIndex, 6).Result;
@@ -41,6 +50,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Detail(long id)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
 
             var data = _realEstateService.GetById(id).Result;
 
@@ -55,6 +69,11 @@ namespace BDS.WebApp.Controllers
         public IActionResult Sell(long id = -1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
 
             RealEstateSellViewModel model = new RealEstateSellViewModel();
             model.realEstateTypes = _realEstateService.GetAllRealEstateType().Result;
@@ -82,6 +101,7 @@ namespace BDS.WebApp.Controllers
                 model.realEstateModel.bathRoom = userRealEstateModel.bathRoom;
                 model.realEstateModel.DateCreated = userRealEstateModel.DateCreated;
                 model.realEstateModel.DateModify = userRealEstateModel.DateModify;
+                model.realEstateModel.address = userRealEstateModel.address;
             }
 
             return View(model);

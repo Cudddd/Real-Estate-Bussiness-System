@@ -7,9 +7,32 @@
 
 
 <head>
+    
     <link rel="stylesheet" href="~/assets/css/aboutproject.css">
     <link rel="stylesheet" href="~/assets/css/estateinfomation.css">
     <link rel="stylesheet" href="~/assets/css/project.css">
+    <style>
+        form .more-btn1{
+            background-color:#25c8b4;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            padding:10px 28px;
+            text-transform: uppercase;
+            color:#000;
+            border: none;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        form .more-btn1:hover{
+            background-color:#c8f7fb;
+            cursor: pointer;
+        }
+        .mk form{
+         
+            width:100%;
+        }
+    </style>
 </head>
 
  <!-- ------------------------------- -->
@@ -40,6 +63,10 @@
                                 }
                                 
                             </div>
+                             <ul class="controls grid ">
+                                 <li onclick = "PrevSlide();PrevSlideText();"></li>
+                                 <li onclick ="nextSlide();nextSlideText();"></li>
+                                 </ul>
                           
                         </section>
                     </div>
@@ -67,10 +94,40 @@ Số toilet: @Model.bathRoom
                     </div>
                 </div>
             </div>
-              <div class=" grid wide row">
+              <div class="mk grid wide row">
                   <form>
-                  <button asp-action="Sell" asp-controller="RealEstate" asp-route-id="@Model.id" class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> Đăng bán </button>
+                  <button asp-action="Sell" asp-controller="RealEstate" asp-route-id="@Model.id" class="more-btn1 l-12 l-o-5 m-4 m-o-4 c-4 c-o-4"> Đăng bán </button>
                   </form>
               </div>
           </div>
 <!-- ------------------------------- -->
+<script type="text/javascript">
+                const imgBx = document.querySelector('.imgBx');
+                const slides = imgBx.getElementsByTagName('img');
+                var i = 0;
+                function nextSlide(){
+                    slides[i].classList.remove('active');
+                    i = (i+1) % slides.length;
+                    slides[i].classList.add('active');
+                }
+                function PrevSlide(){
+                    slides[i].classList.remove('active');
+                    i=(i-1 + slides.length) % slides.length;
+                    slides[i].classList.add('active');
+                }
+          </script>
+<script type="text/javascript">
+                const contentBx = document.querySelector('.contentBx');
+                const slidesText = contentBx.getElementsByTagName('div');
+                var j = 0;
+                function nextSlideText(){
+                slidesText[j].classList.remove('active');
+                j = (j+1) % slidesText.length;
+                slidesText[j].classList.add('active');
+            }
+            function PrevSlideText(){
+                slidesText[j].classList.remove('active');
+                j=(j-1 + slidesText.length) % slidesText.length;
+                slidesText[j].classList.add('active');
+            }
+            </script>

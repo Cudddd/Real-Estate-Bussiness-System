@@ -1,10 +1,7 @@
 ﻿@using BDS.Data.Entities
 @using BDS.Services.Model
 
-@{
-    WishlistModel wishlist = new WishlistModel();
-    wishlist = ViewBag.wishlist;
-}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,17 +9,15 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+        <link rel="shortcut icon" href="~/assets/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="~/assets/favicon.ico" type="image/x-icon">
         <title>@ViewData["Title"] - Hoàng Nam Land</title>
 
         <link rel="stylesheet" href="~/assets/css/base.css">
         <link rel="stylesheet" href="~/assets/css/main.css">
-        <link rel="stylesheet" href="~/assets/css/griddd.css">
+        <link rel="stylesheet" href="~/assets/css/gridddd.css">
         <link rel="stylesheet" href="~/assets/fonts/themify-icons.css">
-        <style>
 
-        </style>
-             
     </head>
 
     <body>
@@ -79,15 +74,22 @@
                             <div class="wishlist">
                             <li class=" cha row"><a></a></li>    
                                 @{
-                                if (wishlist != null)
-                                {
-                                    foreach (var item in wishlist.realEstates)
+                                    if (User.Identity.IsAuthenticated)
                                     {
-                                        
-                                                
+                                        if (ViewBag.wishlist != null)
+                                        {
+                                            foreach (var item in ViewBag.wishlist.realEstates)
+                                            {
                                                 <li class=" cha row">
                                                     <div class=" l-3">
-                                                        <img class="wl-img height-120px" src="./assets/img/home.png">
+                                                        @{
+                                                            String img = "";
+                                                            if (item.realEstateMedia.Count > 0)
+                                                            {
+                                                                img = item.realEstateMedia[0].Path;
+                                                            }
+                                                        }
+                                                        <img class="wl-img height-120px" src="~/@img">
                                                     </div>
                                                     <div class=" wl--estate--item--info height-120px l-9 l-o-1 m-12 c-12 ">
                                                         <div class="">
@@ -96,23 +98,21 @@
                                                                     <h1>@item.name</h1>
                                                                 </a>
                                                                 <p class="text">Vị trí: @item.location
-Diện tích: @item.acreage m2 (Dài @item.length m, rộng @item.width m)
-Hướng: @item.orientation
-Giá: @item.price TR/m2
-Tầng: @item.floor</p>
+                                                                    Diện tích: @item.acreage m2 (Dài @item.length m, rộng @item.width m)
+                                                                    Hướng: @item.orientation
+                                                                    Giá: @item.price TR/m2
+                                                                    Tầng: @item.floor</p>
                                                             </div>
-                                                            <div class="col l-1 m-1 c-1">
-                                                                <i class=ti-heart></i>
-                                                            </div>
-                                                            
+
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </li>
-                                         
+
+                                            }
+                                        }
                                     }
                                 }
-                            }
                                </div>
                                 </ul>
                         </li>
@@ -143,16 +143,18 @@ Tầng: @item.floor</p>
                                  }
                         </script>
                          <div class="popup-registration" id="popup-registration2">
-                                    <div class="content">
-                                <div class="close-btn" onclick="togglePopup2()">×</div>
-                                <h1 class="loginh1" >ĐĂNG KÍ</h1> 
-                                <div class="input-field"><i class=ti-user></i><input placeholder="Tài khoản" class="validate"></div>
-                                <div class="input-field"><i class=ti-lock></i><input placeholder="Mật khẩu" class="validate"></div>
-                                <div class="input-field"><i class=ti-lock></i><input placeholder="Nhập lại mật khẩu" class="validate"></div>
-                                <div class="input-field"><i class=ti-email></i><input placeholder="Gmail" class="validate"></div>
-                                <div class="input-field"><i class=ti-tablet></i><input placeholder="Số điện thoại" class="validate"></div>
-                                               <button class="second-button">Đăng Kí</button>
-                                </div>
+                                <div class="content">
+                                    <div class="close-btn" onclick="togglePopup2()">×</div>
+                                        <form asp-action="Reg" asp-controller="User" method="post" enctype="multipart/form-data">
+                                            <h1 class="loginh1" >ĐĂNG KÍ</h1> 
+                                            <div class="input-field"><i class=ti-user></i><input name="UserName" placeholder="Tài khoản" class="validate"></div>
+                                            <div class="input-field login"><i class=ti-lock></i><input name="Password" type="password" placeholder="Mật khẩu" class="validate"></div>
+                                            <div class="input-field login"><i class=ti-lock></i><input name="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu" class="validate"></div>
+                                            <div class="input-field"><i class=ti-email></i><input name="Email" type="email"  placeholder="Email" class="validate"></div>
+                                            <div class="input-field"><i class=ti-tablet></i><input name="PhoneNumber" type="number" placeholder="Số điện thoại" class="validate"></div>
+                                            <button class="second-button">Đăng Kí</button>
+                                        </form>
+                                    </div>
                         </div>
                         <script type="text/javascript">
                             function togglePopup2() {

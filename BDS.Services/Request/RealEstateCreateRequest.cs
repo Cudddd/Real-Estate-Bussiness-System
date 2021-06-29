@@ -42,7 +42,9 @@ namespace BDS.Services.Request
 
         public int bathRoom { get; set; } // số phòng tắm
         public  string description { get; set; }
-  
+        
+        public string address { get; set; }
+
         public IFormFile[] realEstateImgs { get; set; }
 
 

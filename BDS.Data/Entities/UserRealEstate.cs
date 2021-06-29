@@ -24,6 +24,7 @@ namespace BDS.Data.Entities
         public int bathRoom { get; set; } // số phòng tắm
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
+        public string address { get; set; }
 
         public  string description { get; set; }
     }

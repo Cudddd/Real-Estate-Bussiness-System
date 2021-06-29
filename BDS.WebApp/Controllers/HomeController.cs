@@ -28,8 +28,12 @@ namespace BDS.WebApp.Controllers
         public IActionResult Index()
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
-            long userId = _userService.GetUserId(User);
-            ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            if (User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                long userId = _userService.GetUserId(User);
+                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+            }
+            
             return View();
         }
 

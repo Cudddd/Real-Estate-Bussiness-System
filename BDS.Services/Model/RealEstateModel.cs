@@ -26,6 +26,8 @@ namespace BDS.Services.Model
         
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
+        public string address { get; set; }
+
         
         public List<RealEstateMedia> realEstateMedia { get; set; }
     }

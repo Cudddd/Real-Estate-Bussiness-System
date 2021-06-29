@@ -18,6 +18,8 @@ namespace BDS.Services.Project
         Task<PageResult<Project>> GetAllPaging(string keyword, Page page);
 
         Task<List<Project>> FilterByInvesloper(string invesloper);
+        Task<List<Project>> FilterOtherInvesloper();
+        
 
         Task<List<ProjectMedia>> GetProjectMedia(long projectId);
 
