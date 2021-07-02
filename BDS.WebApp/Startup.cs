@@ -9,7 +9,9 @@ using BDS.Services.Area;
 using BDS.Services.Common;
 using BDS.Services.News;
 using BDS.Services.Project;
+using BDS.Services.ProjectMedia;
 using BDS.Services.RealEstate;
+using BDS.Services.RealEstateMedia;
 using BDS.Services.Recruitment;
 using BDS.Services.User;
 using BDS.Services.Wishlist;
@@ -51,8 +53,7 @@ namespace BDS.WebApp
                 options.AccessDeniedPath = new PathString("/Home/Error");
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
-
-
+            
             // DI
             services.AddTransient<IProjectService,ProjectService>();
             services.AddTransient<IAreaService,AreaService>();
@@ -64,11 +65,8 @@ namespace BDS.WebApp
             services.AddTransient<IUserService,UserService>();
             services.AddTransient<IStorageService,FileStorageService>();
             services.AddTransient<IWishlistService,WishlistService>();
-
-            
-
-
-            
+            services.AddTransient<IProjectMediaService,ProjectMediaService>();
+            services.AddTransient<IRealEstateMediaService,RealEstateMediaService>();
             
             services.AddControllersWithViews();
         }

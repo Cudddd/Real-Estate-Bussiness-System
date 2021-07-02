@@ -87,6 +87,12 @@ namespace BDS.Services.RealEstate
             throw new System.NotImplementedException();
         }
 
+        public async Task<int> DeleteRange(List<RealEstate> realEstates)
+        {
+            _context.RealEstate.RemoveRange(realEstates);
+            return await _context.SaveChangesAsync();
+        }
+
         public async Task<RealEstateModel> GetById(long realEstateID)
         {
             var entity = await _context.RealEstate.Join(

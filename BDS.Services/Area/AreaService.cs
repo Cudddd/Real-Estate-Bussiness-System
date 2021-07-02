@@ -27,9 +27,22 @@ namespace BDS.Services.Area
             throw new System.NotImplementedException();
         }
 
-        public Task<int> Delete(long areaID)
+        public async Task<int> Delete(long areaId)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.Area.FirstOrDefaultAsync(x => x.id == areaId);
+            if (entity != null)
+            {
+                _context.Area.Remove(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
+        }
+
+        public async Task<int> DeleteRange(List<Area> areas)
+        {
+            _context.Area.RemoveRange(areas);
+            return await _context.SaveChangesAsync();
         }
 
         public Task<Data.Entities.Area> GetById(long areaID)

@@ -31,6 +31,6 @@ namespace BDS.Services.Model
         public string description { get; set; }
 
         
-        public List<RealEstateMedia> realEstateMedia { get; set; }
+        public List<Data.Entities.RealEstateMedia> realEstateMedia { get; set; }
     }
 }

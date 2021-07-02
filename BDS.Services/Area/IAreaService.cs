@@ -11,6 +11,7 @@ namespace BDS.Services.Area
         Task<int> Create(Area a);
         Task<int> Update(Area a);
         Task<int> Delete(long areaID);
+        Task<int> DeleteRange(List<Area> areas);
         Task<Area> GetById(long areaID);
         Task<PageResult<Area>> GetAll();
         Task<List<AreaModel>> GetAllPaging(int pageIndex,int pageSize);

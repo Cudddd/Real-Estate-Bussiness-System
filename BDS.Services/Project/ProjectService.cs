@@ -5,7 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Data.Enum;
+using BDS.Services.Area;
 using BDS.Services.Common;
+using BDS.Services.ProjectMedia;
+using BDS.Services.RealEstate;
+using BDS.Services.RealEstateMedia;
 using BDS.Services.Request;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +23,21 @@ namespace BDS.Services.Project
     {
         private readonly BdsDbContext _context;
         private readonly IStorageService _storageService;
+        private readonly IProjectMediaService _projectMediaService;
+        private readonly IAreaService _areaService;
+        private readonly IRealEstateMediaService _realEstateMediaService;
+        private readonly IRealEstateService _realEstateService;
 
-        public ProjectService(BdsDbContext context,IStorageService storageService)
+        public ProjectService(BdsDbContext context,IStorageService storageService,
+            IProjectMediaService projectMediaService,IAreaService areaService,
+            IRealEstateMediaService realEstateMediaService, IRealEstateService realEstateService)
         {
             _context = context;
             _storageService = storageService;
+            _projectMediaService = projectMediaService;
+            _areaService = areaService;
+            _realEstateMediaService = realEstateMediaService;
+            _realEstateService = realEstateService;
         }
 
         public async Task<int> Create(ProjectCreateRequest request)
@@ -41,55 +55,66 @@ namespace BDS.Services.Project
             };
 
             _context.Project.Add(project);
-            
-            
-            ProjectMedia banner = new ProjectMedia()
-            {
-                id = Utilities.UtilitiesService.GenerateID(),
-                ProjectId = project.id,
-                Type = MediaType.BannerImg,
-                Path = await _storageService.SaveFile(request.BannerImg),
-            };
-            
-            ProjectMedia introImg = new ProjectMedia()
-            {
-                id = Utilities.UtilitiesService.GenerateID(),
-                ProjectId = project.id,
-                Type = MediaType.IntroduceImg,
-                Path = await _storageService.SaveFile(request.IntroImg),
-            };
-            ProjectMedia map = new ProjectMedia()
-            {
-                id = Utilities.UtilitiesService.GenerateID(),
-                ProjectId = project.id,
-                Type = MediaType.MapImg,
-                Path = await _storageService.SaveFile(request.MapImg),
-            };
-            ProjectMedia procedureVid = new ProjectMedia()
-            {
-                id = Utilities.UtilitiesService.GenerateID(),
-                ProjectId = project.id,
-                Type = MediaType.ProcedureVideo,
-                Path = request.ProcedureVid,
-            };
-            ProjectMedia introduceVid = new ProjectMedia()
-            {
-                id = Utilities.UtilitiesService.GenerateID(),
-                ProjectId = project.id,
-                Type = MediaType.IntroduceVideo,
-                Path = request.IntroduceVid,
-            };
 
-            await _context.ProjectMedia.AddAsync(banner);
-            await _context.ProjectMedia.AddAsync(introImg);
-            await _context.ProjectMedia.AddAsync(map);
-            await _context.ProjectMedia.AddAsync(procedureVid);
-            await _context.ProjectMedia.AddAsync(introduceVid);
-            
-           
-            
-            
-            
+            List<ProjectMedia> media = new List<ProjectMedia>();
+            if(request.BannerImg != null)
+            {
+                ProjectMedia banner = new ProjectMedia()
+                {
+                    ProjectId = project.id,
+                    Type = MediaType.BannerImg,
+                    Path = await _storageService.SaveFile(request.BannerImg),
+                };
+                media.Add(banner);
+            }
+
+            if (request.IntroImg != null)
+            {
+                ProjectMedia introImg = new ProjectMedia()
+                {
+                    ProjectId = project.id,
+                    Type = MediaType.IntroduceImg,
+                    Path = await _storageService.SaveFile(request.IntroImg),
+                };
+                media.Add(introImg);
+            }
+
+            if (request.MapImg != null)
+            {
+                ProjectMedia map = new ProjectMedia()
+                {
+                    ProjectId = project.id,
+                    Type = MediaType.MapImg,
+                    Path = await _storageService.SaveFile(request.MapImg),
+                };
+                media.Add(map);
+            }
+
+            if (!String.IsNullOrEmpty(request.ProcedureVid))
+            {
+                ProjectMedia procedureVid = new ProjectMedia()
+                {
+                    ProjectId = project.id,
+                    Type = MediaType.ProcedureVideo,
+                    Path = request.ProcedureVid,
+                };
+                media.Add(procedureVid);
+            }
+
+            if (!String.IsNullOrEmpty(request.IntroduceVid))
+            {
+                ProjectMedia introduceVid = new ProjectMedia()
+                {
+                    ProjectId = project.id,
+                    Type = MediaType.IntroduceVideo,
+                    Path = request.IntroduceVid,
+                };
+                media.Add(introduceVid);
+            }
+
+            await _projectMediaService.CreateRange(media);
+
+
             return await _context.SaveChangesAsync();
         }
 
@@ -119,24 +144,34 @@ namespace BDS.Services.Project
             
             if (entity != null)
             {
+                var media = _context.ProjectMedia.Where(x => x.ProjectId == entity.id).ToList();
+
+                var rs = await _projectMediaService.DeleteRange(media);
+                
                 var areas = _context.Area.Where(x => x.projectID == entity.id).ToList();
                 
-                var media = _context.ProjectMedia.Where(x => x.ProjectId == entity.id).ToList();
-                
-                _context.ProjectMedia.RemoveRange(media);
-
                 foreach (var area in areas)
                 {
                     if(area != null)
                     {
-                        List<RealEstate> realEstates = new List<RealEstate>();
+                        List<RealEstate> realEstates;
                         realEstates = _context.RealEstate.Where(x => x.areaID == area.id).ToList();
-                        
-                        _context.RealEstate.RemoveRange(realEstates);
+
+                        foreach (var item in realEstates)
+                        {
+                            List<RealEstateMedia> realEstateMediae;
+                            realEstateMediae = _context.RealEstateMedia.Where(x => x.RealEstateId == item.id).ToList();
+
+                            await _realEstateMediaService.DeleteRange(realEstateMediae);
+                        }
+
+
+                        await _realEstateService.DeleteRange(realEstates);
                     }
                 }
 
-                _context.Area.RemoveRange(areas);
+                await _areaService.DeleteRange(areas);
+
                 _context.Project.Remove(entity);
                 
                 return await _context.SaveChangesAsync();

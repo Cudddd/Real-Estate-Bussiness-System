@@ -12,6 +12,7 @@ namespace BDS.Services.RealEstate
         Task<int> Create(RealEstateCreateRequest request,User user);
         Task<int> Update(RealEstate r);
         Task<int> Delete(long realEstateID);
+        Task<int> DeleteRange(List<RealEstate> realEstates);
         Task<RealEstateModel> GetById(long realEstateID);
         Task<PageResult<RealEstate>> GetAll();
         Task<List<RealEstateModel>> GetAllPaging(int pageIndex, int pageSize);
