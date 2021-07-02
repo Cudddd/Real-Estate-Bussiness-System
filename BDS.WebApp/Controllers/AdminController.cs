@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using BDS.Data.Entities;
+using BDS.Data.Enum;
 using BDS.Services.Area;
 using BDS.Services.News;
 using BDS.Services.Project;
+using BDS.Services.ProjectMedia;
 using BDS.Services.RealEstate;
 using BDS.Services.Recruitment;
 using BDS.Services.Request;
@@ -25,10 +27,12 @@ namespace BDS.WebApp.Controllers
         private readonly INewsService _newsService;
         private readonly IRecruitmentService _recruitmentService;
         private readonly UserManager<User> _userManager;
+        private readonly IProjectMediaService _projectMediaService;
 
         public AdminController(IProjectService projectService,IAreaService areaService,
             IRealEstateService realEstateService,INewsService newsService,
-            IRecruitmentService recruitmentService,UserManager<User> userManager)
+            IRecruitmentService recruitmentService,UserManager<User> userManager,
+            IProjectMediaService projectMediaService)
         {
             _projectService = projectService;
             _areaService = areaService;
@@ -36,6 +40,7 @@ namespace BDS.WebApp.Controllers
             _newsService = newsService;
             _recruitmentService = recruitmentService;
             _userManager = userManager;
+            _projectMediaService = projectMediaService;
         }
         // GET
         //[Authorize(Roles = "Admin")]
@@ -73,10 +78,26 @@ namespace BDS.WebApp.Controllers
         {
             request.id = id;
             
-            string ProcedureVideo = Request.Form["ProcedureVideo"];
-            string IntroduceVideo = Request.Form["IntroduceVideo"];
+            string procedureVideo = Request.Form["ProcedureVideo"];
+            string introduceVideo = Request.Form["IntroduceVideo"];
 
-            _projectService.Update(request);
+            var media = _projectMediaService.GetByProjectId(id).Result;
+            foreach (var item in media)
+            {
+                if (item.Type == MediaType.IntroduceVideo && !String.IsNullOrEmpty(introduceVideo))
+                {
+                    item.Path = introduceVideo;
+                    _projectMediaService.Update(item);
+                }
+                else if (item.Type == MediaType.ProcedureVideo && !String.IsNullOrEmpty(procedureVideo))
+                {
+                    item.Path = procedureVideo;
+                    _projectMediaService.Update(item);
+                }
+            }
+            
+
+            var rs = _projectService.Update(request).Result;
 
             return LocalRedirect("~/Admin/ProjectDetail/"+id);
         }
@@ -137,11 +158,39 @@ namespace BDS.WebApp.Controllers
             
             return View(model);
         }
-        public IActionResult NewArea()
+        public IActionResult UpdateArea(long id)
         {
+            UpdateAreaViewModel model = new UpdateAreaViewModel();
+            model.projects = _projectService.GetAll().Result;
+            model.area = _areaService.GetById(id).Result;
+            
+            
+            return View(model);
+        }
+        public IActionResult UpdateAreaPost([FromForm] Area area,long id)
+        {
+            area.id = id;
+            var rs = _areaService.Update(area).Result;
+            
+            return LocalRedirect("~/Admin/Area");
+        }
+        public IActionResult DeleteArea(long id)
+        {
+            var rs = _areaService.Delete(id).Result;
+            
+            return LocalRedirect("~/Admin/Area");
+        }
+        public IActionResult NewArea()
+        { 
             var model = _projectService.GetAll().Result;
             
             return View(model);
+        }
+        public IActionResult NewAreaPost([FromForm] Area area)
+        {
+            var rs = _areaService.Create(area).Result;
+            
+           return LocalRedirect("~/Admin/Area");
         }
         
         public IActionResult RealEstate(int pageIndex = 1)

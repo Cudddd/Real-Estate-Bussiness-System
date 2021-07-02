@@ -1,0 +1,43 @@
+@model BDS.WebApp.Models.Admin.UpdateAreaViewModel
+@{
+    ViewData["Title"] = "Cập nhật phân khu";
+    Layout = "_AdminLayout";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    <link rel="stylesheet" href="~/assets/css/admin-info.css">
+</head>
+
+<div class="admin-form  grid wide row">
+                
+              
+<div class="admin col  ">
+    <div class="content">
+        <h1 class="loginh2" >THÔNG TIN PHÂN KHU</h1>
+        <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UpdateAreaPost" asp-route-id="@Model.area.id">
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tên phân khu:</h1>
+            <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="name" value="@Model.area.name">
+            </div>
+        </div>
+            <div class=" account-info row"><h1 class="col l-2 paddingt  ">Dự án:</h1>
+                <div class="col l-10">
+                    @{
+                        var selectedProject = Model.projects.FirstOrDefault(x => x.id == Model.area.projectID);
+
+                        Model.projects.Remove(selectedProject);
+                        Model.projects.Insert(0,selectedProject);
+                    }
+                    <select id="orient" name="projectID" asp-items="@(new SelectList(Model.projects, "id", "name"))">
+                    </select>
+                </div>
+            </div>
+            <input type="submit" class="second-button2 margin-top-20px" value="CẬP NHẬT">
+        </form>
+    </div>
+    
+    
+</div>
+</div>

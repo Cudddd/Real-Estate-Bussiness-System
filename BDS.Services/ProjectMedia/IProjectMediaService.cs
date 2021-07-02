@@ -12,6 +12,7 @@ namespace BDS.Services.ProjectMedia
         Task<int> Delete(long projectMediaId);
         Task<int> DeleteRange(List<ProjectMedia> projectMedia);
         Task<ProjectMedia> GetById(long projectMediaId);
+        Task<List<ProjectMedia>> GetByProjectId(long projectId);
         Task<List<ProjectMedia>> GetAll();
     }
 }

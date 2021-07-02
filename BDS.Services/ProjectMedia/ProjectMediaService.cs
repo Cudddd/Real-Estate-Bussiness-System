@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Data.Enum;
@@ -34,9 +35,10 @@ namespace BDS.Services.ProjectMedia
             return await _context.SaveChangesAsync();
         }
 
-        public Task<int> Update(Data.Entities.ProjectMedia p)
+        public async Task<int> Update(Data.Entities.ProjectMedia p)
         {
-            throw new System.NotImplementedException();
+            _context.ProjectMedia.Update(p);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Delete(long projectMediaId)
@@ -61,6 +63,12 @@ namespace BDS.Services.ProjectMedia
         public Task<Data.Entities.ProjectMedia> GetById(long projectId)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<List<ProjectMedia>> GetByProjectId(long projectId)
+        {
+            var entity = await _context.ProjectMedia.Where(x=>x.ProjectId == projectId).ToListAsync();
+            return entity;
         }
 
         public Task<List<Data.Entities.ProjectMedia>> GetAll()

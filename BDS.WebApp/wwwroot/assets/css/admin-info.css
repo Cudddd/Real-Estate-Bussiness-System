@@ -1,60 +1,60 @@
 .admin-form{
     width:100%;
     margin:0 60px;
-   }
-  .admin{
+}
+.admin{
     width:100%;
     padding:10px;
 
-  margin: 20px 0;
-  }
-       .loginh2 {
-      margin-left:30px;
-      margin-bottom:10px;
-     }
-     
-   
-     .second-button2 {
-      color: white;
-      font-size: 18px;
-      margin-left:34px;
-      margin-top:20px;
-      font-weight: 500;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      padding: 10px 30px;
-      border-radius: 4px;
-      border: none;
-      background: #080a0a;
-    
-      transition: box-shadow .35s ease !important;
-      outline: none;
-      }
-      
-      .second-button2:active{
-      background: linear-gradient(145deg,#222222, #292929);
-      box-shadow: 5px 5px 10px #262626, -5px -5px 10px #262626;
-      border: none;
-      outline: none;
-      }
-      .loginp{
-        font-size:12px;
-        margin-left:20px;
-      }
-      .account-info h1{
-        text-align: left;
-      }
-      .account-info p{
-        text-align: left;
-        font-size:14px;
-      }
-  .margin-top-20px{
+    margin: 20px 0;
+}
+.loginh2 {
+    margin-left:30px;
+    margin-bottom:10px;
+}
+
+
+.second-button2 {
+    color: white;
+    font-size: 18px;
+    margin-left:34px;
+    margin-top:20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px;
+    border-radius: 4px;
+    border: none;
+    background: #080a0a;
+
+    transition: box-shadow .35s ease !important;
+    outline: none;
+}
+
+.second-button2:active{
+    background: linear-gradient(145deg,#222222, #292929);
+    box-shadow: 5px 5px 10px #262626, -5px -5px 10px #262626;
+    border: none;
+    outline: none;
+}
+.loginp{
+    font-size:12px;
+    margin-left:20px;
+}
+.account-info h1{
+    text-align: left;
+}
+.account-info p{
+    text-align: left;
+    font-size:14px;
+}
+.margin-top-20px{
     margin-top:60px;
-  }
-  .border-4px{
+}
+.border-4px{
     border:4px solid #c0f7fb;
-  }
-  .i-1{
+}
+.i-1{
     padding:0px;
     width:40px;
     height:40px;
@@ -62,14 +62,59 @@
 }
 .i-1 i{
     line-height:40px;  font-size:20px;
-   
-}
 
+}
+.minwidth900px{
+    min-width:1200px;
+}
 .right0 img{
     height:120px;
 
 }
+intput  .second-button2 {
+    color: white;
+    font-size: 18px;
+    margin-left:34px;
+    margin-top:20px;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 30px;
+    border-radius: 4px;
+    border: none;
+    background: #080a0a;
 
+    transition: box-shadow .35s ease !important;
+    outline: none;
+}
+
+
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+input[type=password], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+/* Style the label to display next to the inputs */
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 14px;
+    float: left;
+}
+
+/* Style the submit button */
 input[type=submit] {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -89,7 +134,7 @@ input[type=submit]:hover {
     border: none;
     padding: 12px 20px;
     cursor: pointer;
-
+    float: center;
 
 }
 #sell-rent .sell-rent-info {

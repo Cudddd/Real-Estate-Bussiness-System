@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Services.Common;
 using BDS.Services.Model;
+using BDS.Services.RealEstate;
+using BDS.Services.RealEstateMedia;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.Area
@@ -12,19 +14,32 @@ namespace BDS.Services.Area
     public class AreaService : IAreaService
     {
         private readonly BdsDbContext _context;
+        private readonly IRealEstateService _realEstateService;
+        private readonly IRealEstateMediaService _realEstateMediaService;
 
-        public AreaService(BdsDbContext context)
+        public AreaService(BdsDbContext context,IRealEstateService realEstateService,
+            IRealEstateMediaService realEstateMediaService)
         {
             _context = context;
+            _realEstateService = realEstateService;
+            _realEstateMediaService = realEstateMediaService;
         }
-        public Task<int> Create(Data.Entities.Area a)
+        public async Task<int> Create(Data.Entities.Area area)
         {
-            throw new System.NotImplementedException();
+            area.id = Utilities.UtilitiesService.GenerateID();
+
+            await _context.Area.AddAsync(area);
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<int> Update(Data.Entities.Area a)
+        public async Task<int> Update(Data.Entities.Area area)
         {
-            throw new System.NotImplementedException();
+            await using (_context)
+            {
+                _context.Area.Update(area);
+                return await _context.SaveChangesAsync();
+            }
+           
         }
 
         public async Task<int> Delete(long areaId)
@@ -32,6 +47,17 @@ namespace BDS.Services.Area
             var entity = await _context.Area.FirstOrDefaultAsync(x => x.id == areaId);
             if (entity != null)
             {
+                var realEstates = _context.RealEstate.Where(x => x.areaID == entity.id).ToList();
+
+                foreach (var item in realEstates)
+                {
+                    var media = _context.RealEstateMedia.Where(x => x.RealEstateId == item.id).ToList();
+
+                    await _realEstateMediaService.DeleteRange(media);
+                }
+                
+                await _realEstateService.DeleteRange(realEstates);
+                
                 _context.Area.Remove(entity);
                 return await _context.SaveChangesAsync();
             }
@@ -45,9 +71,10 @@ namespace BDS.Services.Area
             return await _context.SaveChangesAsync();
         }
 
-        public Task<Data.Entities.Area> GetById(long areaID)
+        public async Task<Data.Entities.Area> GetById(long areaID)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.Area.FirstOrDefaultAsync(x => x.id == areaID);
+            return entity;
         }
         
         public Task<PageResult<Data.Entities.Area>> GetAll()
