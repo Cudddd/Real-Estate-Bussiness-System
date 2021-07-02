@@ -10,12 +10,22 @@
     <link rel="stylesheet" href="~/assets/css/admin.css">
     <link rel="stylesheet" href="~/assets/css/admin-info.css">
     <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+    <style>
+        input[type=password],input[type=number], select, textarea{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+    </style>
 </head>
 
 <div class="admin-form  grid wide row">
     <div class="admin col  ">
         <div class="content">
-            <h1 class="loginh2" >THÔNG TIN PHÂN KHU</h1>
+            <h1 class="loginh2" >THÔNG TIN NHÀ ĐẤT</h1>
             <form>
                 <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh:</h1> 
                     <div class="col l-10 ">
@@ -42,19 +52,19 @@
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Diện tích:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="acreage" placeholder="Diện tích..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="acreage" placeholder="Diện tích..">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Chiều dài:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="length" placeholder="Chiều dài..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="length" placeholder="Chiều dài..">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Chiều rộng:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="width" placeholder="Chiều rộng..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="width" placeholder="Chiều rộng..">
                     </div>
                 </div>
                 <div class=" account-info row">
@@ -83,25 +93,25 @@
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Giá:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Giá nhà đất..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="price" placeholder="Giá nhà đất..">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Tầng:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="floor" placeholder="Tầng..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="floor" placeholder="Tầng..">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Số phòng ngủ:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="bedRoom" placeholder="Số phòng ngủ..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="bedRoom" placeholder="Số phòng ngủ..">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Số toilet:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="bathRoom" placeholder="Số toilet..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="bathRoom" placeholder="Số toilet..">
                     </div>
                 </div>
                 <div class=" account-info row">
@@ -113,7 +123,7 @@
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Mặt tiền:</h1>
                     <div class="col l-10">
-                        <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Số mét mặt tiền..">
+                        <input class="col minwidtht max-widtht " type="number" id="price" name="price" placeholder="Số mét mặt tiền..">
                     </div>
                 </div>
                 <div class=" account-info row">
@@ -125,7 +135,7 @@
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Mô tả thêm:</h1>
                     <div class="col l-10">
-                        <textarea style="text-align: left;min-width: 200px" class="col minwidtht max-widtht " type="text" id="price" name="mainLine" placeholder="Mô tả thêm.."></textarea>
+                        <textarea style="text-align: left;min-height: 200px" class="col minwidtht max-widtht " type="text" id="price" name="mainLine" placeholder="Mô tả thêm.."></textarea>
                     </div>
                 </div>
 

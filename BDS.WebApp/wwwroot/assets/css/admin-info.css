@@ -69,3 +69,70 @@
     height:120px;
 
 }
+
+input[type=submit] {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    float: center;
+
+}
+input[type=submit]:hover {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+
+
+}
+#sell-rent .sell-rent-info {
+
+}
+.upload-img p{
+    font-size:20px;
+    margin-top:20px;
+}
+
+/* Style the container */
+.container {
+
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+    float: left;
+    width: 85%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+
+    }
+}

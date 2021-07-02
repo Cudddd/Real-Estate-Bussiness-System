@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BDS.Services.Common;
+using BDS.Services.Request;
 using Microsoft.AspNetCore.Http;
 
 namespace BDS.Services.Project
@@ -9,7 +10,7 @@ namespace BDS.Services.Project
     
     public interface IProjectService
     {
-        Task<int> Create(Project p);
+        Task<int> Create(ProjectCreateRequest request);
         Task<int> Update(Project p);
         Task<int> Delete(long projectId);
         Task<List<Project>> GetHighlightProject();
@@ -24,6 +25,8 @@ namespace BDS.Services.Project
         Task<List<ProjectMedia>> GetProjectMedia(long projectId);
 
         Task<List<ProjectBanner>> GetProjectBanner();
+
+        Task<int> SetHighlightProject(long id, bool highlight);
 
     }
 }

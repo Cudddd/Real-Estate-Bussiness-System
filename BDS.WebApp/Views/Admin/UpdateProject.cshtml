@@ -10,7 +10,7 @@
 <head>
     <link rel="stylesheet" href="~/assets/css/admin.css">
     <link rel="stylesheet" href="~/assets/css/admin-info.css">
-    <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+
 </head>
 
 <div class="admin-form  grid wide row">
@@ -19,29 +19,36 @@
 <div class="admin col  ">
     <div class="content">
         <h1 class="loginh2" >THÔNG TIN DỰ ÁN</h1>
+        <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UpdateProjectPost" asp-route-id="@Model.Project.id">
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tên dự án:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" value="@Model.Project.name">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="name" value="@Model.Project.name">
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Nhà đầu tư:</h1>
-            <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" value="@Model.Project.invesloper">
-            </div>
-        </div>
+             <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="invesloper" value="@Model.Project.invesloper">
+             </div>
+        </div>    
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Giới thiệu:</h1>
+              <div class="col l-10">
+                  <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="introduce">@Model.Project.introduce</textarea>
+              </div>
+        </div>    
+            
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Thông tin:</h1>
             <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price">@Model.Project.info</textarea>
+                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="info">@Model.Project.info</textarea>
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tiến độ:</h1>
             <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price">@Model.Project.procedure</textarea>
+                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="procedure">@Model.Project.procedure</textarea>
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Lợi ích khách hàng:</h1>
             <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price">@Model.Project.customerBenefits</textarea>
+                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="customerBenefits">@Model.Project.customerBenefits</textarea>
             </div>
         </div>
         @{
@@ -56,17 +63,19 @@
         }
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Link video giới thiệu:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" value="@introVidPath">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="IntroduceVideo" value="@introVidPath">
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Link video tiến độ:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" value="@proVidPath">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="ProcedureVideo" value="@proVidPath">
             </div>
         </div>
-        
+        <input type="submit" class="second-button2 margin-top-20px" value="CẬP NHẬT">
+         </form>
     </div>
     
-    <button class="second-button2 margin-top-20px">CẬP NHẬT</button>
+    
+   
 </div>
 </div>

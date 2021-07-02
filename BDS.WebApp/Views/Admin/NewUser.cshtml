@@ -1,0 +1,57 @@
+
+@{
+    ViewData["Title"] = "Thêm người dùng mới";
+    Layout = "_AdminLayout";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    <link rel="stylesheet" href="~/assets/css/admin-info.css">
+    <link rel="stylesheet" href="~/assets/css/sell-rent.css">
+    <style>
+             input[type=password],input[type=number],input[type=email], select, textarea{
+                        width: 100%;
+                        padding: 12px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                        resize: vertical;
+                    }
+        </style>
+</head>
+
+<div class="admin-form  grid wide row">
+    <div class="admin col  ">
+    <div class="content">
+        <h1 class="loginh2" >THÔNG TIN NGƯỜI DÙNG</h1>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tài khoản:</h1>
+            <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="UserName" placeholder="Tài khoản..">
+            </div>
+        </div>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Mật khẩu:</h1>
+            <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="password" id="price" name="PassWord" placeholder="Mật khẩu..">
+            </div>
+        </div>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Email:</h1>
+            <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="email" id="Email" name="description" placeholder="Email..">
+            </div>
+        </div>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Số điện thoại:</h1>
+            <div class="col l-10">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="PhoneNumber" placeholder="Số điện thoại..">
+            </div>
+        </div>
+        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Địa chỉ:</h1>
+            <div class="col l-10">
+                <textarea style="min-height: 100px;text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="Address" placeholder="Địa chỉ.."></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <button class="second-button2 margin-top-20px">THÊM</button>
+</div>
+</div>

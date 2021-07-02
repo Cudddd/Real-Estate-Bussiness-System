@@ -16,55 +16,87 @@
 <div class="admin col  ">
     <div class="content">
         <h1 class="loginh2" >THÔNG TIN DỰ ÁN</h1>
+        <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="NewProjectPost">
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tên dự án:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Tên dự án..">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="name" placeholder="Tên dự án..">
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Nhà đầu tư:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Nhà đầu tư..">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="invesloper" placeholder="Nhà đầu tư..">
             </div>
         </div>
-        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Thông tin:</h1>
-            <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Thông tin dự án.."></textarea>
+            <div class=" account-info row"><h1 class="col l-2 paddingt  ">Giới thiệu:</h1>
+                <div class="col l-10">
+                    <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="introduce" placeholder="Thông tin dự án.."></textarea>
+                </div>
             </div>
-        </div>
+            <div class=" account-info row"><h1 class="col l-2 paddingt  ">Thông tin:</h1>
+                <div class="col l-10">
+                    <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="info" placeholder="Thông tin dự án.."></textarea>
+                </div>
+            </div>
+            
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tiến độ:</h1>
             <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Tiến độ dự án.."></textarea>
+                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="procedure" placeholder="Tiến độ dự án.."></textarea>
             </div>
         </div>
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Lợi ích khách hàng:</h1>
             <div class="col l-10">
-                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Lợi ích khách hàng.."></textarea>
+                <textarea style="min-height: 200px;text-align:left;" class="col minwidtht max-widtht " type="text" id="price" name="customerBenefits" placeholder="Lợi ích khách hàng.."></textarea>
             </div>
         </div>
-        <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh:</h1> 
-            <div class="col l-10 ">
-                <div class="">
-                    <div class="l-3"> 
-                        <p class="">Chọn ảnh:</p>
-                        <input  class="" type="file" name="fileToUpload" id="fileToUpload" multiple>
-                    </div>
+            <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh banner:</h1> 
+                <div class="col l-10 ">
+                    <div class="">
+                        <div class="l-3"> 
+                            <p class="">Chọn ảnh:</p>
+                            <input  class="" type="file" name="BannerImg" id="fileToUpload">
+                        </div>
                                        
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh giới thiệu:</h1> 
+                <div class="col l-10 ">
+                    <div class="">
+                        <div class="l-3"> 
+                            <p class="">Chọn ảnh:</p>
+                            <input  class="" type="file" name="IntroImg" id="fileToUpload">
+                        </div>
+                                                   
+                    </div>
+                </div>
+            </div>
+            <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh bản đồ:</h1> 
+                <div class="col l-10 ">
+                    <div class="">
+                        <div class="l-3"> 
+                            <p class="">Chọn ảnh:</p>
+                            <input  class="" type="file" name="MapImg" id="fileToUpload">
+                        </div>
+                                                   
+                    </div>
+                </div>
+            </div>
+            
         <div class=" account-info row"><h1 class="col l-2 paddingt  ">Link video giới thiệu:</h1>
             <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Đường dẫn video giới thiệu..">
+                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="IntroduceVid" placeholder="Đường dẫn video giới thiệu..">
             </div>
         </div>
-        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Link video tiến độ:</h1>
-            <div class="col l-10">
-                <input class="col minwidtht max-widtht " type="text" id="price" name="price" placeholder="Đường dẫn video tiến độ..">
+            <div class=" account-info row"><h1 class="col l-2 paddingt  ">Link video tiến độ:</h1>
+                <div class="col l-10">
+                    <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="ProcedureVid" placeholder="Đường dẫn video tiến độ..">
+                </div>
             </div>
-        </div>
+            <input type="submit" class="second-button2 margin-top-20px" value="THÊM">
+        </form>
         
     </div>
     
-    <button class="second-button2 margin-top-20px">THÊM</button>
+    
 </div>
 </div>

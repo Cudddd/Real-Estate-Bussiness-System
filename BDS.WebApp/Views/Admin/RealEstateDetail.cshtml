@@ -44,8 +44,15 @@
                 <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.orientation</p>
                 </div>
             </div>
+            @{
+                String sell = "";
+                if (@Model.sell)
+                    sell = "Bán";
+                else sell = "Cho thuê";
+                    
+            }
             <div class="grid account-info row"><h1 class="col l-2  ">Bán/thuê</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.sell</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@sell</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Loại nhà</h1>

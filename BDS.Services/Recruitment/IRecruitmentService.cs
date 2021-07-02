@@ -10,7 +10,7 @@ namespace BDS.Services.Recruitment
         Task<int> Create(Recruitment r);
         Task<int> Update(Recruitment r);
         Task<int> Delete(long recruitmentID );
-        Task<Recruitment> GetById(long recruitmentID);
+        Task<RecruitmentModel> GetById(long recruitmentID);
         Task<List<Recruitment>> GetAll();
         Task<List<RecruitmentModel>> GetAllPaging(int pageIndex, int pageSize);
     }

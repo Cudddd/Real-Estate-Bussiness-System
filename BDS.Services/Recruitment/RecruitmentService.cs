@@ -31,11 +31,29 @@ namespace BDS.Services.Recruitment
             throw new System.NotImplementedException();
         }
 
-        public async Task<Data.Entities.Recruitment> GetById(long recruitmentID)
+        public async Task<RecruitmentModel> GetById(long recruitmentID)
         {
             var entity = await _context.Recruitment.FirstOrDefaultAsync(t => t.id == recruitmentID);
+
+            RecruitmentModel result = new RecruitmentModel();
+
+            if (entity != null)
+            {
+                RecruitmentModel recruitmentModel = new RecruitmentModel()
+                {
+                    id = entity.id,
+                    title = entity.title,
+                    description = entity.description,
+                    detail = entity.detail,
+                    dateCreated = entity.dateCreated,
+                    dateModify = entity.dateModify,
+                    recruitmentMedia =
+                        await _context.RecruitmentMedia.Where(x => x.RecruitmentId == entity.id).ToListAsync(),
+                };
+                result = recruitmentModel;
+            }
             
-            return entity;
+            return result;
         }
 
         public Task<List<Data.Entities.Recruitment>> GetAll()

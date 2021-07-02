@@ -1,7 +1,7 @@
-@model List<BDS.Data.Entities.Project>
+@model List<BDS.Data.Entities.User>
 
 @{
-  ViewData["Title"] = "Dự án";
+  ViewData["Title"] = "Danh sách người dùng";
     Layout = "_AdminLayout";
 }
 
@@ -11,12 +11,7 @@
     <div class="input-field1">
         <div class="s">         
             <a >TÌM KIẾM:</a>  <input placeholder="" class="validate search"><a><i  class=ti-search></i></a>
-          <span class="plus">
-            <a style="text-decoration: none;color:black" asp-action="NewProject" asp-controller="Admin">
-              <i class=ti-plus></i>
-            </a>
-
-          </span>
+            <span class="plus"><i  class=ti-plus></i></span>
         </div>          
     </div>
 </div>
@@ -24,8 +19,9 @@
   <table class="">
     <tr class="col">
       <th class="col">ID</th>
-      <th style="width: 60%" class="col">Tên</th>
-      <th style="width: 40%" class="col">Nhà đầu tư</th>
+      <th style="width: 40%" class="col">Tài khoản</th>
+      <th style="width: 30%" class="col">Email</th>
+      <th style="width: 30%" class="col">Số điện thoại</th>
       <th class="col">Action</th>
 
     </tr>
@@ -33,19 +29,16 @@
       foreach (var item in Model)
       {
         <tr>
-          <td>@item.id</td>
-          <td><a asp-action="ProjectDetail" asp-controller="Admin" asp-route-id="@item.id" style="text-decoration: none;color: black;">@item.name</a></td>
-          <td>@item.invesloper</td>
+          <td>@item.Id</td>
+          <td><a asp-action="UserDetail" asp-controller="Admin" asp-route-id="@item.Id" style="text-decoration: none;color: black;">@item.UserName</a></td>
+          <td>@item.Email</td>
+          <td>@item.PhoneNumber</td>
           <td class="last">
             <div class="i-1">
-              <a style="text-decoration: none;color:black" asp-action="UpdateProject" asp-controller="Admin" asp-route-id="@item.id">
-                <i class=ti-pencil></i>
-              </a>
+              <i class=ti-pencil></i>
             </div>
             <div class="i-2">
-              <a style="text-decoration: none;color:black" asp-action="DeleteProject" asp-controller="Admin" asp-route-id="@item.id">
-                <i class=ti-close></i>
-              </a>
+              <i class=ti-close></i>
             </div>
           </td>
         </tr>

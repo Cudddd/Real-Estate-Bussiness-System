@@ -1,0 +1,49 @@
+@using BDS.Data.Enum
+@model BDS.Data.Entities.User
+
+@{
+    ViewData["Title"] = "Thông tin người dùng";
+    Layout = "_AdminLayout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/assets/css/admin.css">
+    <link rel="stylesheet" href="~/assets/css/admin-info.css">
+    <style>
+        .right0 img{
+          height:120px;
+        }
+    </style>
+</head>
+
+<div style="width: 100%" class="admin-form grid wide row">
+<div class="admin col">
+    <div class="content">
+        <h1 class="loginh2" >THÔNG TIN NGƯỜI DÙNG</h1> 
+        <div class="grid account-info row"><h1 class="col l-2  ">Tài khoản:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.UserName</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Email:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.Email</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Số điện thoại:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.PhoneNumber</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Ngày sinh:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.DoB</p>
+            </div>
+        </div>
+        <div class="grid account-info row"><h1 class="col l-2  ">Địa chỉ:</h1>
+            <div class="col l-9"><p class="col l-9 max-widtht text  "></p>
+            </div>
+        </div>
+        <form>
+            <button asp-action="" asp-controller="Admin" asp-route-id="@Model.Id" class="second-button2 margin-top-20px">CẬP NHẬT THÔNG TIN</button>
+        </form>
+    </div>
+                     
+</div>
+</div>
