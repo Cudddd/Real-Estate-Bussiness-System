@@ -208,9 +208,13 @@ namespace BDS.Services.Project
             return result;
         }
 
-        public Task<PageResult<Project>> GetAllPaging(string keyword, Page page)
+        public async Task<List<Project>> GetAllPaging(int pageIndex,int pageSize)
         {
-            throw new System.NotImplementedException();
+            var entities = await _context.Project.ToListAsync();
+            
+            var data = entities.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+
+            return data;
         }
 
         public async Task<List<Project>> FilterByInvesloper(string invesloper)

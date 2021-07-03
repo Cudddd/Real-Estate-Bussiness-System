@@ -1,47 +1,117 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Data.Enum;
+using BDS.Services.Common;
 using BDS.Services.Model;
+using BDS.Services.NewsMedia;
+using BDS.Services.Request.News;
+using BDS.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.News
 {
+    using Data.Entities;
     public class NewsService : INewsService
     {
         private readonly BdsDbContext _context;
+        private readonly INewsMediaService _newsMediaService;
+        private readonly IStorageService _storageService;
 
-        public NewsService(BdsDbContext context)
+        public NewsService(BdsDbContext context,INewsMediaService newsMediaService,
+            IStorageService storageService)
         {
             _context = context;
+            _newsMediaService = newsMediaService;
+            _storageService = storageService;
         }
-        public Task<int> Create(Data.Entities.News n)
+        public async Task<int> Create(NewsCreateRequest request)
         {
-            throw new System.NotImplementedException();
+            News news = new News()
+            {
+                id = UtilitiesService.GenerateID(),
+                title = request.title,
+                content = request.content,
+                description = request.description,
+                dateCreated = DateTime.Now,
+                dateModify = DateTime.Now,
+            };
+            await _context.News.AddAsync(news);
+
+            foreach (var item in request.newsMedia)
+            {
+                if (item != null)
+                {
+                    NewsMedia media = new NewsMedia()
+                    {
+                        id = UtilitiesService.GenerateID(),
+                        NewsId = news.id,
+                        Type = MediaType.ThumnailImg,
+                        Path = await _storageService.SaveFile(item),
+                    };
+
+                    await _newsMediaService.Create(media);
+                }
+            }
+
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<int> Update(Data.Entities.News n)
+        public async Task<int> Update(Data.Entities.News news)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.News.FirstOrDefaultAsync(x=>x.id == news.id);
+            if (entity != null)
+            {
+                entity.title = news.title;
+                entity.content = news.content;
+                entity.description = news.description;
+                entity.dateModify = DateTime.Now;
+
+                _context.News.Update(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
         }
 
-        public Task<int> Delete(long newsID)
+        public async Task<int> Delete(long newsID)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.News.FirstOrDefaultAsync(x=>x.id == newsID);
+            if (entity != null)
+            {
+
+                List<NewsMedia> media = await _context.NewsMedia.Where(x => x.NewsId == entity.id).ToListAsync();
+
+                foreach (var item in media)
+                {
+                    await _storageService.DeleteFileAsync(item.Path);
+                    
+                    await _newsMediaService.Detele(item.id);
+                }
+                
+                _context.News.Remove(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
         }
 
         public async Task<NewsModel> GetById(long newsID)
         {
             var entity = await _context.News.FirstOrDefaultAsync(t => t.id == newsID);
-            
             NewsModel newsModel = new NewsModel();
-            newsModel.id = entity.id;
-            newsModel.title = entity.title;
-            newsModel.content = entity.content;
-            newsModel.dateCreated = entity.dateCreated;
-            newsModel.dateModify = entity.dateModify;
-            newsModel.description = entity.description;
-            newsModel.newsMedia = _context.NewsMedia.Where(x => x.NewsId == entity.id).ToList();
+            if (entity != null)
+            {
+                newsModel.id = entity.id;
+                newsModel.title = entity.title;
+                newsModel.content = entity.content;
+                newsModel.dateCreated = entity.dateCreated;
+                newsModel.dateModify = entity.dateModify;
+                newsModel.description = entity.description;
+                newsModel.newsMedia = _context.NewsMedia.Where(x => x.NewsId == entity.id).ToList();
+            }
             
             return newsModel;
         }

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using BDS.Data.Entities;
+using Microsoft.AspNetCore.Http;
 
-namespace BDS.Services.Model
+namespace BDS.Services.Request.News
 {
-    public class NewsModel
+    public class NewsCreateRequest
     {
         public long id { get; set; }
         public string title { get; set; }
@@ -12,6 +12,6 @@ namespace BDS.Services.Model
         public DateTime dateCreated { get; set; }
         public DateTime dateModify { get; set; }
         public string description { get; set; }
-        public List<Data.Entities.NewsMedia> newsMedia { get; set; }
+        public List<IFormFile> newsMedia { get; set; }
     }
 }

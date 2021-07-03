@@ -13,7 +13,7 @@ namespace BDS.Services.Area
         Task<int> Delete(long areaID);
         Task<int> DeleteRange(List<Area> areas);
         Task<Area> GetById(long areaID);
-        Task<PageResult<Area>> GetAll();
+        Task<List<Area>> GetAll();
         Task<List<AreaModel>> GetAllPaging(int pageIndex,int pageSize);
 
         Task<List<Area>> GetByProjectId(long projectId);

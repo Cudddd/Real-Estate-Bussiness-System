@@ -1,7 +1,7 @@
 @using BDS.Data.Enum
-@model BDS.WebApp.Models.Admin.NewRealEstateViewModel
+@model BDS.WebApp.Models.Admin.UpdateRealEstateViewModel
 @{
-    ViewData["Title"] = "Thêm nhà đất";
+    ViewData["Title"] = "Cập nhật nhà đất";
     Layout = "_AdminLayout";
 }
 
@@ -25,58 +25,61 @@
     <div class="admin col  ">
         <div class="content">
             <h1 class="loginh2" >THÔNG TIN NHÀ ĐẤT</h1>
-            <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="NewRealEstatePost">
-                <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh:</h1> 
-                    <div class="col l-10 ">
-                        <div class="">
-                            <div class="l-3"> 
-                                <p class="">Chọn ảnh(Tối đa 8 ảnh. Giữ CTRL để chọn nhiều ảnh):</p>
-                                <input class="" type="file" name="realEstateImgs" id="fileToUpload" multiple>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="UpdateRealEstatePost" asp-route-id="@Model.realEstateModel.id">
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Tên nhà đất:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="name" placeholder="Tên nhà đất..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="name" value="@Model.realEstateModel.name">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Phân khu:</h1>
                     <div class="col l-10">
+                        @{
+                            var area = Model.areas.FirstOrDefault(x => x.id == Model.realEstateModel.areaID);
+
+                            Model.areas.Remove(area);
+                            Model.areas.Insert(0,area);
+                        }
                         <select id="orient" name="areaId" asp-items="@(new SelectList(Model.areas, "id", "name"))">
                         </select>
                     </div>
-                </div>
+                </div>    
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Vị trí:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="location" placeholder="Vị trí nhà đất..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="location" value="@Model.realEstateModel.location">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Diện tích:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="acreage" placeholder="Diện tích..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="acreage" value="@Model.realEstateModel.acreage">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Chiều dài:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="length" placeholder="Chiều dài..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="length" value="@Model.realEstateModel.length">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Chiều rộng:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="width" placeholder="Chiều rộng..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="width" value="@Model.realEstateModel.width">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Hướng:</h1>
                     <div class="col l-10">
-                        <select id="orient" name="orientation" asp-items="Html.GetEnumSelectList<Orientation>()">
+                        @{
+                            var orientation = Html.GetEnumSelectList<Orientation>().ToList();
+                            var selected = orientation.FirstOrDefault(x => Enum.Parse<Orientation>(x.Value) == Model.realEstateModel.orientation);
+
+                            orientation.Remove(selected);
+                            orientation.Insert(0,selected);
+                        }
+                        <select id="orient" name="orientation" asp-items="orientation">
                         </select>
                     </div>
                 </div>
@@ -84,14 +87,30 @@
                     <h1 class="col l-2 paddingt  ">Bán/thuê:</h1>
                     <div class="col l-10">
                         <select id="orient" name="sell">
-                            <option value="true">Bán</option>
-                            <option value="false">Cho thuê</option>
+                            @{
+                                if (Model.realEstateModel.sell)
+                                {
+                                    <option value="true" selected>Bán</option>
+                                    <option value="false">Cho thuê</option>
+                                }
+                                else
+                                {
+                                    <option value="true">Bán</option>
+                                    <option value="false" selected>Cho thuê</option>
+                                }
+                            }
                         </select>
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Loại nhà:</h1>
                     <div class="col l-10">
+                        @{
+                            var type = Model.realEstateTypes.FirstOrDefault(x => x.name == Model.realEstateModel.type);
+
+                            Model.realEstateTypes.Remove(type);
+                            Model.realEstateTypes.Insert(0,type);
+                        }
                         <select id="orient" name="typeId" asp-items="@(new SelectList(Model.realEstateTypes, "id", "name"))">
                         </select>
                     </div>
@@ -99,53 +118,53 @@
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Giá:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="price" placeholder="Giá nhà đất..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="price" value="@Model.realEstateModel.price">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Tầng:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="floor" placeholder="Tầng..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="floor" value="@Model.realEstateModel.floor">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Số phòng ngủ:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="bedRoom" placeholder="Số phòng ngủ..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="bedRoom" value="@Model.realEstateModel.bedRoom">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Số toilet:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="bathRoom" placeholder="Số toilet..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="bathRoom" value="@Model.realEstateModel.bathRoom">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Địa chỉ:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="address" placeholder="Địa chỉ..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="address" value="@Model.realEstateModel.address">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Mặt tiền:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="facede" placeholder="Số mét mặt tiền..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="number" id="price" name="facade" value="@Model.realEstateModel.facade">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Đường chính:</h1>
                     <div class="col l-10">
-                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="mainLine" placeholder="Tên đường chính..">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="mainLine" value="@Model.realEstateModel.mainLine">
                     </div>
                 </div>
                 <div class=" account-info row">
                     <h1 class="col l-2 paddingt  ">Mô tả thêm:</h1>
                     <div class="col l-10">
-                        <textarea style="text-align: left;min-height: 200px" class="col minwidtht max-widtht " type="text" id="price" name="description" placeholder="Mô tả thêm.."></textarea>
+                        <textarea style="text-align: left;min-height: 200px" class="col minwidtht max-widtht " type="text" id="price" name="description">@Model.realEstateModel.description</textarea>
                     </div>
                 </div>
 
-                <input type="submit" class="second-button2 margin-top-20px" value="THÊM">
+                <input type="submit" class="second-button2 margin-top-20px" value="CẬP NHẬT">
 
             </form>
         </div>

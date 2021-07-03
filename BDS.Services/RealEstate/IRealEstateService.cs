@@ -9,8 +9,8 @@ namespace BDS.Services.RealEstate
     using BDS.Data.Entities;
     public interface IRealEstateService
     {
-        Task<int> Create(RealEstateCreateRequest request,User user);
-        Task<int> Update(RealEstate r);
+        Task<int> Create(RealEstateCreateRequest request);
+        Task<int> Update(RealEstateUpdateRequest request);
         Task<int> Delete(long realEstateID);
         Task<int> DeleteRange(List<RealEstate> realEstates);
         Task<RealEstateModel> GetById(long realEstateID);

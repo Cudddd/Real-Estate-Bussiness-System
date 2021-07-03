@@ -77,9 +77,10 @@ namespace BDS.Services.Area
             return entity;
         }
         
-        public Task<PageResult<Data.Entities.Area>> GetAll()
+        public async Task<List<Data.Entities.Area>> GetAll()
         {
-            throw new System.NotImplementedException();
+            var entities = await _context.Area.ToListAsync();
+            return entities;
         }
 
         public async Task<List<AreaModel>> GetAllPaging(int pageIndex,int pageSize)
@@ -101,8 +102,11 @@ namespace BDS.Services.Area
 
                 
             }
+            
+            var result = areaModels.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
-            return areaModels;
+
+            return result;
         }
 
         public async Task<List<Area>> GetByProjectId(long projectId)

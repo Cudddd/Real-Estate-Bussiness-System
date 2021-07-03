@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using BDS.Data.Entities;
+using Microsoft.AspNetCore.Http;
 
-namespace BDS.Services.Model
+namespace BDS.Services.Request.Recruitment
 {
-    public class RecruitmentModel
+    public class RecruitmentCreateRequest
     {
         public long id { get; set; }
         public string title { get; set; }
@@ -12,7 +12,6 @@ namespace BDS.Services.Model
         public string detail { get; set; }
         public DateTime dateCreated { get; set; }
         public DateTime dateModify { get; set; }
-        public List<Data.Entities.RecruitmentMedia> recruitmentMedia { get; set; }
-        
+        public List<IFormFile> recruitmentMedia { get; set; }
     }
 }

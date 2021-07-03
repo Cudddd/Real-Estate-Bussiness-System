@@ -16,7 +16,7 @@ namespace BDS.Services.Project
         Task<List<Project>> GetHighlightProject();
         Task<Project> GetById(long projectId);
         Task<List<Project>> GetAll();
-        Task<PageResult<Project>> GetAllPaging(string keyword, Page page);
+        Task<List<Project>> GetAllPaging(int pageIndex,int pageSize);
 
         Task<List<Project>> FilterByInvesloper(string invesloper);
         Task<List<Project>> FilterOtherInvesloper();

@@ -122,7 +122,7 @@ namespace BDS.WebApp.Controllers
                 return View(model);
             }*/
             var user = _userService.GetCurrentUser(User).Result;
-            var rs = _realEstateService.Create(request,user).Result;
+            var rs = _realEstateService.Create(request).Result;
             return Ok(rs);
         }
 

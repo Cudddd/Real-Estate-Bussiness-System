@@ -8,11 +8,13 @@ using BDS.Data.Entities;
 using BDS.Services.Area;
 using BDS.Services.Common;
 using BDS.Services.News;
+using BDS.Services.NewsMedia;
 using BDS.Services.Project;
 using BDS.Services.ProjectMedia;
 using BDS.Services.RealEstate;
 using BDS.Services.RealEstateMedia;
 using BDS.Services.Recruitment;
+using BDS.Services.RecruitmentMedia;
 using BDS.Services.User;
 using BDS.Services.Wishlist;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -58,6 +60,7 @@ namespace BDS.WebApp
             services.AddTransient<IProjectService,ProjectService>();
             services.AddTransient<IAreaService,AreaService>();
             services.AddTransient<IRealEstateService,RealEstateService>();
+            services.AddTransient<INewsMediaService,NewsMediaService>();
             services.AddTransient<INewsService,NewsService>();
             services.AddTransient<IRecruitmentService,RecruitmentService>();
             services.AddTransient<UserManager<User>,UserManager<User>>();
@@ -67,6 +70,9 @@ namespace BDS.WebApp
             services.AddTransient<IWishlistService,WishlistService>();
             services.AddTransient<IProjectMediaService,ProjectMediaService>();
             services.AddTransient<IRealEstateMediaService,RealEstateMediaService>();
+            services.AddTransient<IRecruitmentMediaService,RecruitmentMediaService>();
+
+
             
             services.AddControllersWithViews();
         }

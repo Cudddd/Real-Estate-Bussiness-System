@@ -3,12 +3,15 @@ using System.Linq;
 using BDS.Data.Entities;
 using BDS.Data.Enum;
 using BDS.Services.Area;
+using BDS.Services.Model;
 using BDS.Services.News;
 using BDS.Services.Project;
 using BDS.Services.ProjectMedia;
 using BDS.Services.RealEstate;
 using BDS.Services.Recruitment;
 using BDS.Services.Request;
+using BDS.Services.Request.News;
+using BDS.Services.Request.Recruitment;
 using BDS.WebApp.Models.Admin;
 using BDS.WebApp.Models.RealEstate;
 using Microsoft.AspNetCore.Authorization;
@@ -49,10 +52,10 @@ namespace BDS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Project()
+        public IActionResult Project(int index = 1)
         {
-            var model = _projectService.GetAll().Result;
-            
+            var model = _projectService.GetAllPaging(index,6).Result;
+            ViewBag.index = index;
             return View(model);
         }
         public IActionResult ProjectDetail(long id)
@@ -152,9 +155,10 @@ namespace BDS.WebApp.Controllers
             return View();
         }
 
-        public IActionResult Area(int pageIndex = 1)
+        public IActionResult Area(int index = 1)
         {
-            var model = _areaService.GetAllPaging(pageIndex,6).Result;
+            var model = _areaService.GetAllPaging(index,6).Result;
+            ViewBag.index = index;
             
             return View(model);
         }
@@ -193,44 +197,100 @@ namespace BDS.WebApp.Controllers
            return LocalRedirect("~/Admin/Area");
         }
         
-        public IActionResult RealEstate(int pageIndex = 1)
+        public IActionResult RealEstate(int index = 1)
         {
-            var model = _realEstateService.GetAllPaging(pageIndex,6).Result;
-            
+            var realEstate = _realEstateService.GetAllPaging(index,6).Result;
+            var model = realEstate.OrderByDescending(x => x.DateModify).ToList();
+            ViewBag.index = index;
+
             return View(model);
         }
         public IActionResult RealEstateDetail(long id)
         {
-           
-            var model = _realEstateService.GetById(id).Result;
+            RealEstateDetailViewModel model = new RealEstateDetailViewModel();
+            model.realEstateModel = _realEstateService.GetById(id).Result;
+            model.area = _areaService.GetById(model.realEstateModel.areaID).Result;
+            
             
             return View(model);
+        }
+        public IActionResult UpdateRealEstate(long id)
+        {
+            UpdateRealEstateViewModel model = new UpdateRealEstateViewModel();
+            model.realEstateTypes = _realEstateService.GetAllRealEstateType().Result;
+            model.realEstateModel = _realEstateService.GetById(id).Result;
+            model.areas = _areaService.GetAll().Result;
+            
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateRealEstatePost([FromForm] RealEstateUpdateRequest request,long id)
+        {
+            request.id = id;
+           var rs = _realEstateService.Update(request).Result;
+            return LocalRedirect("~/Admin/RealEstateDetail/" + id);
         }
 
         public IActionResult NewRealEstate()
         {
-            RealEstateSellViewModel model = new RealEstateSellViewModel();
+            NewRealEstateViewModel model = new NewRealEstateViewModel();
             model.realEstateTypes = _realEstateService.GetAllRealEstateType().Result;
+            model.areas = _areaService.GetAll().Result;
             return View(model);
         }
-
-        public IActionResult News(int pageIndex = 1)
+        [HttpPost]
+        public IActionResult NewRealEstatePost([FromForm] RealEstateCreateRequest request)
         {
-            var model = _newsService.GetAllPaging(pageIndex,6).Result;
-            
+            var rs = _realEstateService.Create(request).Result;
+            return LocalRedirect("~/Admin/RealEstate/");
+        }
+        public IActionResult DeleteRealEstate(long id)
+        {
+            var rs = _realEstateService.Delete(id).Result;
+            return LocalRedirect("~/Admin/RealEstate/");
+        }
+
+        public IActionResult News(int index = 1)
+        {
+            var model = _newsService.GetAllPaging(index,6).Result;
+            ViewBag.index = index;
             return View(model);
         }
         
-        public IActionResult NewsDetail(int id)
+        public IActionResult NewsDetail(long id)
         {
             var model = _newsService.GetById(id).Result;
             
             return View(model);
         }
+        public IActionResult UpdateNews(long id)
+        {
+            var model = _newsService.GetById(id).Result;
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateNewsPost([FromForm] News request,long id)
+        {
+            request.id = id;
+            var rs = _newsService.Update(request).Result;
+            return LocalRedirect("~/Admin/NewsDetail/" + id);
+        }
 
         public IActionResult AddNews()
         {
             return View();
+        }
+
+        public IActionResult AddNewsPost([FromForm] NewsCreateRequest request)
+        {
+            var rs = _newsService.Create(request).Result;
+            return LocalRedirect("~/Admin/News");
+        }
+
+        public IActionResult DeleteNews(long id)
+        {
+            var rs = _newsService.Delete(id).Result;
+            return LocalRedirect("~/Admin/News");
         }
 
         public IActionResult Recruitment(int pageIndex = 1)
@@ -246,9 +306,27 @@ namespace BDS.WebApp.Controllers
 
             return View(model);
         }
+
+        public IActionResult UpdateRecruitment(long id)
+        {
+            var model = _recruitmentService.GetById(id).Result;
+            return View(model);
+        }
+
+        public IActionResult UpdateRecruitmentPost([FromForm] Recruitment request ,long id)
+        {
+            request.id = id;
+            var rs = _recruitmentService.Update(request).Result;
+            return LocalRedirect("~/Admin/RecruitmentDetail/" + id);
+        }
         public IActionResult NewRecruitment()
         {
             return View();
+        }
+        public IActionResult NewRecruitmentPost([FromForm] RecruitmentCreateRequest request)
+        {
+            var rs = _recruitmentService.Create(request);
+            return LocalRedirect("~/Admin/Recruitment/");
         }
 
         public IActionResult User(int pageIndex = 1)

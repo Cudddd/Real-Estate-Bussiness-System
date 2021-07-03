@@ -59,16 +59,38 @@
 {
   <div class="grid row">
     <div class="pagination1 l-4 l-o-3">
-      <a href="#" class="margin-left-12px">&laquo;</a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
+      <a asp-action="Area" asp-controller="Admin" asp-route-index="1" class="margin-left-12px">&laquo;</a>
+                                
+      @{
+        if(ViewBag.index < 9)
+        {
+          for (int index = 1; index < 10; index++)
+          {
+            if (index == ViewBag.index)
+            {
+              <a asp-action="Area" asp-controller="Admin" asp-route-index="@index" class="active">@index</a>
+            }
+            else
+            {
+              <a asp-action="Area" asp-controller="Admin" asp-route-index="@index">@index</a>
+            }
+          }
+        }
+        else
+        {
+          for (int index = @ViewBag.index - 7; index < @ViewBag.index - 8 + 10; index++)
+          {
+            if (index == ViewBag.index)
+            {
+              <a asp-action="Area" asp-controller="Admin" asp-route-index="@index" class="active">@index</a>
+            }
+            else
+            {
+              <a asp-action="Area" asp-controller="Admin" asp-route-index="@index">@index</a>
+            }
+          }
+        }
+      }
       <a href="#">&raquo;</a>
     </div>
   </div>

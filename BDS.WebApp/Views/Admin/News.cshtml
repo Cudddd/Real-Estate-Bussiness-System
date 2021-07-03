@@ -11,7 +11,11 @@
     <div class="input-field1">
         <div class="s">         
             <a >TÌM KIẾM:</a>  <input placeholder="" class="validate search"><a><i  class=ti-search></i></a>
-            <span class="plus"><i  class=ti-plus></i></span>
+          <span class="plus">
+            <a style="text-decoration: none;color:black" asp-action="AddNews" asp-controller="Admin">
+              <i class=ti-plus></i>
+            </a>
+          </span>
         </div>          
     </div>
 </div>
@@ -33,10 +37,14 @@
           <td>@item.dateCreated</td>
           <td class="last">
             <div class="i-1">
-              <i class=ti-pencil></i>
+              <a style="text-decoration: none;color:black" asp-action="UpdateNews" asp-controller="Admin" asp-route-id="@item.id">
+                <i class=ti-pencil></i>
+              </a>
             </div>
             <div class="i-2">
-              <i class=ti-close></i>
+              <a style="text-decoration: none;color:black" asp-action="DeleteNews" asp-controller="Admin" asp-route-id="@item.id">
+                <i class=ti-close></i>
+              </a>
             </div>
           </td>
         </tr>
@@ -51,16 +59,39 @@
 {
   <div class="grid row">
     <div class="pagination1 l-4 l-o-3">
-      <a href="#" class="margin-left-12px">&laquo;</a>
-      <a href="#" class="active">1</a>
-      <a href="#">2</a>
-      <a href="#">3</a>
-      <a href="#">4</a>
-      <a href="#">5</a>
-      <a href="#">6</a>
-      <a href="#">7</a>
-      <a href="#">8</a>
-      <a href="#">9</a>
+      <a asp-action="RealEstate" asp-controller="Admin" asp-route-index="1" class="margin-left-12px">&laquo;</a>
+                                
+      @{
+        if(ViewBag.index < 9)
+        {
+          for (int index = 1; index < 10; index++)
+          {
+            if (index == ViewBag.index)
+            {
+              <a asp-action="RealEstate" asp-controller="Admin" asp-route-index="@index" class="active">@index</a>
+            }
+            else
+            {
+              <a asp-action="RealEstate" asp-controller="Admin" asp-route-index="@index">@index</a>
+            }
+          }
+        }
+        else
+        {
+          for (int index = @ViewBag.index - 7; index < @ViewBag.index - 8 + 10; index++)
+          {
+            if (index == ViewBag.index)
+            {
+              <a asp-action="RealEstate" asp-controller="Admin" asp-route-index="@index" class="active">@index</a>
+            }
+            else
+            {
+              <a asp-action="RealEstate" asp-controller="Admin" asp-route-index="@index">@index</a>
+            }
+          }
+        }
+                                   
+      }
       <a href="#">&raquo;</a>
     </div>
   </div>

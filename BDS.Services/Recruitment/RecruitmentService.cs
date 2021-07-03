@@ -1,29 +1,82 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Data.Enum;
+using BDS.Services.Common;
 using BDS.Services.Model;
+using BDS.Services.RecruitmentMedia;
+using BDS.Services.Request.Recruitment;
+using BDS.Services.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.Recruitment
 {
+    using Data.Entities;
     public class RecruitmentService : IRecruitmentService
     {
         private readonly BdsDbContext _context;
-
-        public RecruitmentService(BdsDbContext context)
+        private readonly IStorageService _storageService;
+        private readonly IRecruitmentMediaService _recruitmentMediaService;
+        public RecruitmentService(BdsDbContext context,IStorageService storageService,
+            IRecruitmentMediaService recruitmentMediaService)
         {
             _context = context;
+            _storageService = storageService;
+            _recruitmentMediaService = recruitmentMediaService;
         }
         
-        public Task<int> Create(Data.Entities.Recruitment r)
+        public async Task<int> Create(RecruitmentCreateRequest request)
         {
+            Recruitment recruitment = new Recruitment()
+            {
+                id = UtilitiesService.GenerateID(),
+                title = request.title,
+                description = request.description,
+                detail = request.detail,
+                dateCreated = DateTime.Now,
+                dateModify = DateTime.Now,
+            };
+            await _context.Recruitment.AddAsync(recruitment);
+
+            foreach (var item in request.recruitmentMedia)
+            {
+                if (item != null)
+                {
+                    RecruitmentMedia media = new RecruitmentMedia()
+                    {
+                        id = UtilitiesService.GenerateID(),
+                        RecruitmentId = recruitment.id,
+                        Type = MediaType.ThumnailImg,
+                        Path = await _storageService.SaveFile(item),
+                    };
+
+                    await _recruitmentMediaService.Create(media);
+
+                }
+            }
+            
+            
             throw new System.NotImplementedException();
         }
 
-        public Task<int> Update(Data.Entities.Recruitment r)
+        public async Task<int> Update(Data.Entities.Recruitment recruitment)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.Recruitment.FirstOrDefaultAsync(x=>x.id == recruitment.id);
+
+            if (entity != null)
+            {
+                entity.title = recruitment.title;
+                entity.description = recruitment.description;
+                entity.detail = recruitment.detail;
+                entity.dateModify = DateTime.Now;
+
+                _context.Recruitment.Update(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
         }
 
         public Task<int> Delete(long recruitmentID)

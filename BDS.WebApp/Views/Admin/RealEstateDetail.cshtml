@@ -1,5 +1,5 @@
-@using BDS.Data.Enum
-@model BDS.Services.Model.RealEstateModel
+
+@model BDS.WebApp.Models.Admin.RealEstateDetailViewModel
 
 @{
     ViewData["Title"] = "Thông tin nhà đất";
@@ -21,32 +21,36 @@
         <div class="content">
             <h1 class="loginh2" >THÔNG TIN NHÀ ĐẤT</h1> 
             <div class="grid account-info row"><h1 class="col l-2  ">Tên</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.name</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.name</p>
+                </div>
+            </div>
+            <div class="grid account-info row"><h1 class="col l-2  ">Phân khu:</h1>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.area.name</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Vị trí</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.location</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.location</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Diện tích</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.acreage</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.acreage</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Chiều dài</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.length</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.length</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Chiều rộng</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.width</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.width</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Hướng</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.orientation</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.orientation</p>
                 </div>
             </div>
             @{
                 String sell = "";
-                if (@Model.sell)
+                if (@Model.realEstateModel.sell)
                     sell = "Bán";
                 else sell = "Cho thuê";
                     
@@ -56,46 +60,46 @@
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Loại nhà</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.type</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.type</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Giá</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.price</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.price</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Tầng</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.floor</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.floor</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Số phòng ngủ</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.bedRoom</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.bedRoom</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Số toilet</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.bathRoom</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.bathRoom</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Địa chỉ</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.address</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.address</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Mặt tiền</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.facade</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.facade</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Đường chính</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.mainLine</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.mainLine</p>
                 </div>
             </div>
             <div class="grid account-info row"><h1 class="col l-2  ">Mô tả thêm</h1>
-                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.description</p>
+                <div class="col l-9"><p class="col l-9 max-widtht text  ">@Model.realEstateModel.description</p>
                 </div>
             </div>
             <div class="grid account-info  row"><h1 class="col l-2  ">Hình ảnh:</h1> 
                 <div class="col l-9 right0">
                     <div class="row right0">
                         @{
-                            foreach (var item in Model.realEstateMedia)
+                            foreach (var item in Model.realEstateModel.realEstateMedia)
                             {
                                 <div class="col l-2">
                                     <img style="margin-left: 10px" src="~/@item.Path" alt="">
@@ -109,7 +113,7 @@
                 </div>
             </div>
             <form>
-                <button asp-action="UpdateProject" asp-controller="Admin" asp-route-id="@Model.@Model.id" class="second-button2 margin-top-20px">CẬP NHẬT THÔNG TIN</button>
+                <button asp-action="UpdateRealEstate" asp-controller="Admin" asp-route-id="@Model.realEstateModel.id" class="second-button2 margin-top-20px">CẬP NHẬT THÔNG TIN</button>
             </form>
 
         </div>

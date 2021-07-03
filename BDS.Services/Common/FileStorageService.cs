@@ -12,6 +12,10 @@ namespace BDS.Services.Common
         private readonly string _userContentFolder;
         private const string USER_CONTENT_FOLDER_NAME = "assets/img";
 
+        public FileStorageService(IWebHostEnvironment webHostEnvironment)
+        {
+            _userContentFolder = Path.Combine(webHostEnvironment.WebRootPath);
+        }
         public string GetUserContentForderName()
         {
             return USER_CONTENT_FOLDER_NAME;
@@ -25,23 +29,21 @@ namespace BDS.Services.Common
         }
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)
         {
-            var filePath = Path.Combine(_userContentFolder, fileName);
+            var path = Path.Combine(_userContentFolder, USER_CONTENT_FOLDER_NAME);
+            var filePath = Path.Combine(path, fileName);
             await using var output = new FileStream(filePath, FileMode.Create);
             await mediaBinaryStream.CopyToAsync(output);
         }
-        public FileStorageService(IWebHostEnvironment webHostEnvironment)
-        {
-            _userContentFolder = Path.Combine(webHostEnvironment.WebRootPath, USER_CONTENT_FOLDER_NAME);
-        }
+        
 
         public string GetFileUrl(string fileName)
         {
             return $"/{USER_CONTENT_FOLDER_NAME}/{fileName}";
         }
 
-        public async Task DeleteFileAsync(string fileName)
+        public async Task DeleteFileAsync(string path)
         {
-            var filePath = Path.Combine(_userContentFolder, fileName);
+            var filePath = Path.Combine(_userContentFolder, path);
             if (File.Exists(filePath))
             {
                 await Task.Run(() => File.Delete(filePath));
