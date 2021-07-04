@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Data.Enum;
+using BDS.Services.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.ProjectMedia
@@ -11,10 +12,11 @@ namespace BDS.Services.ProjectMedia
     public class ProjectMediaService : IProjectMediaService
     {
         private readonly BdsDbContext _context;
-
-        public ProjectMediaService(BdsDbContext context)
+        private readonly IStorageService _storageService;
+        public ProjectMediaService(BdsDbContext context,IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
         public async Task<int> Create(Data.Entities.ProjectMedia projectMedia)
         {
@@ -47,6 +49,8 @@ namespace BDS.Services.ProjectMedia
 
             if (entity != null)
             {
+                await _storageService.DeleteFileAsync(entity.Path);
+                
                 _context.ProjectMedia.Remove(entity);
                 return await _context.SaveChangesAsync();
             }
@@ -56,6 +60,14 @@ namespace BDS.Services.ProjectMedia
 
         public async Task<int> DeleteRange(List<Data.Entities.ProjectMedia> projectMedia)
         {
+            foreach (var item in projectMedia)
+            {
+                if (item != null)
+                {
+                    await _storageService.DeleteFileAsync(item.Path);
+                }
+            }
+            
             _context.ProjectMedia.RemoveRange(projectMedia);
             return await _context.SaveChangesAsync();
         }

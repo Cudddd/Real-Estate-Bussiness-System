@@ -5,6 +5,6 @@ namespace BDS.Services.UserRealEstate
 {
     public interface IUserRealEstateService
     {
-        Task<int> Create(RealEstateCreateRequest request);
+        Task<int> Create(RealEstateCreateRequest request, long userId);
     }
 }

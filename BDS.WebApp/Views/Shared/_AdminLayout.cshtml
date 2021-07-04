@@ -27,14 +27,14 @@
             <div id="nav-admin" class="grid">
 
                 <ul class="nav-item">
-                    <li ><a href="@Url.ActionLink("Index","Admin")">Trang chính</a></li>
+                    <li ><a asp-action="Index" asp-controller="Admin">Trang chính</a></li>
                 </ul>
                 <ul class="nav-item">
                   <li ><a><i class=ti-user></i></a>
                     <ul class="subnav">
-                      <li><a href="./aboutproject.html">VinHomes Grand Park</a></li>  
-                      <li><a href="">VinHomes Ocean Park</a></li>
-                      <li><a href="">VinHomes Smart City</a></li>
+                      <li><a >VinHomes Grand Park</a></li>  
+                      <li><a >VinHomes Ocean Park</a></li>
+                      <li><a >VinHomes Smart City</a></li>
                   </ul></li>
               </ul>
             </div>
@@ -48,56 +48,56 @@
           <nav class="sidebar">
             <ul class="sibarscroll">
                   <div class="d1"><a>CORE</a></div>
-                  <li><a href="@Url.ActionLink("Index","Admin")"><i class="ti-dashboard"> </i>Bảng điều khiển</a></li>
+                  <li><a asp-action="Index" asp-controller="Admin"><i class="ti-dashboard"> </i>Bảng điều khiển</a></li>
                   <div class="d1"><a>QUẢN LÍ</a></div>
                 <li>
                     <a href="#" class="project-btn"><i class="ti-map"> </i>Dự án<i class=ti-angle-down></i></a>
                     <ul class="project-show">
-                        <li><a href="@Url.ActionLink("Project","Admin")">Tất cả dự án</a></li>
-                        <li><a href="@Url.ActionLink("NewProject","Admin")">Thêm dự án mới</a></li>
-                        <li><a href="@Url.ActionLink("HighlightProject","Admin")">Dự án tiêu biểu</a></li>
+                        <li><a asp-action="Project" asp-controller="Admin">Tất cả dự án</a></li>
+                        <li><a asp-action="NewProject" asp-controller="Admin">Thêm dự án mới</a></li>
+                        <li><a asp-action="HighlightProject" asp-controller="Admin">Dự án tiêu biểu</a></li>
                         <li><a href="#">Cài đặt trang dự án</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="area-btn"><i class="ti-map"> </i>Phân khu<i class=ti-angle-down></i></a>
                     <ul class="area-show">
-                        <li><a href="@Url.ActionLink("Area","Admin")">Tất cả phân khu</a></li>
-                        <li><a href="@Url.ActionLink("NewArea","Admin")">Thêm phân khu mới</a></li>
+                        <li><a asp-action="Area" asp-controller="Admin">Tất cả phân khu</a></li>
+                        <li><a asp-action="NewArea" asp-controller="Admin">Thêm phân khu mới</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="realestate-btn"><i class="ti-map"> </i>Nhà đất<i class=ti-angle-down></i></a>
                     <ul class="realestate-show">
-                        <li><a href="@Url.ActionLink("RealEstate","Admin")">Tất cả nhà đất</a></li>
-                        <li><a href="@Url.ActionLink("NewRealEstate","Admin")">Thêm nhà đất mới</a></li>
+                        <li><a asp-action="RealEstate" asp-controller="Admin">Tất cả nhà đất</a></li>
+                        <li><a asp-action="NewRealEstate" asp-controller="Admin">Thêm nhà đất mới</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="news-btn"><i class="ti-map"> </i>Tin tức<i class=ti-angle-down></i></a>
                     <ul class="news-show">
-                        <li><a href="@Url.ActionLink("News","Admin")">Tất cả tin tức</a></li>
-                        <li><a href="@Url.ActionLink("AddNews","Admin")">Thêm tin tức mới</a></li>
+                        <li><a asp-action="News" asp-controller="Admin">Tất cả tin tức</a></li>
+                        <li><a asp-action="AddNews" asp-controller="Admin">Thêm tin tức mới</a></li>
                     </ul>  
                 </li>
                 <li>
                     <a href="#" class="recruitment-btn"><i class="ti-map"> </i>Tuyển dụng<i class=ti-angle-down></i></a>
                     <ul class="recruitment-show">
-                        <li><a href="@Url.ActionLink("Recruitment","Admin")">Tất cả tin tuyển dụng</a></li>
-                        <li><a href="@Url.ActionLink("NewRecruitment","Admin")">Thêm tuyển dụng mới</a></li>
+                        <li><a asp-action="Recruitment" asp-controller="Admin">Tất cả tin tuyển dụng</a></li>
+                        <li><a asp-action="NewRecruitment" asp-controller="Admin">Thêm tuyển dụng mới</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#" class="user-btn"><i class="ti-map"> </i>Người dùng<i class=ti-angle-down></i></a>
                     <ul class="user-show">
-                        <li><a href="@Url.ActionLink("User","Admin")">Danh sách người dùng</a></li>
-                        <li><a href="@Url.ActionLink("NewUser","Admin")">Thêm người dùng mới</a></li>
+                        <li><a asp-action="User" asp-controller="Admin">Danh sách người dùng</a></li>
+                        <li><a asp-action="NewUser" asp-controller="Admin">Thêm người dùng mới</a></li>
                     </ul>  
                 </li>
             </ul> 
                 <div class="logined">
                   <a>Đăng nhập bởi:</a>
-                  <p>Duongsieuvip</p>
+                  <p>Admin</p>
                 </div>
             </nav>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

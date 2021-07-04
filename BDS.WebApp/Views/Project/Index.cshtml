@@ -1,4 +1,5 @@
 @using BDS.WebApp.Models.Project;
+@using BDS.Data.Enum
 @model ProjectViewModel
 @{
     ViewData["Title"] = "Dự án";
@@ -28,7 +29,7 @@
             <div class=" grid wide row">
                 <a class="btn col l-3 l-o-3 "> Vinhomes Grand Park </a>
                 @{ string invesloper = "Other";}
-                <a style="text-decoration: none;color: black" href="@Url.ActionLink("MoreProject","Project", new { invesloper })" class="btn col l-3 "> Chủ đầu tư khác </a>
+                <a style="text-decoration: none;color: black" asp-action="MoreProject" asp-controller="Project"  asp-route-invesloper="@invesloper" class="btn col l-3 "> Chủ đầu tư khác </a>
             </div>
               <div class=" border-4px grid wide row">
                   @{
@@ -37,10 +38,21 @@
                           <div class="project--list--item col l-6">
                               <div class="col">
                                   <div class="row">
-                                      <img src="~/assets/img/aboutproject/grandworld--banner.png">
+                                      @{
+                                          String bannerPath = "assets/img/aboutproject/grandworld--banner.png";
+                                          foreach (var media in item.projectMedia)
+                                          {
+                                              if (media.Type == MediaType.BannerImg)
+                                              {
+                                                  bannerPath = media.Path;
+                                                  break;
+                                              }
+                                          }
+                                      }
+                                      <img src="~/@bannerPath">
                                   </div>
                                   <div class="row">
-                                      <a class="text-decoration-none" href="@Url.ActionLink("Detail","Project", new { @item.id })">
+                                      <a class="text-decoration-none" asp-action="Detail" asp-controller="Project" asp-route-id="@item.id">
                                           @item.name
                                       </a>
                                   </div>
@@ -51,7 +63,7 @@
                   
               </div>
                  <div class=" grid wide row">
-                    <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4" href="@Url.ActionLink("MoreProject","Project")" style="text-decoration: none; color: black"  > xem thêm </a>
+                    <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4" asp-action="MoreProject" asp-controller="Project" style="text-decoration: none; color: black"  > xem thêm </a>
                 </div>
           </div>
 

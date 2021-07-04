@@ -5,7 +5,8 @@
 }
 
 <head>
-    <link rel="stylesheet" href="~/assets/css/account.css">
+    <link rel="stylesheet" href="~/assets/css/accountt.css">
+    <link rel="stylesheet" href="~/assets/css/news.css">
 </head>
 
 <!-- ---------------------------------------------------------------- -->
@@ -13,12 +14,12 @@
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+                    <a asp-action="Index" asp-controller="Home" > Trang Chủ >></a>
                </div>
                <div>
                     
                </div>
-               <a href="" class="font-size-20px">Tài Khoản</a>
+               <a class="font-size-20px">Tài Khoản</a>
                 </div>
         </div>
 
@@ -34,10 +35,10 @@
                             <h1 class="loginh2" >ĐĂNG KÍ</h1> 
                             <form asp-action="Reg" method="post" asp-controller="User">
                             <div class="input-field"><i class=ti-user></i><input name="UserName" placeholder="Tài khoản" class="validate"></div>
-                          <div class="input-field"><i class=ti-lock></i><input name="Password" type="password" placeholder="Mật khẩu" class="validate"></div>
-                          <div class="input-field"><i class=ti-lock></i><input name="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu" class="validate"></div>
-                          <div class="input-field"><i class=ti-email></i><input name="Email" type="email" placeholder="Email" class="validate"></div>
-                          <div class="input-field"><i class=ti-tablet></i><input name="PhoneNumber" type="number" placeholder="Số điện thoại" class="validate"></div>
+                          <div class="input-field"><i class=ti-lock></i><input style="width: 30%" name="Password" type="password" placeholder="Mật khẩu" class="validate"></div>
+                          <div class="input-field"><i class=ti-lock></i><input style="width: 30%" name="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu" class="validate"></div>
+                          <div class="input-field"><i class=ti-email></i><input style="width: 30%" name="Email" type="email" placeholder="Email" class="validate"></div>
+                          <div class="input-field"><i class=ti-tablet></i><input style="width: 30%" name="PhoneNumber" type="number" placeholder="Số điện thoại" class="validate"></div>
                        
                             <input class="second-button2" type="submit" value="Đăng Kí">
                             </form>

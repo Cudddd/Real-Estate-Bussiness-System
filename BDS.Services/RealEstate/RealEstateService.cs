@@ -12,6 +12,8 @@ using BDS.Services.Model;
 using BDS.Services.RealEstateMedia;
 using BDS.Services.Request;
 using BDS.Services.User;
+using BDS.Services.Wishlist;
+using BDS.Services.WishlistRealEstate;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -25,13 +27,15 @@ namespace BDS.Services.RealEstate
         private readonly BdsDbContext _context;
         private readonly IStorageService _storageService;
         private readonly IRealEstateMediaService _realEstateMediaService;
+        private readonly IWishlistRealEstateService _wishlistRealEstateService;
 
         public RealEstateService(BdsDbContext context, IStorageService storageService,
-        IRealEstateMediaService realEstateMediaService)
+        IRealEstateMediaService realEstateMediaService,IWishlistRealEstateService wishlistRealEstateService)
         {
             _context = context;
             _storageService = storageService;
             _realEstateMediaService = realEstateMediaService;
+            _wishlistRealEstateService = wishlistRealEstateService;
         }
         
         public async Task<int> Create(RealEstateCreateRequest request)
@@ -77,6 +81,21 @@ namespace BDS.Services.RealEstate
                     await _realEstateMediaService.Create(productImage);
                 }
             }
+
+            if (request.thumbnail != null)
+            {
+                var productImage = new RealEstateMedia()
+                {
+                    RealEstateId = realEstate.id,
+                    id = Utilities.UtilitiesService.GenerateID(),
+                    Type = MediaType.ThumnailImg,
+                    Path = await _storageService.SaveFile(request.thumbnail),
+                };
+
+                await _realEstateMediaService.Create(productImage);
+            }
+            
+            
             
             return await _context.SaveChangesAsync();
 
@@ -121,8 +140,13 @@ namespace BDS.Services.RealEstate
                 var media = await _context.RealEstateMedia.Where(x => x.RealEstateId == realEstateID).ToListAsync();
 
                 await _realEstateMediaService.DeleteRange(media);
+
+                var wishlist = await _context.WishlistRealEstate.Where(x => x.RealEstateId == entity.id).ToListAsync();
+
+                await _wishlistRealEstateService.DeleteRange(wishlist);
                 
                 _context.RealEstate.Remove(entity);
+
                 return await _context.SaveChangesAsync();
             }
 

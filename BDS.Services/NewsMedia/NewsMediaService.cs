@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Services.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.NewsMedia
@@ -7,10 +8,12 @@ namespace BDS.Services.NewsMedia
     public class NewsMediaService : INewsMediaService
     {
         private readonly BdsDbContext _context;
+        private readonly IStorageService _storageService;
 
-        public NewsMediaService(BdsDbContext context)
+        public NewsMediaService(BdsDbContext context, IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
         public async Task<int> Create(Data.Entities.NewsMedia newsMedia)
         {
@@ -24,6 +27,8 @@ namespace BDS.Services.NewsMedia
 
             if (entity != null)
             {
+                await _storageService.DeleteFileAsync(entity.Path);
+                
                 _context.NewsMedia.Remove(entity);
                 return await _context.SaveChangesAsync();
             }

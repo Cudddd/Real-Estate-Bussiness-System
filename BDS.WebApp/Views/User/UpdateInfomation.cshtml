@@ -11,12 +11,12 @@
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+                    <a asp-action="Index" asp-controller="Home" > Trang Chủ >></a>
                </div>
                <div>
                     
                </div>
-               <a href="@Url.ActionLink("UpdateInfomation","User")" class="font-size-20px">Cập nhật tài khoản</a>
+               <a asp-action="UpdateInfomation" asp-controller="User" class="font-size-20px">Cập nhật tài khoản</a>
                 </div>
         </div>
  <!-- ----------------------------------------------- -->        

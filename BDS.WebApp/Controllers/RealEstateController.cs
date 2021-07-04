@@ -6,6 +6,7 @@ using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.Request;
 using BDS.Services.User;
+using BDS.Services.UserRealEstate;
 using BDS.Services.Wishlist;
 using BDS.WebApp.Models.RealEstate;
 using Microsoft.AspNetCore.Authorization;
@@ -19,14 +20,17 @@ namespace BDS.WebApp.Controllers
         private readonly IProjectService _projectService;
         private readonly IUserService _userService;
         private readonly IWishlistService _wishlistService;
+        private readonly IUserRealEstateService _userRealEstateService;
 
         public RealEstateController(IRealEstateService realEstateService,
-            IProjectService projectService, IWishlistService wishlistService,IUserService userService)
+            IProjectService projectService, IWishlistService wishlistService,IUserService userService,
+            IUserRealEstateService userRealEstateService)
         {
             _realEstateService = realEstateService;
             _projectService = projectService;
             _userService = userService;
             _wishlistService = wishlistService;
+            _userRealEstateService = userRealEstateService;
         }
         // GET
         public IActionResult Index(int pageIndex = 1)
@@ -110,20 +114,9 @@ namespace BDS.WebApp.Controllers
         [HttpPost]
         public IActionResult CreateRealEstate([FromForm] RealEstateCreateRequest request)
         {
-            /*if(!ModelState.IsValid)
-            {
-                ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
-                
-                RealEstateSellViewModel model = new RealEstateSellViewModel();
-                model.realEstateTypes = _realEstateService.GetAllRealEstateType().Result;
-                model.request = request;
-
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                return View(model);
-            }*/
             var user = _userService.GetCurrentUser(User).Result;
-            var rs = _realEstateService.Create(request).Result;
-            return Ok(rs);
+            var rs = _userRealEstateService.Create(request,user.Id).Result;
+            return LocalRedirect("~/User/RealEstate/");
         }
 
     }

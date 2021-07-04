@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BDS.Services.Common;
+using BDS.Services.Model;
 using BDS.Services.Request;
 using Microsoft.AspNetCore.Http;
 
@@ -18,8 +19,8 @@ namespace BDS.Services.Project
         Task<List<Project>> GetAll();
         Task<List<Project>> GetAllPaging(int pageIndex,int pageSize);
 
-        Task<List<Project>> FilterByInvesloper(string invesloper);
-        Task<List<Project>> FilterOtherInvesloper();
+        Task<List<ProjectModel>> FilterByInvesloper(string invesloper);
+        Task<List<ProjectModel>> FilterOtherInvesloper();
         
 
         Task<List<ProjectMedia>> GetProjectMedia(long projectId);

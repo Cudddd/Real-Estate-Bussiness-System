@@ -37,7 +37,7 @@
                     </div>
                     <div class="l-6 m-12 c-12">
                         <div class="l-12 ">
-                            <a class="text-decoration-none" href="@Url.ActionLink("Detail", "Recruitment", new { @Model[i].id })">
+                            <a class="text-decoration-none" asp-action="Detail" asp-controller="Recruitment" asp-route-id="@Model[i].id">
                                 <h1 class="l-12">@Model[i].title</h1>
                             </a>
                         </div>
@@ -52,7 +52,7 @@
                 <div class="row recruitment--list--item">
                     <div class="l-6 m-12 c-12">
                         <div class="l-12 ">
-                            <a class="text-decoration-none" href="@Url.ActionLink("Detail", "Recruitment", new { @Model[i].id })">
+                            <a class="text-decoration-none" asp-action="Detail" asp-controller="Recruitment" asp-route-id="@Model[i].id">
                                 <h1 class="l-12">@Model[i].title</h1>
                             </a>
                         </div>
@@ -81,7 +81,7 @@
                               @{
                                   int currentPageIndex = ViewBag.pageIndex;
                               }
-                              <a href="@Url.ActionLink("Index", "Recruitment")" class="margin-left-12px">&laquo;</a>
+                              <a asp-action="Index" asp-controller="Recruitment" class="margin-left-12px">&laquo;</a>
                               
                               @{
                                  if(currentPageIndex < 9)
@@ -90,11 +90,11 @@
                                      {
                                         if (pageIndex == currentPageIndex)
                                         {
-                                            <a href="@Url.ActionLink("Index", "Recruitment", new {@pageIndex})" class="active">@pageIndex</a>
+                                            <a asp-action="Index" asp-controller="Recruitment" asp-route-pageIndex="@pageIndex" class="active">@pageIndex</a>
                                         }
                                         else
                                         {
-                                            <a href="@Url.ActionLink("Index", "Recruitment", new {@pageIndex})">@pageIndex</a>
+                                            <a asp-action="Index" asp-controller="Recruitment" asp-route-pageIndex="@pageIndex">@pageIndex</a>
                                         }
                                     }
                                  }
@@ -104,11 +104,11 @@
                                      {
                                          if (pageIndex == currentPageIndex)
                                          {
-                                             <a href="@Url.ActionLink("Index", "Recruitment", new {@pageIndex})" class="active">@pageIndex</a>
+                                             <a asp-action="Index" asp-controller="Recruitment" asp-route-pageIndex="@pageIndex" class="active">@pageIndex</a>
                                          }
                                          else
                                          {
-                                             <a href="@Url.ActionLink("Index", "Recruitment", new {@pageIndex})">@pageIndex</a>
+                                             <a asp-action="Index" asp-controller="Recruitment" asp-route-pageIndex="@pageIndex">@pageIndex</a>
                                          }
                                      }
                                   }

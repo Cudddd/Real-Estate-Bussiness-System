@@ -6,42 +6,39 @@
 
 
 <head>
-    <link rel="stylesheet" href="~/assets/css/account.css">
+    <link rel="stylesheet" href="~/assets/css/accountt.css">
+    <link rel="stylesheet" href="~/assets/css/">
+    <style>
+        .duc{
+            width: 30%!important;
+        }
+    </style>
 </head>
 
 <!-- ---------------------------------------------------------------- -->
         <!-- ------------------------------- -->
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
-               <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
-               </div>
                <div>
-                    
                </div>
-               <a href="" class="font-size-20px">Tài Khoản</a>
-                </div>
+           </div>
         </div>
 
           <!-- ----------------------------------------------- -->        
        
-            <div class="account-form grid wide row">
+<div class="account-form grid wide row">
+    <div class="account col border-4px margin-top-20px">
+        <div class="content">
+            <h1 class="loginh2" >ĐĂNG NHẬP</h1> 
+            <form method="post" asp-controller="User" asp-action="Authenticate">
+                <div class="input-field"><i class=ti-user></i><input name="userName" placeholder="Tài Khoản" class="validate"></div>
+                <div class="input-field"><i class=ti-lock></i><input name="password" type="password" placeholder="Mật khẩu" class="validate duc"></div>
+                <div row><input name="rememberMe" type="checkbox" value="true" id="rememberMe"> <label class="">Ghi nhớ đăng nhập</label></div>
+                <input type="submit" class="second-button2" value="Đăng nhập">
+            </form>
+            <p class="loginp">Không có tài khoản? <a class=".loginha" asp-action="Register" asp-controller="User">Đăng kí</a></p>
+        </div>
+                     
+    </div>
                 
-              
-                    <div class="account col border-4px margin-top-20px">
-                     
-                     
-                        <div class="content">
-                            <h1 class="loginh2" >ĐĂNG NHẬP</h1> 
-                            <form method="post" asp-controller="User" asp-action="Authenticate">
-                                <div class="input-field"><i class=ti-user></i><input name="userName" placeholder="Tài Khoản" class="validate"></div>
-                                <div class="input-field"><i class=ti-lock></i><input name="password" type="password" placeholder="Mật khẩu" class="validate"></div>
-                                <div row><input name="rememberMe" type="checkbox" value="true" id="rememberMe"> <label class="">Ghi nhớ đăng nhập</label></div>
-                                <input type="submit" class="second-button2" value="Đăng nhập">
-                            </form>
-                             <p class="loginp">Không có tài khoản? <a class=".loginha" href="@Url.ActionLink("Register","User")">Đăng kí</a></p>
-                       </div>
-                     
-                    </div>
-                
-            </div>
+</div>

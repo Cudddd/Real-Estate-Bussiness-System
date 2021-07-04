@@ -1,3 +1,4 @@
+@using BDS.Data.Enum
 @model BDS.WebApp.Models.Project.ProjectViewModel
 
 @{
@@ -12,52 +13,80 @@
 
 <!-- ----------------------------------------------- -->        
          
-          <div id="project--list--investor" class="grid ">
-            <div class=" grid wide row">
-                <a class="btn col l-3  "> Vinhomes Grand Park </a>
-                @{ string invesloper = "Other";}
-                <a style="text-decoration: none;color: black" href="@Url.ActionLink("MoreProject","Project", new { invesloper })" class="btn col l-3 "> Chủ đầu tư khác </a>
-            </div>
+<div id="project--list--investor" class="grid ">
+    <div class=" grid wide row">
+        <a style="text-decoration: none;color: black" asp-action="MoreProject" asp-controller="Project" asp-route-invesloper="Vinhomes" class="btn col l-3  "> Vinhomes Grand Park </a>
+        <a style="text-decoration: none;color: black" asp-action="MoreProject" asp-controller="Project" asp-route-invesloper="Other" class="btn col l-3 "> Chủ đầu tư khác </a>
+    </div>
         
-              <div class=" border-4px grid wide row">
-@{
-    foreach (var item in Model.Projects)
-    {
-        <div class="project--list--item col l-6">
-            <div class="col">
-                <div class="row">
-                    <img src="~/assets/img/aboutproject/grandworld--banner.png">
+    <div class=" border-4px grid wide row">
+        @{
+            foreach (var item in Model.Projects)
+            {
+                <div class="project--list--item col l-6">
+                    <div class="col">
+                        <div class="row">
+                            @{
+                                String bannerPath = "assets/img/aboutproject/grandworld--banner.png";
+                                foreach (var media in item.projectMedia)
+                                {
+                                    if (media.Type == MediaType.BannerImg)
+                                    {
+                                        bannerPath = media.Path;
+                                        break;
+                                    }
+                                }
+                            }
+                            <img src="~/@bannerPath">
+                        </div>
+                        <div class="row">
+                            <a class="text-decoration-none" asp-action="Detail" asp-controller="Project" asp-route-id="@item.id">
+                                @item.name
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="row">
-                    <a class="text-decoration-none" href="./aboutproject.html">
-                        Grand World Phú Quốc
-                    </a>
-                </div>
-            </div>
+            }
+        }
+    </div>
+          
+    <div class="grid wide row">
+        <div class="pagination">
+            <a asp-action="MoreProject" asp-controller="Project" asp-route-index="1" asp-route-invesloper="@ViewBag.invesloper" class="margin-left-12px">&laquo;</a>
+                                        
+            @{
+                if(ViewBag.index < 9)
+                {
+                    for (int index = 1; index < 10; index++)
+                    {
+                        if (index == ViewBag.index)
+                        {
+                            <a asp-action="MoreProject" asp-controller="Project" asp-route-index="@index" asp-route-invesloper="@ViewBag.invesloper" class="active">@index</a>
+                        }
+                        else
+                        {
+                            <a asp-action="MoreProject" asp-controller="Project" asp-route-index="@index" asp-route-invesloper="@ViewBag.invesloper">@index</a>
+                        }
+                    }
+                }
+                else
+                {
+                    for (int index = @ViewBag.index - 7; index < @ViewBag.index - 8 + 10; index++)
+                    {
+                        if (index == ViewBag.index)
+                        {
+                            <a  asp-action="MoreProject" asp-controller="Project" asp-route-index="@index" asp-route-invesloper="@ViewBag.invesloper" class="active">@index</a>
+                        }
+                        else
+                        {
+                            <a asp-action="MoreProject" asp-controller="Project" asp-route-index="@index" asp-route-invesloper="@ViewBag.invesloper">@index</a>
+                        }
+                    }
+                }
+                                           
+            }
+            <a href="#">&raquo;</a>
         </div>
-    }
-}
-              </div>
-            <div class="grid wide row margin-top-20px">
-                <div class="pagination">
-                    <a href="#" class="margin-left-12px">&laquo;</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">7</a>
-                    <a href="#">8</a>
-                    <a href="#">9</a>
-                    <a href="#">12</a>
-                    <a href="#">&raquo;</a>
-                  </div>
-                  <!-- <ul class="controls grid ">
-                    <li onclick = "PrevSlide();PrevSlideText();"></li>
-                    <li onclick ="nextSlide();nextSlideText();"></li>
-                </ul> -->
-            </div>     
-          </div>
+    </div>
+</div>
 
-          <!-- ---------------------------------------------------------------- -->

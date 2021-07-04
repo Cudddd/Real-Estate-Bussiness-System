@@ -14,13 +14,12 @@
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+                    <a asp-action="Index" asp-controller="Home" > Trang Chủ >></a>
                </div>
                <div class="row font-size-20px">
-                    <a href="@Url.ActionLink("Index","RealEstate")" class="font-size-20px">Nhà Đất >></a>
+                    <a asp-action="Index" asp-controller="RealEstate" class="font-size-20px">Nhà Đất >></a>
                </div>
-               <a href="./project.html" class="font-size-20px">Chi tiết nhà đất</a>
-            </div >
+           </div >
                 </div>
 
 <!-- ----------------------------------------------- -->        
@@ -76,55 +75,7 @@ Số toilet: @Model.bathRoom
                     <a class="more-btn col l-2 l-o-5 m-4 m-o-4 c-4 c-o-4"> Nhận tư vấn </a>
             </div>
             <div class=" border-around-4px grid wide row">
-                <div class="product--estateinfomation--item col l-3 l-o-1">
-                    <div class=" row ">
-                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
-                    </div>
-                    <div >
-                       <!-- dấdsadasdsa  -->
-                    </div>
-                    
-                    <div class="row margin-left-right margin-top-8px">
-                        <div class = " product--estateinfomation--item--info l-12 ">
-                            <h1>Biệt thự VinhomesGrandpark </h1>
-                            <p>Duong</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="product--estateinfomation--item col l-3 l-o-1">
-                    <div class=" row ">
-                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
-                    </div>
-                    <div >
-                       <!-- dấdsadasdsa  -->
-                    </div>
-                    
-                    <div class="row margin-left-right margin-top-8px">
-                        <div class = " product--estateinfomation--item--info  l-12 ">
-                            <h1>Biệt thự VinhomesGrandpark </h1>
-                            <p>Duong</p>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="product--estateinfomation--item col l-3">
-                    <div class=" row ">
-                        <img class="col l-8 l-o-2" src="./assets/img/home.png" alt="">
-                    </div>
-                    <div >
-                       <!-- dấdsadasdsa  -->
-                    </div>
-                    
-                    <div class="row margin-left-right margin-top-8px">
-                        <div class = " product--estateinfomation--item--info  l-12 ">
-                            <h1>Biệt thự VinhomesGrandpark </h1>
-                            <p>Duong</p>
-                        </div>
-                    </div>
-                    
-                </div>
-              
+
             </div>
 
           </div>

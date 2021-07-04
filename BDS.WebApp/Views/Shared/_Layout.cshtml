@@ -26,24 +26,24 @@
             <div id="header">
                 <div id="nav" class="grid">
                     <ul class="nav-item">
-                        <li><a href="@Url.ActionLink("Index", "Home")"><img src="~/assets/img/introduce-section/logo-bat-dong-san-8.webp" alt="" class="header-img"></a>
+                        <li><a asp-action="Index" asp-controller="Home"><img src="~/assets/img/introduce-section/logo-bat-dong-san-8.webp" alt="" class="header-img"></a>
                     </ul>
                     <ul class="nav-item">
                         <!-- <li><a href=""><i class="icon-home ti-home"></i>T</a></li> -->
-                        <li class="nav-introduce"><a href="@Url.ActionLink("Index", "Home")">GIỚI THIỆU</a></li>
-                        <li><a href="@Url.ActionLink("Index", "Project")">DỰ ÁN </a><i class=ti-angle-down></i>
+                        <li class="nav-introduce"><a asp-action="Index" asp-controller="Home">GIỚI THIỆU</a></li>
+                        <li><a asp-action="Index" asp-controller="Project">DỰ ÁN </a><i class=ti-angle-down></i>
                             <ul class="subnav">
                                 @{
                                     foreach (Project item in ViewBag.HighlightProjects)
                                     {
-                                        <li><a href="@Url.ActionLink("Detail", "Project", new { @item.id })">@item.name</a></li>
+                                        <li><a asp-action="Detail" asp-controller="Project" asp-route-id="@item.id">@item.name</a></li>
                                     }
                                 }
                             </ul>
                         </li>
-                        <li><a href="@Url.ActionLink("Index","RealEstate")">NHÀ ĐẤT</a></li>
-                        <li><a href="@Url.ActionLink("Index","News")">TIN TỨC</a></li>
-                        <li><a href="@Url.ActionLink("Index","Recruitment")">TUYỂN DỤNG</a></li>
+                        <li><a asp-action="Index" asp-controller="RealEstate">NHÀ ĐẤT</a></li>
+                        <li><a asp-action="Index" asp-controller="News">TIN TỨC</a></li>
+                        <li><a asp-action="Index" asp-controller="Recruitment">TUYỂN DỤNG</a></li>
                         <li><a asp-action="Sell" asp-controller="RealEstate" asp-route-id="-1" >NHỜ BÁN/THUÊ</a></li>
                         @{
                             System.Diagnostics.Debug.Assert(User.Identity != null, "User.Identity != null");
@@ -51,10 +51,10 @@
                             {
                                 <li><a href="">TÀI KHOẢN</a>
                                     <ul class="subnav">
-                                        <li class="subnavli"><a href="@Url.ActionLink("Infomation","User")">Thông tin</a></li>
-                                        <li class="subnavli"><a href="@Url.ActionLink("RealEstate","User")">Nhà đất</a></li>
-                                        <li class="subnavli"><a href="@Url.ActionLink("ChangePassword","User")">Đổi mật khẩu</a></li>
-                                        <li class="subnavli"><a href="@Url.ActionLink("Logout","User")">Đăng xuất</a></li>
+                                        <li class="subnavli"><a asp-action="Infomation" asp-controller="User">Thông tin</a></li>
+                                        <li class="subnavli"><a asp-action="RealEstate" asp-controller="User">Nhà đất</a></li>
+                                        <li class="subnavli"><a asp-action="ChangePassword" asp-controller="User">Đổi mật khẩu</a></li>
+                                        <li class="subnavli"><a asp-action="Logout" asp-controller="User">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             }
@@ -89,25 +89,27 @@
                                                                 img = item.realEstateMedia[0].Path;
                                                             }
                                                         }
-                                                        <img class="wl-img height-120px" src="~/@img">
+                                                        <img style="max-width: 187px" class="wl-img height-120px" src="~/@img">
                                                     </div>
                                                     <div class=" wl--estate--item--info height-120px l-9 l-o-1 m-12 c-12 ">
                                                         <div class="">
                                                             <div class="col l-11 m-11 c-11">
-                                                                <a class="text-decoration-none-red" href="">
-                                                                    <h1>@item.name</h1>
+                                                                <a asp-action="Detail" asp-controller="RealEstate" asp-route-id="@item.id" class="text-decoration-none-red" >
+                                                                    <h1 style="text-align: left; margin-left: 50px">@item.name</h1>
                                                                 </a>
-                                                                <p class="text">Vị trí: @item.location
-                                                                    Diện tích: @item.acreage m2 (Dài @item.length m, rộng @item.width m)
-                                                                    Hướng: @item.orientation
-                                                                    Giá: @item.price TR/m2
-                                                                    Tầng: @item.floor</p>
+                                                                <p style="margin-left: 50px" class="text">            
+Vị trí: @item.location
+Diện tích: @item.acreage m2 (Dài @item.length m, rộng @item.width m)
+Hướng: @item.orientation
+Giá: @item.price TR/m2
+Tầng: @item.floor
+                                                                </p>
                                                             </div>
 
                                                         </div>
-
                                                     </div>
                                                 </li>
+                                                
 
                                             }
                                         }

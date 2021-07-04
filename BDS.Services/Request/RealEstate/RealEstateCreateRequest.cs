@@ -45,6 +45,7 @@ namespace BDS.Services.Request
         public string address { get; set; }
 
         public IFormFile[] realEstateImgs { get; set; }
+        public IFormFile thumbnail { get; set; }
 
 
         

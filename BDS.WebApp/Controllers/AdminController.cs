@@ -300,7 +300,7 @@ namespace BDS.WebApp.Controllers
             return View(model);
         }
 
-        public IActionResult RecruitmentDetail(int id)
+        public IActionResult RecruitmentDetail(long id)
         {
             var model = _recruitmentService.GetById(id).Result;
 
@@ -325,8 +325,15 @@ namespace BDS.WebApp.Controllers
         }
         public IActionResult NewRecruitmentPost([FromForm] RecruitmentCreateRequest request)
         {
-            var rs = _recruitmentService.Create(request);
+            var rs = _recruitmentService.Create(request).Result;
             return LocalRedirect("~/Admin/Recruitment/");
+        }
+
+        public IActionResult DeleteRecruitment(long id)
+        {
+            var rs = _recruitmentService.Delete(id).Result;
+            return LocalRedirect("~/Admin/Recruitment/");
+
         }
 
         public IActionResult User(int pageIndex = 1)

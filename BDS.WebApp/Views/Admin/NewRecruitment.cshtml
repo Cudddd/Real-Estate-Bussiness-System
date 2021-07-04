@@ -11,39 +11,37 @@
 </head>
 
 <div class="admin-form  grid wide row">
-    <div class="admin col  ">
-    <div class="content">
-        <h1 class="loginh2" >THÔNG TIN TUYỂN DỤNG</h1>
-        <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="NewRecruitmentPost">
-        <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh:</h1>
-            <div class="col l-10 ">
-                <div class="">
-                    <div class="l-3"> 
-                        <p class="">Chọn ảnh:</p>
-                        <input  class="" type="file" name="recruitmentMedia" id="fileToUpload">
+    <div class="admin col">
+        <div class="content">
+            <h1 class="loginh2" >THÔNG TIN TUYỂN DỤNG</h1>
+            <form method="post" enctype="multipart/form-data" asp-controller="Admin" asp-action="NewRecruitmentPost">
+                <div class="grid account-info  row"><h1 class="col l-2 paddingt  ">Hình ảnh:</h1>
+                    <div class="col l-10 ">
+                        <div class="">
+                            <div class="l-3"> 
+                                <p class="">Chọn ảnh:</p>
+                                <input  class="" type="file" name="recruitmentMedia" id="fileToUpload">
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tiêu đề:</h1>
-            <div class="col l-10">
-                <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="title" placeholder="Tiêu đề..">
-            </div>
-        </div>
-        <div class=" account-info row"><h1 class="col l-2 paddingt  ">Mô tả:</h1>
-            <div class="col l-10">
-                <textarea style="min-height: 200px;text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="description" placeholder="Mô tả.."></textarea>
-            </div>
-        </div>
-            <div class=" account-info row"><h1 class="col l-2 paddingt  ">Chi tiết:</h1>
-                <div class="col l-10">
-                    <textarea style="min-height: 200px;text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="detail" placeholder="Chi tiết tuyển dụng.."></textarea>
+                <div class=" account-info row"><h1 class="col l-2 paddingt  ">Tiêu đề:</h1>
+                    <div class="col l-10">
+                        <input style="text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="title" placeholder="Tiêu đề..">
+                    </div>
                 </div>
-            </div>
-            <input type="submit" class="second-button2 margin-top-20px" value="THÊM">
-        </form>
+                <div class=" account-info row"><h1 class="col l-2 paddingt  ">Mô tả:</h1>
+                    <div class="col l-10">
+                        <textarea style="min-height: 200px;text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="description" placeholder="Mô tả.."></textarea>
+                    </div>
+                </div>
+                <div class=" account-info row"><h1 class="col l-2 paddingt  ">Chi tiết:</h1>
+                    <div class="col l-10">
+                        <textarea style="min-height: 200px;text-align: left" class="col minwidtht max-widtht " type="text" id="price" name="detail" placeholder="Chi tiết tuyển dụng.."></textarea>
+                    </div>
+                </div>
+                <input type="submit" class="second-button2 margin-top-20px" value="THÊM">
+            </form>
+        </div>
     </div>
-    
-    
-</div>
 </div>

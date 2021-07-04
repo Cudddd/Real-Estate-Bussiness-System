@@ -16,327 +16,329 @@
         <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+                    <a asp-action="Index" asp-controller="Home" > Trang Chủ >></a>
                </div>
                <div>
                     
                </div>
-               <a href="@Url.ActionLink("Sell","RealEstate")" class="font-size-20px">Nhờ Bán Thuê</a>
+               <a asp-action="Sell" asp-controller="RealEstate" class="font-size-20px">Nhờ Bán Thuê</a>
                 </div>
         </div>
 <!-- ----------------------------------------------- -->        
-          <div id="sell-rent" class="grid">
-            <div class=" grid wide row">
+<div id="sell-rent" class="grid">
+<div class=" grid wide row">
                 
-                <div class="sell-rent-info col l-12">
-                    <div class="row border-bottom-4px margin-left-right ">
-                        <a asp-action="Sell" asp-controller="RealEstate" asp-route-id="-1" class="sell-rent-btn l-1 l-o-1 " style="text-decoration: none">
-                            Mới
-                        </a>
-                        <a href="@Url.ActionLink("RealEstate","User")" class="sell-rent-btn l-2" style="text-decoration: none">
-                            Nhà đất đã mua
-                        </a>
-                    </div>
+<div class="sell-rent-info col l-12">
+<div class="row border-bottom-4px margin-left-right ">
+  <a asp-action="Sell" asp-controller="RealEstate" asp-route-id="-1" class="sell-rent-btn l-1 l-o-1 " style="text-decoration: none">
+    Mới
+  </a>
+  <a asp-action="RealEstate" asp-controller="User" class="sell-rent-btn l-2" style="text-decoration: none">
+    Nhà đất đã mua
+  </a>
+</div>
 
-                  <div class="container border-around-4px  margin-left-right">
-                      <form method="post" enctype="multipart/form-data" asp-controller="RealEstate" asp-action="CreateRealEstate">
-                        <div class="row ">
-                        <div class="l-4 l-o-4"> 
-                           <p class="padding-10px">Chọn ảnh(tối đa 8 ảnh. Giữ CTRL để chọn nhiều ảnh):</p>
-                           <input name="realEstateImgs"  class="padding-left-30px" type="file" id="fileToUpload" multiple>
-                        </div>
-                        </div>
-                          @{
-                            if (Model.realEstateModel == null)
-                            {
-                              <div class="margin-left-right">
-                            <div class="row">
-                            <div class="col-25">
-                              <label for="location">Tên nhà</label>
-                            </div>
-                            <div class="col-75">
-                              <input  type="text" id="location" name="name" placeholder="Tên nhà..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="location">Vị trí</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="location" name="location" placeholder="Vị trí..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="acreage">Diện tích</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="acreage" name="acreage" placeholder="Diện tích..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="acreage">Chiều dài</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="acreage" name="length" placeholder="Chiều dài..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="acreage">Chiều rộng</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="acreage" name="width" placeholder="Chiều rộng..">
-                            </div>
-                          </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Hướng</label>
-                              </div>
-                              <div class="col-75">
-                                <select id="orient" name="orientation" asp-items="Html.GetEnumSelectList<Orientation>()">
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Bán/thuê</label>
-                              </div>
-                              <div class="col-75">
-                                <select id="orient" name="sell">
-                                  <option value="ban">Bán</option>
-                                  <option value="thue">Cho thuê</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Loại nhà</label>
-                                </div>
-                              <div class="col-75">
-                                <select id="orient" name="typeId" asp-items="@(new SelectList(Model.realEstateTypes,"id","name"))">
-                                </select>
-                                </div>
-                              </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="price">Giá</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="price" name="price" placeholder="Mức giá..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="floor">Tầng</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="floor" name="floor" placeholder="Tầng..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="numberofbedroom">Số phòng ngủ</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="numberofbedroom" name="bedRoom" placeholder="Số phòng ngủ..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="numberoftoilet">Số toilet</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="numberoftoilet" name="bathRoom" placeholder="Số toilet..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="adress">Địa chỉ</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="adress" name="address" placeholder="Địa chỉ..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="frontline">Mặt tiền</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="frontline" name="facade" placeholder="Số mét mặt tiền..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="mainstreet">Đường chính</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="mainstreet" name="mainLine" placeholder="Tên đường chính..">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="moreinfo">Mô tả thêm</label>
-                            </div>
-                            <div class="col-75">
-                              <textarea id="moreinfo" name="description" placeholder="Mô tả thêm.." style="height:200px"></textarea>
-                            </div>
-                          </div>
-                          </div>
-                            }
-                            else
-                            {
-                              <div class="margin-left-right">
-                            <div class="row">
-                            <div class="col-25">
-                              <label for="location">Tên nhà</label>
-                            </div>
-                            <div class="col-75">
-                              <input  type="text" id="location" name="name" value="@Model.realEstateModel.name">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="location">Vị trí</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="location" name="location" value="@Model.realEstateModel.location">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="number">Diện tích</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="acreage" name="acreage" value="@Model.realEstateModel.acreage">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="number">Chiều dài</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="acreage" name="length" value="@Model.realEstateModel.length">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="number">Chiều rộng</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="acreage" name="width" value="@Model.realEstateModel.width">
-                            </div>
-                          </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Hướng</label>
-                              </div>
-                              <div class="col-75">
-                                <select id="orient" name="orientation" asp-items="Html.GetEnumSelectList<Orientation>()" content="@Model.realEstateModel.orientation">
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Bán/thuê</label>
-                              </div>
-                              <div class="col-75">
-                                <select id="orient" name="sell">
-                                  <option value="ban">Bán</option>
-                                  <option value="thue">Cho thuê</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-25">
-                                <label for="orient">Loại nhà</label>
-                                </div>
-                              <div class="col-75">
-                                <select id="orient" name="typeId" asp-items="@(new SelectList(Model.realEstateTypes,"id","name"))">
-                                </select>
-                                </div>
-                              </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="price">Giá</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="price" name="price" value="@Model.realEstateModel.price">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="floor">Tầng</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="floor" name="floor" value="@Model.realEstateModel.floor">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="numberofbedroom">Số phòng ngủ</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="numberofbedroom" name="bedRoom" value="@Model.realEstateModel.bedRoom">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="numberoftoilet">Số toilet</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="numberoftoilet" name="bathRoom" value="@Model.realEstateModel.bathRoom">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="adress">Địa chỉ</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="adress" name="adress" value="@Model.realEstateModel.address">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="frontline">Mặt tiền</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="number" id="frontline" name="facade" value="@Model.realEstateModel.facade">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="mainstreet">Đường chính</label>
-                            </div>
-                            <div class="col-75">
-                              <input type="text" id="mainstreet" name="mainLine" value="@Model.realEstateModel.mainLine">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-25">
-                              <label for="moreinfo">Mô tả thêm</label>
-                            </div>
-                            <div class="col-75">
-                              <textarea id="moreinfo" name="description" placeholder="Mô tả thêm.." style="height:200px"></textarea>
-                            </div>
-                          </div>
-                          </div>
-                            }
-                          }
+<div class="container border-around-4px  margin-left-right">
+<form method="post" enctype="multipart/form-data" asp-controller="RealEstate" asp-action="CreateRealEstate">
+                        
+@{
+  if (Model.realEstateModel == null)
+  {
+    <div class="row ">
+      <div class="l-4 l-o-4"> 
+        <p class="padding-10px">Chọn ảnh(tối đa 8 ảnh. Giữ CTRL để chọn nhiều ảnh):</p>
+        <input name="realEstateImgs"  class="padding-left-30px" type="file" id="fileToUpload" multiple>
+      </div>
+    </div>
+    <div class="margin-left-right">
+      <div class="row">
+        <div class="col-25">
+          <label for="location">Tên nhà</label>
+        </div>
+        <div class="col-75">
+          <input  type="text" id="location" name="name" placeholder="Tên nhà..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="location">Vị trí</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="location" name="location" placeholder="Vị trí..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="acreage">Diện tích</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="acreage" name="acreage" placeholder="Diện tích..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="acreage">Chiều dài</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="acreage" name="length" placeholder="Chiều dài..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="acreage">Chiều rộng</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="acreage" name="width" placeholder="Chiều rộng..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Hướng</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="orientation" asp-items="Html.GetEnumSelectList<Orientation>()">
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Bán/thuê</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="sell">
+            <option value="ban">Bán</option>
+            <option value="thue">Cho thuê</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Loại nhà</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="typeId" asp-items="@(new SelectList(Model.realEstateTypes,"id","name"))">
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="price">Giá</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="price" name="price" placeholder="Mức giá..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="floor">Tầng</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="floor" name="floor" placeholder="Tầng..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="numberofbedroom">Số phòng ngủ</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="numberofbedroom" name="bedRoom" placeholder="Số phòng ngủ..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="numberoftoilet">Số toilet</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="numberoftoilet" name="bathRoom" placeholder="Số toilet..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="adress">Địa chỉ</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="adress" name="address" placeholder="Địa chỉ..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="frontline">Mặt tiền</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="frontline" name="facade" placeholder="Số mét mặt tiền..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="mainstreet">Đường chính</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="mainstreet" name="mainLine" placeholder="Tên đường chính..">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="moreinfo">Mô tả thêm</label>
+        </div>
+        <div class="col-75">
+          <textarea id="moreinfo" name="description" placeholder="Mô tả thêm.." style="height:200px"></textarea>
+        </div>
+      </div>
+    </div>
+  }
+  else
+  {
+    <div class="margin-left-right">
+      <div class="row">
+        <div class="col-25">
+          <label for="location">Tên nhà</label>
+        </div>
+        <div class="col-75">
+          <input  type="text" id="location" name="name" value="@Model.realEstateModel.name">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="location">Vị trí</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="location" name="location" value="@Model.realEstateModel.location">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="number">Diện tích</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="acreage" name="acreage" value="@Model.realEstateModel.acreage">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="number">Chiều dài</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="acreage" name="length" value="@Model.realEstateModel.length">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="number">Chiều rộng</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="acreage" name="width" value="@Model.realEstateModel.width">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Hướng</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="orientation" asp-items="Html.GetEnumSelectList<Orientation>()" content="@Model.realEstateModel.orientation">
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Bán/thuê</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="sell">
+            <option value="ban">Bán</option>
+            <option value="thue">Cho thuê</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="orient">Loại nhà</label>
+        </div>
+        <div class="col-75">
+          <select id="orient" name="typeId" asp-items="@(new SelectList(Model.realEstateTypes,"id","name"))">
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="price">Giá</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="price" name="price" value="@Model.realEstateModel.price">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="floor">Tầng</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="floor" name="floor" value="@Model.realEstateModel.floor">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="numberofbedroom">Số phòng ngủ</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="numberofbedroom" name="bedRoom" value="@Model.realEstateModel.bedRoom">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="numberoftoilet">Số toilet</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="numberoftoilet" name="bathRoom" value="@Model.realEstateModel.bathRoom">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="adress">Địa chỉ</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="adress" name="adress" value="@Model.realEstateModel.address">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="frontline">Mặt tiền</label>
+        </div>
+        <div class="col-75">
+          <input type="number" id="frontline" name="facade" value="@Model.realEstateModel.facade">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="mainstreet">Đường chính</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="mainstreet" name="mainLine" value="@Model.realEstateModel.mainLine">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="moreinfo">Mô tả thêm</label>
+        </div>
+        <div class="col-75">
+          <textarea id="moreinfo" name="description" placeholder="Mô tả thêm.." style="height:200px"></textarea>
+        </div>
+      </div>
+    </div>
+  }
+}
                           
-                          <div class="row">
-                            <input type="submit" class="l-o-6" value="Gửi">
-                          </div>
-                        </form>
+<div class="row">
+  <input type="submit" class="l-o-6" value="Gửi">
+</div>
+</form>
             
-                        </div>
+</div>
                     
-                </div>
+</div>
               
-            </div>
+</div>
            
 
-          </div>
+</div>
+
 
           <!-- ------------------------------- -->

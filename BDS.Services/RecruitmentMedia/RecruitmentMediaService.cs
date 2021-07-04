@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using BDS.Data.EF;
+using BDS.Services.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace BDS.Services.RecruitmentMedia
 {
@@ -7,20 +9,33 @@ namespace BDS.Services.RecruitmentMedia
     public class RecruitmentMediaService : IRecruitmentMediaService
     {
         private readonly BdsDbContext _context;
+        private readonly IStorageService _storageService;
 
-        public RecruitmentMediaService(BdsDbContext context)
+        public RecruitmentMediaService(BdsDbContext context,IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
         }
 
-        public Task<int> Create(RecruitmentMedia recruitment)
+        public async Task<int> Create(RecruitmentMedia recruitment)
         {
-            throw new System.NotImplementedException();
+            await _context.RecruitmentMedia.AddAsync(recruitment);
+            return await _context.SaveChangesAsync();
         }
 
-        public Task<int> Detele(long id)
+        public async Task<int> Detele(long id)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.RecruitmentMedia.FirstOrDefaultAsync(x=>x.id == id);
+
+            if (entity != null)
+            {
+                await _storageService.DeleteFileAsync(entity.Path);
+                
+                _context.RecruitmentMedia.Remove(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
         }
     }
 }

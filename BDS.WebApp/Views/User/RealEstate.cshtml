@@ -10,10 +10,10 @@
 <div class="grid margin-top-60px background-color">
            <div class="navigation-bar grid wide ">
                <div class=row>
-                    <a href="@Url.ActionLink("Index","Home")" > Trang Chủ >></a>
+                    <a asp-action="Index" asp-controller="Home" > Trang Chủ >></a>
                </div>
                <div>
-                    <a href="@Url.ActionLink("RealEstate","User")" class="font-size-20px">Nhà Đất Đã Mua</a>
+                    <a asp-action="RealEstate" asp-controller="User" class="font-size-20px">Nhà Đất Đã Mua</a>
                </div>
                 </div>
         </div>
@@ -47,7 +47,7 @@
                                 <div class = " product--list--estate--item--info  l-9 m-12 c-12 ">
                                     <div class="row">
                                         <div class="col l-11 m-11 c-11"> 
-                                            <a class="text-decoration-none-red" href="@Url.ActionLink("RealEstateDetail","User", new { @item.id })">
+                                            <a class="text-decoration-none-red" asp-action="RealEstateDetail" asp-controller="User" asp-route-id="@item.id">
                                                 <h1>@item.name</h1>
                                             </a>
 

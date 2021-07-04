@@ -94,7 +94,7 @@
             @{
                 for(int i = 0; i < Model.areas.Count; i++)
                 {
-                    <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">@i</span><a class="col" href="@Url.ActionLink("Index","Area", new { @Model.areas[i].id,@Model.areas[i].name })"> Phân khu @Model.areas[i].name</a></div>
+                    <div class=" footer--map--info--item col l-3 m-6 c-12 l-o-1 row"><span class="col">@i</span><a class="col" asp-action="Index" asp-controller="Area" asp-route-id="@Model.areas[i].id" asp-route-name="@Model.areas[i].name" > Phân khu @Model.areas[i].name</a></div>
                 }
             }
 

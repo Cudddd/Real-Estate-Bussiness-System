@@ -56,9 +56,9 @@ namespace BDS.Services.Recruitment
 
                 }
             }
+
+            return await _context.SaveChangesAsync();
             
-            
-            throw new System.NotImplementedException();
         }
 
         public async Task<int> Update(Data.Entities.Recruitment recruitment)
@@ -79,9 +79,24 @@ namespace BDS.Services.Recruitment
             return 0;
         }
 
-        public Task<int> Delete(long recruitmentID)
+        public async Task<int> Delete(long recruitmentID)
         {
-            throw new System.NotImplementedException();
+            var entity = await _context.Recruitment.FirstOrDefaultAsync(x=>x.id == recruitmentID);
+
+            if (entity != null)
+            {
+                var media = await _context.RecruitmentMedia.Where(x=>x.RecruitmentId == entity.id).ToListAsync();
+
+                foreach (var item in media)
+                {
+                    await _recruitmentMediaService.Detele(item.id);
+                }
+
+                _context.Recruitment.Remove(entity);
+                return await _context.SaveChangesAsync();
+            }
+
+            return 0;
         }
 
         public async Task<RecruitmentModel> GetById(long recruitmentID)

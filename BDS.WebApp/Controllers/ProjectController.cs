@@ -1,5 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using BDS.Data.Enum;
 using BDS.Services.Area;
+using BDS.Services.Model;
 using BDS.Services.Project;
 using BDS.Services.User;
 using BDS.Services.Wishlist;
@@ -35,7 +38,10 @@ namespace BDS.WebApp.Controllers
             }
 
             ProjectViewModel projectViewModel = new ProjectViewModel();
-            projectViewModel.Projects = _projectService.FilterByInvesloper("Vinhomes").Result;
+            var projects = _projectService.FilterByInvesloper("Vinhomes").Result;
+            projectViewModel.Projects = projects.Skip((1 - 1) * 4).Take(4).ToList();
+
+            
             projectViewModel.projectBanners = _projectService.GetProjectBanner().Result;
             
             return View(projectViewModel);
@@ -77,7 +83,7 @@ namespace BDS.WebApp.Controllers
             return View(projectDetailViewModel);
         }
 
-        public IActionResult MoreProject(string invesloper = "Vinhomes")
+        public IActionResult MoreProject(string invesloper = "Vinhomes", int index = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
             
@@ -88,10 +94,22 @@ namespace BDS.WebApp.Controllers
             }
             
             ProjectViewModel projectViewModel = new ProjectViewModel();
-            if(invesloper != "Vinhomes")
-                projectViewModel.Projects = _projectService.FilterOtherInvesloper().Result;
-            else projectViewModel.Projects = _projectService.FilterByInvesloper("Vinhomes").Result;
+            List<ProjectModel> temp = new List<ProjectModel>();
+            if (!invesloper.Contains("Vinhomes"))
+            {
+                temp = _projectService.FilterOtherInvesloper().Result;
+            }
+            else
+            {
+                temp = _projectService.FilterByInvesloper("Vinhomes").Result;
+            }
+            
+            projectViewModel.Projects = temp.Skip((index - 1) * 4).Take(4).ToList();
+
+            
             projectViewModel.projectBanners = _projectService.GetProjectBanner().Result;
+            ViewBag.index = index;
+            ViewBag.invesloper = invesloper;
             
             return View(projectViewModel);
         }

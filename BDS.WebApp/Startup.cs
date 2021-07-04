@@ -16,7 +16,9 @@ using BDS.Services.RealEstateMedia;
 using BDS.Services.Recruitment;
 using BDS.Services.RecruitmentMedia;
 using BDS.Services.User;
+using BDS.Services.UserRealEstate;
 using BDS.Services.Wishlist;
+using BDS.Services.WishlistRealEstate;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -71,6 +73,10 @@ namespace BDS.WebApp
             services.AddTransient<IProjectMediaService,ProjectMediaService>();
             services.AddTransient<IRealEstateMediaService,RealEstateMediaService>();
             services.AddTransient<IRecruitmentMediaService,RecruitmentMediaService>();
+            services.AddTransient<IWishlistRealEstateService,WishlistRealEstateService>();
+            services.AddTransient<IUserRealEstateService,UserRealEstateService>();
+
+
 
 
             

@@ -7,6 +7,7 @@ using BDS.Data.EF;
 using BDS.Data.Enum;
 using BDS.Services.Area;
 using BDS.Services.Common;
+using BDS.Services.Model;
 using BDS.Services.ProjectMedia;
 using BDS.Services.RealEstate;
 using BDS.Services.RealEstateMedia;
@@ -217,29 +218,60 @@ namespace BDS.Services.Project
             return data;
         }
 
-        public async Task<List<Project>> FilterByInvesloper(string invesloper)
+        public async Task<List<ProjectModel>> FilterByInvesloper(string invesloper)
         {
             var entities = await _context.Project.ToListAsync();
             
-            List<Project> result = new List<Project>();
+            List<ProjectModel> result = new List<ProjectModel>();
             foreach (var item in entities)
             {
-                if(item.invesloper == invesloper)
-                    result.Add(item);
+                if (item.invesloper.Contains("Vinhomes"))
+                {
+                    ProjectModel model = new ProjectModel()
+                    {
+                        id =  item.id,
+                        name = item.name,
+                        invesloper = item.invesloper,
+                        district = item.district,
+                        introduce = item.introduce,
+                        info = item.info,
+                        customerBenefits = item.customerBenefits,
+                        procedure = item.procedure,
+                        highlight = item.highlight,
+                        projectMedia = await _context.ProjectMedia.Where(x=>x.ProjectId == item.id).ToListAsync(),
+                    };
+                    result.Add(model);
+                }
+               
             }
 
             return result;
         }
 
-        public async Task<List<Project>> FilterOtherInvesloper()
+        public async Task<List<ProjectModel>> FilterOtherInvesloper()
         {
             var entities = await _context.Project.ToListAsync();
             
-            List<Project> result = new List<Project>();
+            List<ProjectModel> result = new List<ProjectModel>();
             foreach (var item in entities)
             {
-                if(item.invesloper != "Vinhomes")
-                    result.Add(item);
+                if (!item.invesloper.Contains("Vinhomes"))
+                {
+                    ProjectModel model = new ProjectModel()
+                    {
+                        id =  item.id,
+                        name = item.name,
+                        invesloper = item.invesloper,
+                        district = item.district,
+                        introduce = item.introduce,
+                        info = item.info,
+                        customerBenefits = item.customerBenefits,
+                        procedure = item.procedure,
+                        highlight = item.highlight,
+                        projectMedia = await _context.ProjectMedia.Where(x=>x.ProjectId == item.id).ToListAsync(),
+                    };
+                    result.Add(model);
+                }
             }
 
             return result;

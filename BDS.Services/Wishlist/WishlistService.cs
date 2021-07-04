@@ -44,7 +44,7 @@ namespace BDS.Services.Wishlist
         {
             var wishlist = await _context.Wishlist.FirstOrDefaultAsync(x => x.UserId == userId);
 
-            List<WishlistRealEstate> wishlistEstate = new List<WishlistRealEstate>();
+            List<Data.Entities.WishlistRealEstate> wishlistEstate = new List<Data.Entities.WishlistRealEstate>();
             if(wishlist != null)
             {
                 wishlistEstate =
