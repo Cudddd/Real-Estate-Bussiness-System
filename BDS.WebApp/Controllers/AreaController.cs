@@ -17,14 +17,15 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
 
-        public AreaController(IAreaService areaService,IProjectService projectService,
-            IRealEstateService realEstateService,IWishlistService wishlistService,IUserService userService)
+        public AreaController(IAreaServiceAbstractFactory areaAbstractFactory,IProjectAbstractFactory projectAbstractFactory,
+            IRealEstateServiceAbstractFactory realEstateAbstractFactory,IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
+            IUserServiceAbstractFactory userServiceAbstractFactory)
         {
-            _areaService = areaService;
-            _projectService = projectService;
-            _realEstateService = realEstateService;
-            _wishlistService = wishlistService;
-            _userService = userService;
+            _areaService = areaAbstractFactory.CreateAreaService();
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _realEstateService = realEstateAbstractFactory.CreateRealEstateService();
+            _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
+            _userService = userServiceAbstractFactory.CreateUserService();
         }
         // GET
         public IActionResult Index(long id, string name,int pageIndex = 1)

@@ -14,13 +14,17 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
 
-        public RecruitmentController(IRecruitmentService recruitmentService, IProjectService projectService, 
-            IWishlistService wishlistService,IUserService userService)
+        public RecruitmentController(
+            IReacruitmentServiceAbstractFactory reacruitmentServiceAbstractFactory, 
+            IProjectAbstractFactory projectAbstractFactory, 
+            IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
+            IUserServiceAbstractFactory userServiceAbstractFactory
+            )
         {
-            _recruitmentService = recruitmentService;
-            _projectService = projectService;
-            _wishlistService = wishlistService;
-            _userService = userService;
+            _recruitmentService = reacruitmentServiceAbstractFactory.CreateRecruitmentService();
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
+            _userService = userServiceAbstractFactory.CreateUserService();
         }
         // GET
         public IActionResult Index(int pageIndex = 1)

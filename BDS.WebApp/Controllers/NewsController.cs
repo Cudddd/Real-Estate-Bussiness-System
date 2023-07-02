@@ -13,13 +13,13 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
 
-        public NewsController(INewsService newsService, IProjectService projectService,
-            IWishlistService wishlistService, IUserService userService)
+        public NewsController(INewsServiceAbstractFactory newsAbstractFactory, IProjectAbstractFactory projectAbstractFactory,
+            IWishlistServiceAbtractFactory wishlistAbtractFactory, IUserServiceAbstractFactory userAbstractFactory)
         {
-            _newsService = newsService;
-            _projectService = projectService;
-            _wishlistService = wishlistService;
-            _userService = userService;
+            _newsService = newsAbstractFactory.CreateNewService();
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _wishlistService = wishlistAbtractFactory.CreateWishlistService();
+            _userService = userAbstractFactory.CreateUserService();
         }
         // GET
         public IActionResult Index(int pageIndex = 1)

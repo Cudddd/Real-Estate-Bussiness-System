@@ -18,13 +18,13 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
         
-        public ProjectController(IProjectService projectService,IAreaService areaService, 
-            IWishlistService wishlistService,IUserService userService)
+        public ProjectController(IProjectAbstractFactory projectAbstractFactory,IAreaServiceAbstractFactory areaAbstractFactory, 
+            IWishlistServiceAbtractFactory wishlistAbstractFactory,IUserServiceAbstractFactory userAbstractFactory)
         {
-            _projectService = projectService;
-            _areaService = areaService;
-            _wishlistService = wishlistService;
-            _userService = userService;
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _areaService = areaAbstractFactory.CreateAreaService();
+            _wishlistService = wishlistAbstractFactory.CreateWishlistService();
+            _userService = userAbstractFactory.CreateUserService();
         }
         // GET
         public IActionResult Index()

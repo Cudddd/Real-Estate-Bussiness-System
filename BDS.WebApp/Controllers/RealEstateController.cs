@@ -22,14 +22,18 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserRealEstateService _userRealEstateService;
 
-        public RealEstateController(IRealEstateService realEstateService,
-            IProjectService projectService, IWishlistService wishlistService,IUserService userService,
-            IUserRealEstateService userRealEstateService)
+        public RealEstateController(
+            IRealEstateServiceAbstractFactory realEstateServiceAbstractFactory,
+            IProjectAbstractFactory projectAbstractFactory, 
+            IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
+            IUserServiceAbstractFactory userServiceAbstractFactory,
+            IUserRealEstateService userRealEstateService
+            )
         {
-            _realEstateService = realEstateService;
-            _projectService = projectService;
-            _userService = userService;
-            _wishlistService = wishlistService;
+            _realEstateService = realEstateServiceAbstractFactory.CreateRealEstateService();
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _userService = userServiceAbstractFactory.CreateUserService();
+            _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
             _userRealEstateService = userRealEstateService;
         }
         // GET

@@ -75,9 +75,15 @@ namespace BDS.WebApp
             services.AddTransient<IRecruitmentMediaService,RecruitmentMediaService>();
             services.AddTransient<IWishlistRealEstateService,WishlistRealEstateService>();
             services.AddTransient<IUserRealEstateService,UserRealEstateService>();
-
-
-
+            services.AddTransient<IProjectAbstractFactory, ProjectAbstractFactory>();
+            services.AddTransient<IProjectMediaServiceAbstractFactory, ProjectMediaServiceAbstractFactory>();
+            services.AddTransient<IRealEstateServiceAbstractFactory, RealEstateServiceAbstractFactory>();
+            services.AddTransient<IAreaServiceAbstractFactory, AreaServiceAbstractFactory>();
+            services.AddTransient<INewsServiceAbstractFactory, NewsServiceAbstractFactory>();
+            services.AddTransient<IRealEstateMediaAbstractFactory, RealEstateMediaServiceAbstractFactory>();
+            services.AddTransient<IReacruitmentServiceAbstractFactory, RecruitmentServiceAbstractFactory>();
+            services.AddTransient<IUserServiceAbstractFactory, UserServiceAbstractFactory>();
+            services.AddTransient<IWishlistServiceAbtractFactory, WishlistServiceAbstractFactory>();
 
             
             services.AddControllersWithViews();

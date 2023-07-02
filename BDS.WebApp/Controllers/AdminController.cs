@@ -32,18 +32,22 @@ namespace BDS.WebApp.Controllers
         private readonly UserManager<User> _userManager;
         private readonly IProjectMediaService _projectMediaService;
 
-        public AdminController(IProjectService projectService,IAreaService areaService,
-            IRealEstateService realEstateService,INewsService newsService,
-            IRecruitmentService recruitmentService,UserManager<User> userManager,
-            IProjectMediaService projectMediaService)
+        public AdminController(
+            IProjectAbstractFactory projectAbstractFactory,
+            IAreaServiceAbstractFactory areaServiceAbstractFactory,
+            IRealEstateServiceAbstractFactory realEstateServiceAbstractFactory,
+            INewsServiceAbstractFactory newsServiceAbstractFactory,
+            IReacruitmentServiceAbstractFactory reacruitmentServiceAbstractFactory,UserManager<User> userManager,
+            IProjectMediaServiceAbstractFactory projectMediaServiceAbstractFactory
+            )
         {
-            _projectService = projectService;
-            _areaService = areaService;
-            _realEstateService = realEstateService;
-            _newsService = newsService;
-            _recruitmentService = recruitmentService;
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _areaService = areaServiceAbstractFactory.CreateAreaService();
+            _realEstateService = realEstateServiceAbstractFactory.CreateRealEstateService();
+            _newsService = newsServiceAbstractFactory.CreateNewService();
+            _recruitmentService = reacruitmentServiceAbstractFactory.CreateRecruitmentService();
             _userManager = userManager;
-            _projectMediaService = projectMediaService;
+            _projectMediaService = projectMediaServiceAbstractFactory.CreateProjectMediaService();
         }
         // GET
         //[Authorize(Roles = "Admin")]
