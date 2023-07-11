@@ -5,6 +5,6 @@ namespace BDS.Data.Entities
 {
     public class User : IdentityUser<long>
     {
-        public  DateTime DoB { get; set; }
+        public  DateTimeOffset? DoB { get; set; }
     }
 }

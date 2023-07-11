@@ -461,4 +461,10 @@
       <_ContentIncludedByDefault Remove="wwwroot\assets\img\youtube.png" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\assets\img\mini\" />
+      <Folder Include="wwwroot\assets\img\medium\" />
+      <Folder Include="wwwroot\assets\img\big\" />
+    </ItemGroup>
+
 </Project>

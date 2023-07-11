@@ -66,20 +66,26 @@ namespace BDS.Services.User
 
         public async Task<bool> Register(UserCreateRequest request)
         {
-            var user = new User()
+            try
             {
-                Id = Utilities.UtilitiesService.GenerateID(),
-                Email = request.Email,
-                UserName = request.UserName,
-                PhoneNumber = request.PhoneNumber,
-            };
-            IdentityResult result;
-            if(request.Password == request.ConfirmPassword)
-            {
-                result = await _userManager.CreateAsync(user, request.Password);
-                if (result.Succeeded) return true;
+                var user = new User()
+                {
+                    Id = Utilities.UtilitiesService.GenerateID(),
+                    Email = request.Email,
+                    UserName = request.UserName,
+                    PhoneNumber = request.PhoneNumber,
+                };
+                IdentityResult result;
+                if (request.Password == request.ConfirmPassword)
+                {
+                    result = await _userManager.CreateAsync(user, request.Password);
+                    if (result.Succeeded) return true;
+                }
             }
+            catch(Exception e)
+            {
 
+            }
             return false;
         }
 
