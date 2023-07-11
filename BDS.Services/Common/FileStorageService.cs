@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using static BDS.Services.Common.FileHander.BigStorage;
 
 namespace BDS.Services.Common
 {
@@ -11,6 +12,10 @@ namespace BDS.Services.Common
     {
         private readonly string _userContentFolder;
         private const string USER_CONTENT_FOLDER_NAME = "assets/img";
+
+        private const string USER_CONTENT_FOLDER_NAME_MINI = "assets/img/mini";
+        private const string USER_CONTENT_FOLDER_NAME_MEDIUM = "assets/img/medium";
+        private const string USER_CONTENT_FOLDER_NAME_BIG = "assets/img/big";
 
         public FileStorageService(IWebHostEnvironment webHostEnvironment)
         {
@@ -29,10 +34,8 @@ namespace BDS.Services.Common
         }
         public async Task SaveFileAsync(Stream mediaBinaryStream, string fileName)
         {
-            var path = Path.Combine(_userContentFolder, USER_CONTENT_FOLDER_NAME);
-            var filePath = Path.Combine(path, fileName);
-            await using var output = new FileStream(filePath, FileMode.Create);
-            await mediaBinaryStream.CopyToAsync(output);
+            var chain = new ChainOfHandlers();
+            chain.Handle(mediaBinaryStream, fileName, _userContentFolder);
         }
         
 

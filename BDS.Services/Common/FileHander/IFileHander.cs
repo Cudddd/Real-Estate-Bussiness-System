@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -11,6 +12,6 @@ namespace BDS.Services.Common.FileHander
     {
         IFileHander Successor { get; set; }
 
-        void ProcessFile(long size);
+        Task ProcessFile(Stream mediaBinaryStream, string fileName,string userContentFolder);
     }
 }
