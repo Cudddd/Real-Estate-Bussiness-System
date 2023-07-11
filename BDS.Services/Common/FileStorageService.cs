@@ -13,10 +13,6 @@ namespace BDS.Services.Common
         private readonly string _userContentFolder;
         private const string USER_CONTENT_FOLDER_NAME = "assets/img";
 
-        private const string USER_CONTENT_FOLDER_NAME_MINI = "assets/img/mini";
-        private const string USER_CONTENT_FOLDER_NAME_MEDIUM = "assets/img/medium";
-        private const string USER_CONTENT_FOLDER_NAME_BIG = "assets/img/big";
-
         public FileStorageService(IWebHostEnvironment webHostEnvironment)
         {
             _userContentFolder = Path.Combine(webHostEnvironment.WebRootPath);

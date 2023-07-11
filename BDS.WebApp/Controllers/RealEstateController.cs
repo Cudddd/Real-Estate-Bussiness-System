@@ -26,7 +26,7 @@ namespace BDS.WebApp.Controllers
             IProjectService projectService, IWishlistService wishlistService,IUserService userService,
             IUserRealEstateService userRealEstateService)
         {
-            _realEstateService = realEstateService;
+            _realEstateService = new RealEstateServiceProxy(realEstateService);
             _projectService = projectService;
             _userService = userService;
             _wishlistService = wishlistService;
