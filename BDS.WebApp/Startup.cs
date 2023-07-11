@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BDS.Data.EF;
 using BDS.Data.Entities;
+using BDS.Services.AbtractFactory;
 using BDS.Services.Area;
 using BDS.Services.Common;
 using BDS.Services.News;
@@ -44,10 +45,10 @@ namespace BDS.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<BdsDbContext>(options => 
-                options.UseNpgsql(@"Server=localhost;Port=5432;Database=BDS;User Id=postgres;Password=admin")
+            services.AddDbContext<BdsDbContext>(options =>
+                options.UseNpgsql(@"Server=thamminhduclinux1.postgres.database.azure.com;Port=5432;Database=postgres;User Id=thamminhduc@thamminhduclinux1;Password=23111993Tai!;SSL Mode=Require;Trust Server Certificate=true;")
                 );
+
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<BdsDbContext>()
                 .AddDefaultTokenProviders();
@@ -57,29 +58,26 @@ namespace BDS.WebApp
                 options.AccessDeniedPath = new PathString("/Home/Error");
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
             });
-            
+
             // DI
-            services.AddTransient<IProjectService,ProjectService>();
-            services.AddTransient<IAreaService,AreaService>();
-            services.AddTransient<IRealEstateService,RealEstateService>();
-            services.AddTransient<INewsMediaService,NewsMediaService>();
-            services.AddTransient<INewsService,NewsService>();
-            services.AddTransient<IRecruitmentService,RecruitmentService>();
-            services.AddTransient<UserManager<User>,UserManager<User>>();
-            services.AddTransient<SignInManager<User>,SignInManager<User>>();
-            services.AddTransient<IUserService,UserService>();
-            services.AddTransient<IStorageService,FileStorageService>();
-            services.AddTransient<IWishlistService,WishlistService>();
-            services.AddTransient<IProjectMediaService,ProjectMediaService>();
-            services.AddTransient<IRealEstateMediaService,RealEstateMediaService>();
-            services.AddTransient<IRecruitmentMediaService,RecruitmentMediaService>();
-            services.AddTransient<IWishlistRealEstateService,WishlistRealEstateService>();
-            services.AddTransient<IUserRealEstateService,UserRealEstateService>();
+            services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<IAreaService, AreaService>();
+            services.AddTransient<IRealEstateService, RealEstateService>();
+            services.AddTransient<INewsMediaService, NewsMediaService>();
+            services.AddTransient<INewsService, NewsService>();
+            services.AddTransient<IRecruitmentService, RecruitmentService>();
+            services.AddTransient<UserManager<User>, UserManager<User>>();
+            services.AddTransient<SignInManager<User>, SignInManager<User>>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IStorageService, FileStorageService>();
+            services.AddTransient<IWishlistService, WishlistService>();
+            services.AddTransient<IProjectMediaService, ProjectMediaService>();
+            services.AddTransient<IRealEstateMediaService, RealEstateMediaService>();
+            services.AddTransient<IRecruitmentMediaService, RecruitmentMediaService>();
+            services.AddTransient<IWishlistRealEstateService, WishlistRealEstateService>();
+            services.AddTransient<IUserRealEstateService, UserRealEstateService>();
+            services.AddTransient<IServiceFactory, ServiceFactory>();
 
-
-
-
-            
             services.AddControllersWithViews();
         }
 

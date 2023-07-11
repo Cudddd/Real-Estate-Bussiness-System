@@ -1,4 +1,5 @@
 using System;
+using BDS.Services.AbtractFactory;
 using BDS.Services.Area;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
@@ -17,17 +18,21 @@ namespace BDS.WebApp.Controllers
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
 
-        public AreaController(IAreaService areaService,IProjectService projectService,
-            IRealEstateService realEstateService,IWishlistService wishlistService,IUserService userService)
+        public AreaController(
+            IProjectService projectService,
+            IRealEstateService realEstateService,
+            IWishlistService wishlistService,
+            IUserService userService,
+            IServiceFactory serviceFactory)
         {
-            _areaService = areaService;
+            _areaService = serviceFactory.CreateAreaService(Area.V1);
             _projectService = projectService;
             _realEstateService = realEstateService;
             _wishlistService = wishlistService;
             _userService = userService;
         }
         // GET
-        public IActionResult Index(long id, string name,int pageIndex = 1)
+        public IActionResult Index(long id, string name, int pageIndex = 1)
         {
             ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
             if (User.Identity != null && User.Identity.IsAuthenticated)
@@ -39,7 +44,7 @@ namespace BDS.WebApp.Controllers
             ViewBag.AreaId = id;
             AreaViewModel areaViewModel = new AreaViewModel();
 
-            areaViewModel.realEstates = _realEstateService.GetByAreaId(id,pageIndex,6).Result;
+            areaViewModel.realEstates = _realEstateService.GetByAreaId(id, pageIndex, 6).Result;
             areaViewModel.pageIndex = pageIndex;
 
             return View(areaViewModel);
