@@ -7,6 +7,7 @@ using BDS.Data.EF;
 using BDS.Data.Entities;
 using BDS.Services.Area;
 using BDS.Services.Common;
+using BDS.Services.Facades.Services;
 using BDS.Services.News;
 using BDS.Services.NewsMedia;
 using BDS.Services.Project;
@@ -84,7 +85,7 @@ namespace BDS.WebApp
             services.AddTransient<IReacruitmentServiceAbstractFactory, RecruitmentServiceAbstractFactory>();
             services.AddTransient<IUserServiceAbstractFactory, UserServiceAbstractFactory>();
             services.AddTransient<IWishlistServiceAbtractFactory, WishlistServiceAbstractFactory>();
-
+            services.AddTransient<IAreaFacade, AreaFacade>();
             
             services.AddControllersWithViews();
         }
