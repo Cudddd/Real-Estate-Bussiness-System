@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using BDS.Services.Area;
 using BDS.Services.Facades.Services;
 using BDS.Services.Project;
@@ -19,9 +20,9 @@ namespace BDS.WebApp.Controllers
             _areaFacade = areaFacade;
         }
         // GET
-        public IActionResult Index(long id, string name,int pageIndex = 1)
+        public async Task<IActionResult> Index(long id, string name,int pageIndex = 1)
         {
-            var result = _areaFacade.GetAreaService(User,id, name, pageIndex);
+            var result = await _areaFacade.GetAreaService(User,id, name, pageIndex);
 
             ViewBag.HighlightProjects = result.ListProject;
             if (User.Identity != null && User.Identity.IsAuthenticated)

@@ -9,33 +9,28 @@ using BDS.Services.Wishlist;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BDS.WebApp.Models;
+using BDS.Services.Facades.Services;
 
 namespace BDS.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IProjectService _projectService;
-        private readonly IWishlistService _wishlistService;
-        private readonly IUserService _userService;
+        private readonly IHomeFacade _homeFacade;
 
         public HomeController(
-            IProjectAbstractFactory projectAbstractFactory,
-            IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
-            IUserServiceAbstractFactory userServiceAbstractFactory
+            IHomeFacade homeFacade
          )
         {
-            _projectService = projectAbstractFactory.CreateProjectServices();
-            _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
-            _userService = userServiceAbstractFactory.CreateUserService();
+            _homeFacade=homeFacade;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var result = await _homeFacade.GetData(User);
+            ViewBag.HighlightProjects = result.ListProjects;
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                long userId = _userService.GetUserId(User);
-                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+                ViewBag.wishlist = result.ListWishList;
             }
             
             return View();
@@ -44,13 +39,13 @@ namespace BDS.WebApp.Controllers
         
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public async Task<IActionResult> Error()
         {
-            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var result = await _homeFacade.GetData(User);
+            ViewBag.HighlightProjects = result.ListProjects;
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                long userId = _userService.GetUserId(User);
-                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+                ViewBag.wishlist = result.ListWishList;
             }
             
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});

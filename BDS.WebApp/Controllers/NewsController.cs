@@ -1,51 +1,46 @@
+using BDS.Services.Facades.Services;
 using BDS.Services.News;
 using BDS.Services.Project;
 using BDS.Services.User;
 using BDS.Services.Wishlist;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BDS.WebApp.Controllers
 {
     public class NewsController : Controller
     {
-        private readonly INewsService _newsService;
-        private readonly IProjectService _projectService;
-        private readonly IWishlistService _wishlistService;
-        private readonly IUserService _userService;
+        private readonly INewsFacade _newsFacade;
 
-        public NewsController(INewsServiceAbstractFactory newsAbstractFactory, IProjectAbstractFactory projectAbstractFactory,
-            IWishlistServiceAbtractFactory wishlistAbtractFactory, IUserServiceAbstractFactory userAbstractFactory)
+        public NewsController(INewsFacade newsFacade)
         {
-            _newsService = newsAbstractFactory.CreateNewService();
-            _projectService = projectAbstractFactory.CreateProjectServices();
-            _wishlistService = wishlistAbtractFactory.CreateWishlistService();
-            _userService = userAbstractFactory.CreateUserService();
+            _newsFacade = newsFacade;
         }
         // GET
-        public IActionResult Index(int pageIndex = 1)
+        public async Task<IActionResult> Index(int pageIndex = 1)
         {
-            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var result = await _newsFacade.GetNews(User, pageIndex);
+            ViewBag.HighlightProjects = result.ListProjects;
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                long userId = _userService.GetUserId(User);
-                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+                ViewBag.wishlist = result.ListWishList;
             }
             ViewBag.pageIndex = pageIndex;
-            var data = _newsService.GetAllPaging(pageIndex, 4).Result;
+            var data = result.ListNews;
 
             return View(data);
         }
 
-        public IActionResult Detail(long id)
+        public async Task<IActionResult> Detail(long id)
         {
-            ViewBag.HighlightProjects = _projectService.GetHighlightProject().Result;
+            var result = await _newsFacade.GetNewsDetail(User, id);
+            ViewBag.HighlightProjects = result.ListProjects;
             if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                long userId = _userService.GetUserId(User);
-                ViewBag.wishlist = _wishlistService.GetByUserId(userId).Result;
+                ViewBag.wishlist = result.ListWishList;
             }
 
-            var data = _newsService.GetById(id).Result;
+            var data = result.New;
             
             return View(data);
         }

@@ -86,6 +86,8 @@ namespace BDS.WebApp
             services.AddTransient<IUserServiceAbstractFactory, UserServiceAbstractFactory>();
             services.AddTransient<IWishlistServiceAbtractFactory, WishlistServiceAbstractFactory>();
             services.AddTransient<IAreaFacade, AreaFacade>();
+            services.AddTransient<IHomeFacade, HomeFacade>();
+            services.AddTransient<INewsFacade, NewsFacade>();
             
             services.AddControllersWithViews();
         }

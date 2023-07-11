@@ -31,7 +31,7 @@ namespace BDS.Services.Facades.Services
             _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
             _userService = userServiceAbstractFactory.CreateUserService();
         }
-        public AreaFacadeModel GetAreaService(ClaimsPrincipal User, long id, string name, int pageIndex = 1)
+        public async Task<AreaFacadeModel> GetAreaService(ClaimsPrincipal User, long id, string name, int pageIndex = 1)
         {
             AreaFacadeModel result = new AreaFacadeModel();
             result.ListProject = _projectService.GetHighlightProject().Result;

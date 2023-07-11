@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace BDS.Services.Facades.Services
 {
-    public interface IAreaFacade
+    public interface INewsFacade
     {
-        Task<AreaFacadeModel> GetAreaService(ClaimsPrincipal User, long id, string name, int pageIndex = 1);
+        Task<GetNewsModelFacade> GetNews(ClaimsPrincipal User,int pageIndex = 1);
+        Task<NewModelDetail> GetNewsDetail(ClaimsPrincipal User, long id);
     }
 }
