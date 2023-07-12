@@ -12,6 +12,7 @@ namespace BDS.Services.RealEstate
 {
     public class RealEstateServiceAbstractFactory : IRealEstateServiceAbstractFactory
     {
+
         private readonly BdsDbContext _context;
         private readonly IStorageService _storageService;
         private readonly IRealEstateMediaService _realEstateMediaService;
@@ -25,6 +26,9 @@ namespace BDS.Services.RealEstate
             _realEstateMediaService = realEstateMediaService;
             _wishlistRealEstateService = wishlistRealEstateService;
         }
+
+        public string FactoryName => "RealEstateService";
+
         public IRealEstateService CreateRealEstateService()
         {
             return new RealEstateService(_context, _storageService, _realEstateMediaService, _wishlistRealEstateService);

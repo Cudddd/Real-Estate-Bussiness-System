@@ -8,6 +8,7 @@ namespace BDS.Services.RealEstate
 {
     public interface IRealEstateServiceAbstractFactory
     {
+        string FactoryName { get; }
         IRealEstateService CreateRealEstateService();
     }
 }

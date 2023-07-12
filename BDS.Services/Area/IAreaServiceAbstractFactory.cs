@@ -8,6 +8,7 @@ namespace BDS.Services.Area
 {
     public interface IAreaServiceAbstractFactory
     {
+        string FactoryName { get; }
         IAreaService CreateAreaService();
     }
 }
