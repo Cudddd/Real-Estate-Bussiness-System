@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BDS.Services.Area.AreaService" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAEAAMAAAgIIAAKAAIA=</HashCode>
+      <FileName>Area\AreaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BDS.Services.Area.ConcreteAreaServiceFactory" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="5.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIBAAAAAAAAAAAAAAAAAAAAAIAAACAAAA=</HashCode>
+      <FileName>Area\AreaServiceAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BDS.Services.Area.AreaServiceProduct">
+    <Position X="1.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAMAAAgAIAAIAAIA=</HashCode>
+      <FileName>Area\AreaServiceProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BDS.Services.Area.AreaServicesFileAbstractFactory">
+    <Position X="7.5" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Area\AreaServicesFileAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BDS.Services.Area.IAreaService">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAMAAAgAIAAIAAIA=</HashCode>
+      <FileName>Area\IAreaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BDS.Services.Area.IAreaServiceAbstractFactory">
+    <Position X="7.5" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Area\IAreaServiceAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

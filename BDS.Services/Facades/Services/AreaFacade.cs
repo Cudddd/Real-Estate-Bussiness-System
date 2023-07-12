@@ -4,6 +4,7 @@ using BDS.Services.Project;
 using BDS.Services.RealEstate;
 using BDS.Services.User;
 using BDS.Services.Wishlist;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace BDS.Services.Facades.Services
         private readonly IRealEstateService _realEstateService;
         private readonly IWishlistService _wishlistService;
         private readonly IUserService _userService;
-        public AreaFacade(IAreaServiceAbstractFactory areaAbstractFactory, IProjectAbstractFactory projectAbstractFactory,
+        public AreaFacade(IServiceProvider serviceProvider,IAreaServiceAbstractFactory areaAbstractFactory, IProjectAbstractFactory projectAbstractFactory,
             IRealEstateServiceAbstractFactory realEstateAbstractFactory, IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
             IUserServiceAbstractFactory userServiceAbstractFactory) 
         {
+            areaAbstractFactory= serviceProvider.GetServices<IAreaServiceAbstractFactory>().FirstOrDefault(f => f.FactoryName == "AreaServices");
+
             _areaService = areaAbstractFactory.CreateAreaService();
             _projectService = projectAbstractFactory.CreateProjectServices();
             _realEstateService = realEstateAbstractFactory.CreateRealEstateService();
