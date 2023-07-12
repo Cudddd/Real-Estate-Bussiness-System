@@ -168,7 +168,32 @@ namespace BDS.Services.RealEstate
                 _context.RealEstateType,
                 realEstate => realEstate.typeID,
                 realEstateType => realEstateType.id,
-                (realEstate, realEstateType) => modelBuilder.Build(realEstate)
+                (realEstate, realEstateType) => new RealEstateModel()
+                {
+                    id = realEstate.id,
+                    areaID = realEstate.areaID,
+                    name = realEstate.name,
+                    type = realEstateType.name,
+                    acreage = realEstate.acreage,
+                    bathRoom = realEstate.bathRoom,
+                    bedRoom = realEstate.bedRoom,
+                    DateCreated = realEstate.DateCreated,
+                    DateModify = realEstate.DateModify,
+                    facade = realEstate.facade,
+                    floor = realEstate.floor,
+                    length = realEstate.length,
+                    width = realEstate.width,
+                    orientation = realEstate.orientation,
+                    price = realEstate.price,
+                    location = realEstate.location,
+                    mainLine = realEstate.mainLine,
+                    sell = realEstate.sell,
+                    description = realEstate.description,
+                    address = realEstate.address,
+                    areaName = _context.Area.FirstOrDefault(x=>x.id == realEstate.areaID).name,
+                    realEstateMedia = _context.RealEstateMedia
+                        .Where(x => x.RealEstateId == realEstate.id).ToList()
+                }
             ).FirstOrDefaultAsync(t => t.id == realEstateID);
 
 
