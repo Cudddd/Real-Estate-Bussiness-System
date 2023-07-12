@@ -19,12 +19,15 @@ namespace BDS.WebApp.Controllers
         private readonly IUserService _userService;
         private readonly IProjectService _projectService;
         private readonly IWishlistService _wishlistService;
-        public UserController(IUserService userService, IProjectService projectService, 
-            IWishlistService wishlistService)
+        public UserController(
+            IUserServiceAbstractFactory userServiceAbstractFactory, 
+            IProjectAbstractFactory projectAbstractFactory, 
+            IWishlistServiceAbtractFactory wishlistServiceAbtractFactory
+            )
         {
-            _userService = userService;
-            _projectService = projectService;
-            _wishlistService = wishlistService;
+            _userService = userServiceAbstractFactory.CreateUserService();
+            _projectService = projectAbstractFactory.CreateProjectServices();
+            _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();
         }
 
         [HttpGet]

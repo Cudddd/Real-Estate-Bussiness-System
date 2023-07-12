@@ -8,6 +8,7 @@ using BDS.Data.Entities;
 using BDS.Services.AbtractFactory;
 using BDS.Services.Area;
 using BDS.Services.Common;
+using BDS.Services.Facades.Services;
 using BDS.Services.News;
 using BDS.Services.NewsMedia;
 using BDS.Services.Project;
@@ -60,24 +61,36 @@ namespace BDS.WebApp
             });
 
             // DI
-            services.AddTransient<IProjectService, ProjectService>();
-            services.AddTransient<IAreaService, AreaService>();
-            services.AddTransient<IRealEstateService, RealEstateService>();
-            services.AddTransient<INewsMediaService, NewsMediaService>();
-            services.AddTransient<INewsService, NewsService>();
-            services.AddTransient<IRecruitmentService, RecruitmentService>();
-            services.AddTransient<UserManager<User>, UserManager<User>>();
-            services.AddTransient<SignInManager<User>, SignInManager<User>>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IStorageService, FileStorageService>();
-            services.AddTransient<IWishlistService, WishlistService>();
-            services.AddTransient<IProjectMediaService, ProjectMediaService>();
-            services.AddTransient<IRealEstateMediaService, RealEstateMediaService>();
-            services.AddTransient<IRecruitmentMediaService, RecruitmentMediaService>();
-            services.AddTransient<IWishlistRealEstateService, WishlistRealEstateService>();
-            services.AddTransient<IUserRealEstateService, UserRealEstateService>();
+            services.AddTransient<IProjectService,ProjectService>();
+            services.AddTransient<IAreaService,AreaService>();
+            services.AddTransient<IRealEstateService,RealEstateService>();
+            services.AddTransient<INewsMediaService,NewsMediaService>();
+            services.AddTransient<INewsService,NewsService>();
+            services.AddTransient<IRecruitmentService,RecruitmentService>();
+            services.AddTransient<UserManager<User>,UserManager<User>>();
+            services.AddTransient<SignInManager<User>,SignInManager<User>>();
+            services.AddTransient<IUserService,UserService>();
+            services.AddTransient<IStorageService,FileStorageService>();
+            services.AddTransient<IWishlistService,WishlistService>();
+            services.AddTransient<IProjectMediaService,ProjectMediaService>();
+            services.AddTransient<IRealEstateMediaService,RealEstateMediaService>();
+            services.AddTransient<IRecruitmentMediaService,RecruitmentMediaService>();
+            services.AddTransient<IWishlistRealEstateService,WishlistRealEstateService>();
+            services.AddTransient<IUserRealEstateService,UserRealEstateService>();
             services.AddTransient<IServiceFactory, ServiceFactory>();
-
+            services.AddTransient<IProjectAbstractFactory, ProjectAbstractFactory>();
+            services.AddTransient<IProjectMediaServiceAbstractFactory, ProjectMediaServiceAbstractFactory>();
+            services.AddTransient<IRealEstateServiceAbstractFactory, RealEstateServiceAbstractFactory>();
+            services.AddTransient<IAreaServiceAbstractFactory, AreaServiceAbstractFactory>();
+            services.AddTransient<INewsServiceAbstractFactory, NewsServiceAbstractFactory>();
+            services.AddTransient<IRealEstateMediaAbstractFactory, RealEstateMediaServiceAbstractFactory>();
+            services.AddTransient<IReacruitmentServiceAbstractFactory, RecruitmentServiceAbstractFactory>();
+            services.AddTransient<IUserServiceAbstractFactory, UserServiceAbstractFactory>();
+            services.AddTransient<IWishlistServiceAbtractFactory, WishlistServiceAbstractFactory>();
+            services.AddTransient<IAreaFacade, AreaFacade>();
+            services.AddTransient<IHomeFacade, HomeFacade>();
+            services.AddTransient<INewsFacade, NewsFacade>();
+            
             services.AddControllersWithViews();
         }
 
