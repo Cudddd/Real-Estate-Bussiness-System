@@ -22,6 +22,8 @@ using Microsoft.EntityFrameworkCore.Internal;
 namespace BDS.Services.RealEstate
 {
     using Data.Entities;
+    using System.Xml;
+
     public class RealEstateService : IRealEstateService
     {
         private readonly BdsDbContext _context;
@@ -30,14 +32,14 @@ namespace BDS.Services.RealEstate
         private readonly IWishlistRealEstateService _wishlistRealEstateService;
 
         public RealEstateService(BdsDbContext context, IStorageService storageService,
-        IRealEstateMediaService realEstateMediaService,IWishlistRealEstateService wishlistRealEstateService)
+        IRealEstateMediaService realEstateMediaService, IWishlistRealEstateService wishlistRealEstateService)
         {
             _context = context;
             _storageService = storageService;
             _realEstateMediaService = realEstateMediaService;
             _wishlistRealEstateService = wishlistRealEstateService;
         }
-        
+
         public async Task<int> Create(RealEstateCreateRequest request)
         {
             RealEstate realEstate = new RealEstate();
@@ -58,14 +60,14 @@ namespace BDS.Services.RealEstate
             realEstate.mainLine = request.mainLine;
             realEstate.typeID = request.typeId;
             realEstate.DateCreated = DateTime.Now;
-            realEstate.DateModify =DateTime.Now;
+            realEstate.DateModify = DateTime.Now;
             realEstate.address = request.address;
             realEstate.areaID = request.areaId;
 
             await _context.RealEstate.AddAsync(realEstate);
             //await _context.SaveChangesAsync();
 
-            
+
             foreach (var item in request.realEstateImgs)
             {
                 if (item != null)
@@ -94,9 +96,9 @@ namespace BDS.Services.RealEstate
 
                 await _realEstateMediaService.Create(productImage);
             }
-            
-            
-            
+
+
+
             return await _context.SaveChangesAsync();
 
         }
@@ -119,7 +121,7 @@ namespace BDS.Services.RealEstate
                 entity.price = request.price;
                 entity.location = request.location;
                 entity.mainLine = request.mainLine;
-                entity.sell= request.sell;
+                entity.sell = request.sell;
                 entity.typeID = request.typeId;
                 entity.address = request.address;
                 entity.description = request.description;
@@ -144,7 +146,7 @@ namespace BDS.Services.RealEstate
                 var wishlist = await _context.WishlistRealEstate.Where(x => x.RealEstateId == entity.id).ToListAsync();
 
                 await _wishlistRealEstateService.DeleteRange(wishlist);
-                
+
                 _context.RealEstate.Remove(entity);
 
                 return await _context.SaveChangesAsync();
@@ -161,11 +163,12 @@ namespace BDS.Services.RealEstate
 
         public async Task<RealEstateModel> GetById(long realEstateID)
         {
+            RealEstateModelBuilder modelBuilder = new ExtendedRealEstateModelBuilder(_context);
             var entity = await _context.RealEstate.Join(
                 _context.RealEstateType,
                 realEstate => realEstate.typeID,
                 realEstateType => realEstateType.id,
-                (realEstate,realEstateType) => new RealEstateModel()
+                (realEstate, realEstateType) => new RealEstateModel()
                 {
                     id = realEstate.id,
                     areaID = realEstate.areaID,
@@ -192,8 +195,8 @@ namespace BDS.Services.RealEstate
                         .Where(x => x.RealEstateId == realEstate.id).ToList()
                 }
             ).FirstOrDefaultAsync(t => t.id == realEstateID);
-            
-            
+
+
             return entity;
         }
 
@@ -202,42 +205,29 @@ namespace BDS.Services.RealEstate
             throw new System.NotImplementedException();
         }
 
+        private RealEstateModelBuilder GetRealEstateModelBuilder(int pageIndex)
+        {
+            if (pageIndex % 2 == 0)
+            {
+                return new ExtendedRealEstateModelBuilder(_context);
+            }
+            else
+            {
+                return new BasicRealEstateModelBuilder(_context);
+            }
+        }
+
         public async Task<List<RealEstateModel>> GetAllPaging(int pageIndex, int pageSize)
         {
             var data = await _context.RealEstate.OrderBy(r => r.DateModify).ToListAsync();
-            
+
             List<RealEstateModel> realEstates = new List<RealEstateModel>();
+            RealEstateModelBuilder modelBuilder = GetRealEstateModelBuilder(pageIndex);
+
             foreach (var item in data)
             {
-                
-                //if (item.areaID == areaID)
-                {
-                    
-                    RealEstateModel realEstateModel = new RealEstateModel();
-                    realEstateModel.id = item.id;
-                    realEstateModel.areaID = item.areaID;
-                    realEstateModel.name = item.name;
-                    realEstateModel.acreage = item.acreage;
-                    realEstateModel.bathRoom = item.bathRoom;
-                    realEstateModel.bedRoom = item.bedRoom;
-                    realEstateModel.DateCreated = item.DateCreated;
-                    realEstateModel.DateModify = item.DateModify;
-                    realEstateModel.facade = item.facade;
-                    realEstateModel.floor = item.floor;
-                    realEstateModel.length = item.length;
-                    realEstateModel.width = item.width;
-                    realEstateModel.orientation = item.orientation;
-                    realEstateModel.price = item.price;
-                    realEstateModel.location = item.location;
-                    realEstateModel.mainLine = item.mainLine;
-                    realEstateModel.sell= item.sell;
-                    realEstateModel.type = _context.RealEstateType.FirstOrDefault(x => x.id == item.typeID)?.name;
-                    realEstateModel.realEstateMedia = _context.RealEstateMedia
-                        .Where(x => x.RealEstateId == realEstateModel.id).ToList();
-                    
-                    realEstates.Add(realEstateModel);
-                }
-                    
+                RealEstateModel realEstateModel = modelBuilder.Build(item);
+                realEstates.Add(realEstateModel);
             }
 
             realEstates = realEstates.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
@@ -245,7 +235,7 @@ namespace BDS.Services.RealEstate
             return realEstates;
         }
 
-        public async Task<List<RealEstateModel>> GetByAreaId(long areaID,int pageIndex,int pageSize)
+        public async Task<List<RealEstateModel>> GetByAreaId(long areaID, int pageIndex, int pageSize)
         {
             var data = await _context.RealEstate.ToListAsync();
             var realEstateTypes = await _context.RealEstateType.ToListAsync();
@@ -253,14 +243,14 @@ namespace BDS.Services.RealEstate
             List<RealEstateModel> realEstates = new List<RealEstateModel>();
             foreach (var item in data)
             {
-                
+
                 if (item.areaID == areaID)
                 {
-                    
+
                     RealEstateModel realEstateModel = new RealEstateModel();
                     realEstateModel.id = item.id;
                     realEstateModel.areaID = item.areaID;
-                    
+
                     foreach (var realEstateType in realEstateTypes)
                     {
                         if (realEstateType.id == item.typeID)
@@ -269,7 +259,7 @@ namespace BDS.Services.RealEstate
                             break;
                         }
                     }
-                    
+
                     realEstateModel.name = item.name;
                     realEstateModel.acreage = item.acreage;
                     realEstateModel.bathRoom = item.bathRoom;
@@ -284,16 +274,16 @@ namespace BDS.Services.RealEstate
                     realEstateModel.price = item.price;
                     realEstateModel.location = item.location;
                     realEstateModel.mainLine = item.mainLine;
-                    realEstateModel.sell= item.sell;
+                    realEstateModel.sell = item.sell;
                     realEstateModel.description = item.description;
                     realEstateModel.realEstateMedia = _context.RealEstateMedia
                         .Where(x => x.RealEstateId == realEstateModel.id).ToList();
-                    
+
                     realEstates.Add(realEstateModel);
                 }
-                    
+
             }
-            
+
             realEstates = realEstates.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 
             return realEstates;
@@ -304,7 +294,7 @@ namespace BDS.Services.RealEstate
             var data = await _context.RealEstateType.ToListAsync();
 
             return data;
-            
+
             throw new NotImplementedException();
         }
     }

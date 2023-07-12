@@ -30,7 +30,8 @@ namespace BDS.WebApp.Controllers
             IUserRealEstateService userRealEstateService
             )
         {
-            _realEstateService = realEstateServiceAbstractFactory.CreateRealEstateService();
+            var realEstateService = realEstateServiceAbstractFactory.CreateRealEstateService();
+            _realEstateService = new RealEstateServiceProxy(realEstateService);
             _projectService = projectAbstractFactory.CreateProjectServices();
             _userService = userServiceAbstractFactory.CreateUserService();
             _wishlistService = wishlistServiceAbtractFactory.CreateWishlistService();

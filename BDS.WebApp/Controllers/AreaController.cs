@@ -1,11 +1,5 @@
-using System;
 using System.Threading.Tasks;
-using BDS.Services.Area;
 using BDS.Services.Facades.Services;
-using BDS.Services.Project;
-using BDS.Services.RealEstate;
-using BDS.Services.User;
-using BDS.Services.Wishlist;
 using BDS.WebApp.Models.AreaViewModel;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +8,6 @@ namespace BDS.WebApp.Controllers
     public class AreaController : Controller
     {
         private readonly IAreaFacade _areaFacade;
-
         public AreaController(IAreaFacade areaFacade)
         {
             _areaFacade = areaFacade;
