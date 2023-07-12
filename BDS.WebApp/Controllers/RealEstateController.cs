@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using BDS.Data.Enum;
+using BDS.Services.Area;
 using BDS.Services.Model;
 using BDS.Services.Project;
 using BDS.Services.RealEstate;
@@ -11,6 +12,7 @@ using BDS.Services.Wishlist;
 using BDS.WebApp.Models.RealEstate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BDS.WebApp.Controllers
 {
@@ -23,6 +25,7 @@ namespace BDS.WebApp.Controllers
         private readonly IUserRealEstateService _userRealEstateService;
 
         public RealEstateController(
+            IServiceProvider serviceProvider,
             IRealEstateServiceAbstractFactory realEstateServiceAbstractFactory,
             IProjectAbstractFactory projectAbstractFactory, 
             IWishlistServiceAbtractFactory wishlistServiceAbtractFactory,
@@ -30,6 +33,7 @@ namespace BDS.WebApp.Controllers
             IUserRealEstateService userRealEstateService
             )
         {
+            realEstateServiceAbstractFactory= serviceProvider.GetServices<IRealEstateServiceAbstractFactory>().FirstOrDefault(f => f.FactoryName == "RealEstateService");
             var realEstateService = realEstateServiceAbstractFactory.CreateRealEstateService();
             _realEstateService = new RealEstateServiceProxy(realEstateService);
             _projectService = projectAbstractFactory.CreateProjectServices();

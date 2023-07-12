@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BDS.Services.Area.AreaService" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAABAAAAAAAAAAAAAEAAMAAAgIIAAKAAIA=</HashCode>
+      <FileName>Area\AreaService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="2.176" />
+  </Class>
+  <Class Name="BDS.Services.Area.AreaServiceProduct" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAMAAAgAIAAIAAIA=</HashCode>
+      <FileName>Area\AreaServiceProduct.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="BDS.Services.Area.AreaServicesFileAbstractFactory" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Area\AreaServicesFileAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.583" />
+  </Class>
+  <Class Name="BDS.Services.Area.ConcreteAreaServiceFactory" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIBAAAAAAAAAAAAAAAAAAAAAIAAACAAAA=</HashCode>
+      <FileName>Area\AreaServiceAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BDS.Services.Facades.Services.AreaFacade">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAACAAAAAAAAAIEAgAAABA=</HashCode>
+      <FileName>Facades\Services\AreaFacade.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BDS.Services.Area.IAreaService">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAEAAMAAAgAIAAIAAIA=</HashCode>
+      <FileName>Area\IAreaService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BDS.Services.Area.IAreaServiceAbstractFactory">
+    <Position X="5.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Area\IAreaServiceAbstractFactory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
